@@ -24,9 +24,6 @@ export default function TipsPage() {
             together.
           </p>
         </div>
-        <div className="heading-sticker sticker-yellow">
-          <Lightbulb size={29} />
-        </div>
       </div>
 
       <div className="tips-feature">

@@ -7,85 +7,55 @@ export default function HomePage({ navigate }) {
   const cardCount = content.flashcards.length;
 
   return (
-    <section className="home-page">
-      <div className="hero">
-        <div className="hero-copy">
-          <div className="eyebrow">
-            <span className="eyebrow-dot" /> MATHS + LANGUAGE, TOGETHER
-          </div>
-          <h1>
-            Understand the
-            <br />
-            <em>maths concept.</em>
-          </h1>
-          <p className="hero-description">
-            A friendly learning space to explore maths vocabulary, practise with
-            flashcards, and bring concepts to life in English.
+    <section className="home-page hunt-homepage">
+      <div className="hunt-hero">
+        <div className="hunt-copy">
+          <h1>Welcome to The Hunt</h1>
+          <p className="hunt-quote">"Hunt the terms, grasp Mathematics"</p>
+          <p className="hunt-sub">
+            — assisting you with vivid CLIL Mathematics teaching materials.
           </p>
-          <div className="hero-actions">
-            <button
-              className="primary-button"
-              onClick={() => navigate("terms")}
-            >
-              Explore maths terms <ArrowRight size={17} />
-            </button>
-            <button
-              className="secondary-button"
-              onClick={() => navigate("flashcards")}
-            >
-              Try flashcards <Layers3 size={16} />
-            </button>
-          </div>
-          <div className="hero-trust">
-            <div className="mini-avatars">
-              <span>A</span>
-              <span>M</span>
-              <span>+</span>
-            </div>
-            <span>Learn at your own pace</span>
-            <span className="trust-star">✳</span>
-          </div>
         </div>
 
         <div
-          className="hero-illustration"
-          aria-label="Abstract maths illustration"
+          className="hunt-illustration"
+          aria-label="Magnifying glass illustration"
         >
-          <div className="blob blob-one" />
-          <div className="blob blob-two" />
-          <div className="orbit orbit-one" />
-          <div className="orbit orbit-two" />
-          <div className="math-paper">
-            <span className="paper-label">TODAY'S LITTLE REMINDER</span>
-            <div className="paper-equation">
-              x + <span>y</span> = <b>?</b>
-            </div>
-            <div className="paper-rule" />
-            <div className="paper-bottom">
-              <span>
-                Keep asking
-                <br />
-                why.
-              </span>
-              <span className="paper-flower">✳</span>
-            </div>
+          <div className="idea-bulb">
+            <span className="bulb-glow" />
           </div>
-          <span className="float-symbol symbol-plus">+</span>
-          <span className="float-symbol symbol-pi">π</span>
-          <span className="float-symbol symbol-star">✳</span>
-          <span className="float-symbol symbol-circle">○</span>
-          <span className="float-symbol symbol-triangle">△</span>
-          <div className="hero-caption">
-            <span className="caption-dot" /> Curious minds welcome
+          <div className="lens-wrap">
+            <div className="lens-ring" />
+            <div className="lens-inner" />
           </div>
-        </div>
-
-        <div className="hero-sticker">
-          LEARN
-          <br />
-          BY DOING <span>↗</span>
+          <div className="magnifier-handle" />
         </div>
       </div>
+
+      <div className="hunt-info-grid">
+        <div className="info-panel">
+          <div className="info-avatar">
+            <span>👩‍🏫</span>
+          </div>
+          <p>
+            The Hunt is a dedicated digital hub designed specifically for
+            educators teaching Grade 6 Mathematics using the Content and
+            Language Integrated Learning (CLIL) approach.
+          </p>
+        </div>
+
+        <div className="info-panel info-panel-alt">
+          <div className="info-icon">
+            <BookOpen size={36} />
+          </div>
+          <p>
+            Based on the Kết nối tri thức với cuộc sống curriculum (Volume 1),
+            our platform provides you with practical, ready-to-use resources to
+            make your bilingual lessons engaging and effective.
+          </p>
+        </div>
+      </div>
+
       <div className="section-heading">
         <div>
           <div className="eyebrow">PICK YOUR PATH</div>

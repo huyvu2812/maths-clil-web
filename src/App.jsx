@@ -10,10 +10,10 @@ import {
 } from "lucide-react";
 import content from "./data/content.json";
 import HomePage from "./pages/HomePage";
-import TermsPage from "./pages/TermsPage";
+import TermsPage, { TermsChapterPage } from "./pages/TermsPage";
 import LessonDetailPage from "./pages/LessonDetailPage";
 import FlashcardsPage from "./pages/FlashcardsPage";
-import WorksheetsPage from "./pages/WorksheetsPage";
+import WorksheetsPage, { WorksheetsChapterPage } from "./pages/WorksheetsPage";
 import TipsPage from "./pages/TipsPage";
 import AboutPage from "./pages/AboutPage";
 
@@ -29,6 +29,7 @@ const navItems = [
 function App() {
   const [page, setPage] = useState("home");
   const [search, setSearch] = useState("");
+  const [selectedChapter, setSelectedChapter] = useState("chapter-1");
   const [selectedLesson, setSelectedLesson] = useState(
     content.terms[0]?.lesson || "all",
   );
@@ -44,6 +45,9 @@ function App() {
     if (nextPage === "terms" || nextPage === "home") {
       setSelectedLesson(content.terms[0]?.lesson || "all");
     }
+    if (nextPage === "worksheets") {
+      setSelectedChapter("chapter-1");
+    }
   }
 
   function openLesson(lessonName) {
@@ -52,10 +56,32 @@ function App() {
     setSearch("");
   }
 
+  function openTermsChapter(chapterId) {
+    setSelectedChapter(chapterId);
+    setPage("terms-chapter");
+    setSearch("");
+  }
+
+  function openWorksheetChapter(chapterId) {
+    setSelectedChapter(chapterId);
+    setPage("worksheets-chapter");
+    setSearch("");
+  }
+
   function backToLessons() {
     setPage("terms");
     setSearch("");
     setSelectedLesson(content.terms[0]?.lesson || "all");
+  }
+
+  function backToTermsChapterList() {
+    setPage("terms");
+    setSearch("");
+  }
+
+  function backToWorksheetChapterList() {
+    setPage("worksheets");
+    setSearch("");
   }
 
   return (
@@ -70,15 +96,15 @@ function App() {
             if (e.key === "Enter" || e.key === " ") navigate("home");
           }}
         >
-          <div className="brand-mark" aria-label="Maths CLIL logo">
-            <span className="math-h">h</span>
-            <span className="math-hu">HU</span>
-            <span className="math-pi">π</span>
-            <span className="math-t">T</span>
-            <span className="brand-lens" aria-hidden="true" />
-          </div>
+          <img
+            className="brand-mark"
+            src="/main-logo.jpeg"
+            alt="Maths CLIL logo"
+          />
           <div className="brand-copy">
-            <span className="brand-slogan">Empowering Educators through CLIL</span>
+            <span className="brand-slogan">
+              Empowering Educators through CLIL
+            </span>
           </div>
         </div>
 
@@ -103,7 +129,17 @@ function App() {
 
       <main className="main-content">
         {page === "home" && <HomePage navigate={navigate} />}
-        {page === "terms" && <TermsPage lessons={lessons} onOpenLesson={openLesson} />}
+        {page === "terms" && (
+          <TermsPage lessons={lessons} onOpenChapter={openTermsChapter} />
+        )}
+        {page === "terms-chapter" && (
+          <TermsChapterPage
+            chapterId={selectedChapter}
+            lessons={lessons}
+            onBack={backToTermsChapterList}
+            onOpenLesson={openLesson}
+          />
+        )}
         {page === "terms-lesson" && (
           <LessonDetailPage
             lesson={selectedLesson}
@@ -118,7 +154,15 @@ function App() {
           />
         )}
         {page === "flashcards" && <FlashcardsPage />}
-        {page === "worksheets" && <WorksheetsPage />}
+        {page === "worksheets" && (
+          <WorksheetsPage onOpenChapter={openWorksheetChapter} />
+        )}
+        {page === "worksheets-chapter" && (
+          <WorksheetsChapterPage
+            chapterId={selectedChapter}
+            onBack={backToWorksheetChapterList}
+          />
+        )}
         {page === "tips" && <TipsPage />}
         {page === "about" && <AboutPage />}
       </main>

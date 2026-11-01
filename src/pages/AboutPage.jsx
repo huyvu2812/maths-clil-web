@@ -17,9 +17,6 @@ export default function AboutPage() {
             CLIL-based maths vocabulary.
           </p>
         </div>
-        <div className="heading-sticker sticker-yellow">
-          <Shapes size={26} />
-        </div>
       </div>
 
       <div className="about-card">
