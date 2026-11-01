@@ -1,39 +1,10 @@
 import React, { useMemo } from "react";
 import { ArrowLeft, ArrowRight, Calculator } from "lucide-react";
+import VolumeChapterPage from "../components/VolumeChapterPage";
+import { getChapterById } from "../constants/chapterMeta";
 
 export function TermsChapterPage({ chapterId, lessons, onBack, onOpenLesson }) {
-  const chapters = useMemo(
-    () => [
-      {
-        id: "chapter-1",
-        label: "Chapter I:",
-        title: "THE SET OF NATURAL NUMBERS",
-      },
-      {
-        id: "chapter-2",
-        label: "Chapter II:",
-        title: "DIVISIBILITY RELATIONS AND PROPERTIES",
-      },
-      {
-        id: "chapter-3",
-        label: "Chapter III:",
-        title: "THE SET OF INTEGERS",
-      },
-      {
-        id: "chapter-4",
-        label: "Chapter IV:",
-        title: "SOME PLANE SHAPES IN REAL LIFE",
-      },
-      {
-        id: "chapter-5",
-        label: "Chapter V:",
-        title: "SYMMETRY OF PLANE SHAPES IN NATURE",
-      },
-    ],
-    [],
-  );
-
-  const chapter = chapters.find((item) => item.id === chapterId) || chapters[0];
+  const chapter = getChapterById(chapterId);
   const lessonList = useMemo(
     () => (chapterId === "chapter-1" ? lessons : []),
     [chapterId, lessons],
@@ -97,68 +68,17 @@ export function TermsChapterPage({ chapterId, lessons, onBack, onOpenLesson }) {
 }
 
 export default function TermsPage({ lessons, onOpenChapter }) {
-  const chapters = useMemo(
-    () => [
-      {
-        id: "chapter-1",
-        label: "Chapter I:",
-        title: "THE SET OF NATURAL NUMBERS",
-      },
-      {
-        id: "chapter-2",
-        label: "Chapter II:",
-        title: "DIVISIBILITY RELATIONS AND PROPERTIES",
-      },
-      {
-        id: "chapter-3",
-        label: "Chapter III:",
-        title: "THE SET OF INTEGERS",
-      },
-      {
-        id: "chapter-4",
-        label: "Chapter IV:",
-        title: "SOME PLANE SHAPES IN REAL LIFE",
-      },
-      {
-        id: "chapter-5",
-        label: "Chapter V:",
-        title: "SYMMETRY OF PLANE SHAPES IN NATURE",
-      },
-    ],
-    [],
-  );
-
   return (
-    <section className="page-section">
-      <div className="page-heading">
-        <div>
-          <div className="eyebrow">
-            <Calculator size={14} /> YOUR MATHS GLOSSARY
-          </div>
-          <h1>
-            Maths terms, <em>made clear.</em>
-          </h1>
-          <p>Build your mathematical vocabulary in English and Vietnamese.</p>
-        </div>
-      </div>
-
-      <div className="chapter-volume-wrap">
-        <div className="volume-pill">Volume 1</div>
-      </div>
-
-      <div className="chapter-selector-grid">
-        {chapters.map((chapter) => (
-          <button
-            key={chapter.id}
-            type="button"
-            className="chapter-choice"
-            onClick={() => onOpenChapter(chapter.id)}
-          >
-            <span className="chapter-label">{chapter.label}</span>
-            <span className="chapter-title">{chapter.title}</span>
-          </button>
-        ))}
-      </div>
-    </section>
+    <VolumeChapterPage
+      eyebrow={
+        <>
+          <Calculator size={14} /> YOUR MATHS GLOSSARY
+        </>
+      }
+      title="Maths terms, <em>made clear.</em>"
+      description="Build your mathematical vocabulary in English and Vietnamese."
+      volumeId="volume-1"
+      onOpenChapter={onOpenChapter}
+    />
   );
 }

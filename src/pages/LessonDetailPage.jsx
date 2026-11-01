@@ -59,6 +59,16 @@ export default function LessonDetailPage({
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search a term, translation or example..."
           />
+          {search && (
+            <button
+              type="button"
+              className="clear-search-button"
+              aria-label="Clear search"
+              onClick={() => setSearch("")}
+            >
+              ×
+            </button>
+          )}
         </div>
         <label className="select-wrap">
           <span>Lesson</span>

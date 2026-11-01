@@ -7,40 +7,11 @@ import {
   ArrowRight,
 } from "lucide-react";
 import content from "../data/content.json";
+import VolumeChapterPage from "../components/VolumeChapterPage";
+import { getChapterById } from "../constants/chapterMeta";
 
 export function WorksheetsChapterPage({ chapterId, onBack }) {
-  const chapters = useMemo(
-    () => [
-      {
-        id: "chapter-1",
-        label: "Chapter I:",
-        title: "THE SET OF NATURAL NUMBERS",
-      },
-      {
-        id: "chapter-2",
-        label: "Chapter II:",
-        title: "DIVISIBILITY RELATIONS AND PROPERTIES",
-      },
-      {
-        id: "chapter-3",
-        label: "Chapter III:",
-        title: "THE SET OF INTEGERS",
-      },
-      {
-        id: "chapter-4",
-        label: "Chapter IV:",
-        title: "SOME PLANE SHAPES IN REAL LIFE",
-      },
-      {
-        id: "chapter-5",
-        label: "Chapter V:",
-        title: "SYMMETRY OF PLANE SHAPES IN NATURE",
-      },
-    ],
-    [],
-  );
-
-  const chapter = chapters.find((item) => item.id === chapterId) || chapters[0];
+  const chapter = getChapterById(chapterId);
   const resources = useMemo(
     () => (chapterId === "chapter-1" ? content.worksheets : []),
     [chapterId],
@@ -127,70 +98,17 @@ export function WorksheetsChapterPage({ chapterId, onBack }) {
 }
 
 export default function WorksheetsPage({ onOpenChapter }) {
-  const chapters = useMemo(
-    () => [
-      {
-        id: "chapter-1",
-        label: "Chapter I:",
-        title: "THE SET OF NATURAL NUMBERS",
-      },
-      {
-        id: "chapter-2",
-        label: "Chapter II:",
-        title: "DIVISIBILITY RELATIONS AND PROPERTIES",
-      },
-      {
-        id: "chapter-3",
-        label: "Chapter III:",
-        title: "THE SET OF INTEGERS",
-      },
-      {
-        id: "chapter-4",
-        label: "Chapter IV:",
-        title: "SOME PLANE SHAPES IN REAL LIFE",
-      },
-      {
-        id: "chapter-5",
-        label: "Chapter V:",
-        title: "SYMMETRY OF PLANE SHAPES IN NATURE",
-      },
-    ],
-    [],
-  );
-
   return (
-    <section className="page-section">
-      <div className="page-heading">
-        <div>
-          <div className="eyebrow">
-            <ClipboardList size={14} /> PRACTISE & APPLY
-          </div>
-          <h1>
-            Your learning <em>toolkit.</em>
-          </h1>
-          <p>
-            Open the worksheets and lesson resources linked in your workbook.
-          </p>
-        </div>
-      </div>
-
-      <div className="chapter-volume-wrap">
-        <div className="volume-pill">Volume 1</div>
-      </div>
-
-      <div className="chapter-selector-grid">
-        {chapters.map((chapter) => (
-          <button
-            key={chapter.id}
-            type="button"
-            className="chapter-choice"
-            onClick={() => onOpenChapter(chapter.id)}
-          >
-            <span className="chapter-label">{chapter.label}</span>
-            <span className="chapter-title">{chapter.title}</span>
-          </button>
-        ))}
-      </div>
-    </section>
+    <VolumeChapterPage
+      eyebrow={
+        <>
+          <ClipboardList size={14} /> PRACTISE & APPLY
+        </>
+      }
+      title="Your learning <em>toolkit.</em>"
+      description="Open the worksheets and lesson resources linked in your workbook."
+      volumeId="volume-1"
+      onOpenChapter={onOpenChapter}
+    />
   );
 }

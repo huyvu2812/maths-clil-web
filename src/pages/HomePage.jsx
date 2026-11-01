@@ -6,12 +6,8 @@ import {
   ArrowRight,
   UserRound,
 } from "lucide-react";
-import content from "../data/content.json";
 
 export default function HomePage({ navigate }) {
-  const termCount = content.terms.length;
-  const cardCount = content.flashcards.length;
-
   return (
     <section className="home-page hunt-homepage">
       <div className="hunt-hero">
@@ -25,7 +21,7 @@ export default function HomePage({ navigate }) {
 
         <img
           className="hunt-illustration-image"
-          src="/2.svg"
+          src="/Home-search-logo.svg"
           alt="Home search logo"
           aria-label="Home search logo"
         />

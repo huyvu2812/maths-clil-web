@@ -16,72 +16,95 @@ import FlashcardsPage from "./pages/FlashcardsPage";
 import WorksheetsPage, { WorksheetsChapterPage } from "./pages/WorksheetsPage";
 import TipsPage from "./pages/TipsPage";
 import AboutPage from "./pages/AboutPage";
+import FeedbackForm from "./components/FeedbackForm";
+
+const PAGES = {
+  HOME: "home",
+  TERMS: "terms",
+  TERMS_CHAPTER: "terms-chapter",
+  TERMS_LESSON: "terms-lesson",
+  FLASHCARDS: "flashcards",
+  WORKSHEETS: "worksheets",
+  WORKSHEETS_CHAPTER: "worksheets-chapter",
+  TIPS: "tips",
+  ABOUT: "about",
+};
 
 const navItems = [
-  { id: "home", label: "Home", icon: House },
-  { id: "terms", label: "Maths term", icon: Calculator },
-  { id: "flashcards", label: "Flashcard", icon: Layers3 },
-  { id: "worksheets", label: "Worksheet", icon: ClipboardList },
-  { id: "tips", label: "Teaching tips", icon: Lightbulb },
-  { id: "about", label: "About us", icon: GraduationCap },
+  { id: PAGES.HOME, label: "Home", icon: House },
+  { id: PAGES.TERMS, label: "Maths term", icon: Calculator },
+  { id: PAGES.FLASHCARDS, label: "Flashcard", icon: Layers3 },
+  { id: PAGES.WORKSHEETS, label: "Worksheet", icon: ClipboardList },
+  { id: PAGES.TIPS, label: "Teaching tips", icon: Lightbulb },
+  { id: PAGES.ABOUT, label: "About us", icon: GraduationCap },
 ];
 
+const DEFAULT_CHAPTER = "chapter-1";
+
+function getDefaultLesson() {
+  return content.terms[0]?.lesson || "all";
+}
+
 function App() {
-  const [page, setPage] = useState("home");
+  const [page, setPage] = useState(PAGES.HOME);
   const [search, setSearch] = useState("");
-  const [selectedChapter, setSelectedChapter] = useState("chapter-1");
-  const [selectedLesson, setSelectedLesson] = useState(
-    content.terms[0]?.lesson || "all",
-  );
+  const [selectedChapter, setSelectedChapter] = useState(DEFAULT_CHAPTER);
+  const [selectedLesson, setSelectedLesson] = useState(getDefaultLesson());
 
   const lessons = useMemo(
     () => [...new Set(content.terms.map((t) => t.lesson))],
     [],
   );
 
+  function resetSearch() {
+    setSearch("");
+  }
+
   function navigate(nextPage) {
     setPage(nextPage);
-    setSearch("");
-    if (nextPage === "terms" || nextPage === "home") {
-      setSelectedLesson(content.terms[0]?.lesson || "all");
+    resetSearch();
+
+    if (nextPage === PAGES.TERMS || nextPage === PAGES.HOME) {
+      setSelectedLesson(getDefaultLesson());
     }
-    if (nextPage === "worksheets") {
-      setSelectedChapter("chapter-1");
+
+    if (nextPage === PAGES.WORKSHEETS) {
+      setSelectedChapter(DEFAULT_CHAPTER);
     }
   }
 
   function openLesson(lessonName) {
-    setPage("terms-lesson");
+    setPage(PAGES.TERMS_LESSON);
     setSelectedLesson(lessonName);
-    setSearch("");
+    resetSearch();
   }
 
   function openTermsChapter(chapterId) {
     setSelectedChapter(chapterId);
-    setPage("terms-chapter");
-    setSearch("");
+    setPage(PAGES.TERMS_CHAPTER);
+    resetSearch();
   }
 
   function openWorksheetChapter(chapterId) {
     setSelectedChapter(chapterId);
-    setPage("worksheets-chapter");
-    setSearch("");
+    setPage(PAGES.WORKSHEETS_CHAPTER);
+    resetSearch();
   }
 
   function backToLessons() {
-    setPage("terms");
-    setSearch("");
-    setSelectedLesson(content.terms[0]?.lesson || "all");
+    setPage(PAGES.TERMS);
+    resetSearch();
+    setSelectedLesson(getDefaultLesson());
   }
 
   function backToTermsChapterList() {
-    setPage("terms");
-    setSearch("");
+    setPage(PAGES.TERMS);
+    resetSearch();
   }
 
   function backToWorksheetChapterList() {
-    setPage("worksheets");
-    setSearch("");
+    setPage(PAGES.WORKSHEETS);
+    resetSearch();
   }
 
   return (
@@ -96,7 +119,11 @@ function App() {
             if (e.key === "Enter" || e.key === " ") navigate("home");
           }}
         >
-          <img className="brand-mark" src="/1.svg" alt="Maths CLIL logo" />
+          <img
+            className="brand-mark"
+            src="/Main-logo.svg"
+            alt="Maths CLIL logo"
+          />
           <div className="brand-copy">
             <span className="brand-slogan">
               Empowering Educators through CLIL
@@ -161,6 +188,10 @@ function App() {
         )}
         {page === "tips" && <TipsPage />}
         {page === "about" && <AboutPage />}
+
+        {(page === PAGES.TERMS_LESSON ||
+          page === PAGES.TIPS ||
+          page === PAGES.ABOUT) && <FeedbackForm />}
       </main>
     </div>
   );

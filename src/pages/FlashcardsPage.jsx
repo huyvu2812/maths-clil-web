@@ -7,47 +7,22 @@ import {
   RotateCcw,
   Volume2,
   Star,
+  ArrowUpDown,
 } from "lucide-react";
 import content from "../data/content.json";
 import EmptyState from "../components/EmptyState";
+import FeedbackForm from "../components/FeedbackForm";
+import VolumeChapterPage from "../components/VolumeChapterPage";
+import { getChapterById } from "../constants/chapterMeta";
 
 const REVIEW_KEY = "maths-clil-review-words";
 
 export default function FlashcardsPage() {
-  const chapters = useMemo(
-    () => [
-      {
-        id: "chapter-1",
-        label: "Chapter I:",
-        title: "THE SET OF NATURAL NUMBERS",
-      },
-      {
-        id: "chapter-2",
-        label: "Chapter II:",
-        title: "DIVISIBILITY RELATIONS AND PROPERTIES",
-      },
-      {
-        id: "chapter-3",
-        label: "Chapter III:",
-        title: "THE SET OF INTEGERS",
-      },
-      {
-        id: "chapter-4",
-        label: "Chapter IV:",
-        title: "SOME PLANE SHAPES IN REAL LIFE",
-      },
-      {
-        id: "chapter-5",
-        label: "Chapter V:",
-        title: "SYMMETRY OF PLANE SHAPES IN NATURE",
-      },
-    ],
-    [],
-  );
   const [selectedChapter, setSelectedChapter] = useState(null);
   const [search, setSearch] = useState("");
   const [cardIndex, setCardIndex] = useState(0);
   const [flipped, setFlipped] = useState(false);
+  const [flipDirection, setFlipDirection] = useState("eng-to-vie");
   const [showReviewList, setShowReviewList] = useState(false);
   const [reviewedWords, setReviewedWords] = useState(() => {
     if (typeof window === "undefined") return new Set();
@@ -130,45 +105,46 @@ export default function FlashcardsPage() {
     setShowReviewList(false);
   }
 
-  const selectedChapterMeta =
-    chapters.find((chapter) => chapter.id === selectedChapter) || null;
+  function toggleFlipDirection() {
+    setFlipDirection((current) =>
+      current === "eng-to-vie" ? "vie-to-eng" : "eng-to-vie",
+    );
+    setFlipped(false);
+  }
+
+  const selectedChapterMeta = selectedChapter
+    ? getChapterById(selectedChapter)
+    : null;
+
+  const frontLabel =
+    flipDirection === "eng-to-vie" ? "ENGLISH TERM" : "VIETNAMESE TERM";
+  const backLabel =
+    flipDirection === "eng-to-vie" ? "VIETNAMESE" : "ENGLISH TERM";
+  const displayFront =
+    flipDirection === "eng-to-vie"
+      ? activeCard?.english
+      : activeCard?.vietnamese;
+  const displayBack =
+    flipDirection === "eng-to-vie"
+      ? activeCard?.vietnamese
+      : activeCard?.english;
 
   return (
-    <section className="page-section">
-      <div className="page-heading">
-        <div>
-          <div className="eyebrow">
-            <Layers3 size={14} /> ACTIVE RECALL
-          </div>
-          <h1>
-            Flip it. <em>Learn it.</em>
-          </h1>
-          <p>Practise key maths vocabulary with your flashcard deck.</p>
-        </div>
-      </div>
-
+    <>
       {!selectedChapter ? (
-        <>
-          <div className="chapter-volume-wrap">
-            <div className="volume-pill">Volume 1</div>
-          </div>
-
-          <div className="chapter-selector-grid">
-            {chapters.map((chapter) => (
-              <button
-                key={chapter.id}
-                type="button"
-                className="chapter-choice"
-                onClick={() => handleSelectChapter(chapter.id)}
-              >
-                <span className="chapter-label">{chapter.label}</span>
-                <span className="chapter-title">{chapter.title}</span>
-              </button>
-            ))}
-          </div>
-        </>
+        <VolumeChapterPage
+          eyebrow={
+            <>
+              <Layers3 size={14} /> ACTIVE RECALL
+            </>
+          }
+          title="Flip it. <em>Learn it.</em>"
+          description="Practise key maths vocabulary with your flashcard deck."
+          volumeId="volume-1"
+          onOpenChapter={handleSelectChapter}
+        />
       ) : selectedChapter === "chapter-1" ? (
-        <>
+        <section className="page-section flashcards-page-shell">
           <div className="chapter-detail-header">
             <button
               type="button"
@@ -195,16 +171,43 @@ export default function FlashcardsPage() {
                 }}
                 placeholder="Find a flashcard..."
               />
+              {search && (
+                <button
+                  type="button"
+                  className="clear-search-button"
+                  aria-label="Clear search"
+                  onClick={() => {
+                    setSearch("");
+                    setCardIndex(0);
+                    setFlipped(false);
+                    setShowReviewList(false);
+                  }}
+                >
+                  ×
+                </button>
+              )}
             </div>
 
-            <button
-              type="button"
-              className="review-button"
-              onClick={() => setShowReviewList((value) => !value)}
-            >
-              <Star size={15} /> Words to review{" "}
-              <span>{reviewCards.length}</span>
-            </button>
+            <div className="toolbar-actions">
+              <button
+                type="button"
+                className="flip-direction-button"
+                onClick={toggleFlipDirection}
+                aria-label="Reverse card direction"
+                title="Reverse card direction"
+              >
+                <ArrowUpDown size={16} />
+              </button>
+
+              <button
+                type="button"
+                className="review-button"
+                onClick={() => setShowReviewList((value) => !value)}
+              >
+                <Star size={15} /> Words to review{" "}
+                <span>{reviewCards.length}</span>
+              </button>
+            </div>
           </div>
 
           {showReviewList && (
@@ -262,7 +265,7 @@ export default function FlashcardsPage() {
 
               <div className="flashcard-column">
                 <div
-                  className={`flashcard ${flipped ? "flipped" : ""}`}
+                  className={`flashcard ${flipped ? "flipped" : ""} ${flipDirection === "vie-to-eng" ? "reverse" : ""}`}
                   onClick={() => setFlipped((v) => !v)}
                   onKeyDown={(event) => {
                     if (event.key === "Enter" || event.key === " ") {
@@ -274,34 +277,60 @@ export default function FlashcardsPage() {
                   tabIndex={0}
                   aria-label="Flip flashcard"
                 >
-                  <button
-                    type="button"
-                    className={`review-star ${reviewedWords.has(String(activeCard.id)) ? "active" : ""}`}
-                    onClick={(event) => {
-                      event.stopPropagation();
-                      toggleReviewWord(activeCard.id);
-                    }}
-                    aria-label="Mark word for review"
-                    title="Mark for review"
-                  >
-                    <Star size={16} fill="currentColor" />
-                  </button>
-                  <span className="card-corner">
-                    MATHS CLIL <span>✳</span>
-                  </span>
-                  <span className="flashcard-label">
-                    {flipped ? "VIETNAMESE" : "ENGLISH TERM"}
-                  </span>
-                  <strong>
-                    {flipped ? activeCard.vietnamese : activeCard.english}
-                  </strong>
-                  {flipped && activeCard.example && (
-                    <span className="flash-example">{activeCard.example}</span>
-                  )}
-                  <span className="flip-hint">
-                    <RotateCcw size={15} /> Click to flip
-                  </span>
-                  <span className="card-decoration">✳</span>
+                  <div className="flashcard-inner">
+                    <div className="flashcard-face flashcard-front">
+                      <button
+                        type="button"
+                        className={`review-star ${reviewedWords.has(String(activeCard.id)) ? "active" : ""}`}
+                        onClick={(event) => {
+                          event.stopPropagation();
+                          toggleReviewWord(activeCard.id);
+                        }}
+                        aria-label="Mark word for review"
+                        title="Mark for review"
+                      >
+                        <Star size={16} fill="currentColor" />
+                      </button>
+                      <span className="card-corner">
+                        MATHS CLIL <span>✳</span>
+                      </span>
+                      <span className="flashcard-label">{frontLabel}</span>
+                      <strong>{displayFront}</strong>
+                      <span className="flip-hint">
+                        <RotateCcw size={15} /> Click to flip
+                      </span>
+                      <span className="card-decoration">✳</span>
+                    </div>
+
+                    <div className="flashcard-face flashcard-back">
+                      <button
+                        type="button"
+                        className={`review-star ${reviewedWords.has(String(activeCard.id)) ? "active" : ""}`}
+                        onClick={(event) => {
+                          event.stopPropagation();
+                          toggleReviewWord(activeCard.id);
+                        }}
+                        aria-label="Mark word for review"
+                        title="Mark for review"
+                      >
+                        <Star size={16} fill="currentColor" />
+                      </button>
+                      <span className="card-corner">
+                        MATHS CLIL <span>✳</span>
+                      </span>
+                      <span className="flashcard-label">{backLabel}</span>
+                      <strong>{displayBack}</strong>
+                      {activeCard.example && (
+                        <span className="flash-example">
+                          {activeCard.example}
+                        </span>
+                      )}
+                      <span className="flip-hint">
+                        <RotateCcw size={15} /> Click to flip
+                      </span>
+                      <span className="card-decoration">✳</span>
+                    </div>
+                  </div>
                 </div>
 
                 <div className="flash-controls">
@@ -330,12 +359,16 @@ export default function FlashcardsPage() {
           ) : (
             <EmptyState text="No flashcards found. Try another search." />
           )}
-        </>
+
+          <FeedbackForm />
+        </section>
       ) : (
-        <div className="empty-chapter-panel">
-          No flashcards available yet for this chapter.
-        </div>
+        <section className="page-section flashcards-page-shell">
+          <div className="empty-chapter-panel">
+            No flashcards available yet for this chapter.
+          </div>
+        </section>
       )}
-    </section>
+    </>
   );
 }
