@@ -96,11 +96,7 @@ function App() {
             if (e.key === "Enter" || e.key === " ") navigate("home");
           }}
         >
-          <img
-            className="brand-mark"
-            src="/main-logo.jpeg"
-            alt="Maths CLIL logo"
-          />
+          <img className="brand-mark" src="/1.svg" alt="Maths CLIL logo" />
           <div className="brand-copy">
             <span className="brand-slogan">
               Empowering Educators through CLIL

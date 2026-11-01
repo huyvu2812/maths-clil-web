@@ -1,5 +1,11 @@
 import React from "react";
-import { BookOpen, Calculator, Layers3, ArrowRight } from "lucide-react";
+import {
+  BookOpen,
+  Calculator,
+  Layers3,
+  ArrowRight,
+  UserRound,
+} from "lucide-react";
 import content from "../data/content.json";
 
 export default function HomePage({ navigate }) {
@@ -17,25 +23,18 @@ export default function HomePage({ navigate }) {
           </p>
         </div>
 
-        <div
-          className="hunt-illustration"
-          aria-label="Magnifying glass illustration"
-        >
-          <div className="idea-bulb">
-            <span className="bulb-glow" />
-          </div>
-          <div className="lens-wrap">
-            <div className="lens-ring" />
-            <div className="lens-inner" />
-          </div>
-          <div className="magnifier-handle" />
-        </div>
+        <img
+          className="hunt-illustration-image"
+          src="/2.svg"
+          alt="Home search logo"
+          aria-label="Home search logo"
+        />
       </div>
 
       <div className="hunt-info-grid">
         <div className="info-panel">
           <div className="info-avatar">
-            <span>👩‍🏫</span>
+            <UserRound size={28} strokeWidth={2.2} />
           </div>
           <p>
             The Hunt is a dedicated digital hub designed specifically for
