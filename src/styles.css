@@ -75,10 +75,15 @@ select:focus-visible {
 
 .brand-block {
   display: flex;
-  align-items: flex-end;
-  gap: 14px;
+  align-items: center;
   flex-shrink: 0;
   cursor: pointer;
+}
+
+.brand-identity {
+  display: flex;
+  align-items: center;
+  gap: 16px;
 }
 
 .brand-mark {
@@ -88,6 +93,12 @@ select:focus-visible {
   height: 92px;
   max-width: 260px;
   object-fit: contain;
+}
+
+.brand-copy {
+  display: flex;
+  align-items: center;
+  padding-bottom: 14px;
 }
 
 .math-h,
