@@ -291,9 +291,18 @@ export default function FlashcardsPage() {
                       >
                         <Star size={16} fill="currentColor" />
                       </button>
-                      <span className="card-corner">
-                        MATHS CLIL <span>✳</span>
-                      </span>
+                      <button
+                        type="button"
+                        className="card-corner"
+                        onClick={(event) => {
+                          event.stopPropagation();
+                          speak(activeCard.english);
+                        }}
+                        aria-label="Listen to pronunciation"
+                        title="Listen to pronunciation"
+                      >
+                        <Volume2 size={15} />
+                      </button>
                       <span className="flashcard-label">{frontLabel}</span>
                       <strong>{displayFront}</strong>
                       <span className="flip-hint">
@@ -315,9 +324,18 @@ export default function FlashcardsPage() {
                       >
                         <Star size={16} fill="currentColor" />
                       </button>
-                      <span className="card-corner">
-                        MATHS CLIL <span>✳</span>
-                      </span>
+                      <button
+                        type="button"
+                        className="card-corner"
+                        onClick={(event) => {
+                          event.stopPropagation();
+                          speak(activeCard.english);
+                        }}
+                        aria-label="Listen to pronunciation"
+                        title="Listen to pronunciation"
+                      >
+                        <Volume2 size={15} />
+                      </button>
                       <span className="flashcard-label">{backLabel}</span>
                       <strong>{displayBack}</strong>
                       {activeCard.example && (
@@ -347,13 +365,6 @@ export default function FlashcardsPage() {
                     Next card <ArrowRight size={16} />
                   </button>
                 </div>
-
-                <button
-                  className="text-button"
-                  onClick={() => speak(activeCard.english)}
-                >
-                  <Volume2 size={16} /> Listen to pronunciation
-                </button>
               </div>
             </div>
           ) : (
