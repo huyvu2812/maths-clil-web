@@ -16,6 +16,20 @@ import VolumeChapterPage from "../components/VolumeChapterPage";
 import { getChapterById } from "../constants/chapterMeta";
 
 const REVIEW_KEY = "maths-clil-review-words";
+const STUDY_MODES = {
+  FLASHCARD: "flashcard",
+  MULTIPLE_CHOICE: "multiple-choice",
+  ACTIVE_RECALL: "active-recall",
+};
+
+function shuffleArray(items) {
+  const copy = [...items];
+  for (let index = copy.length - 1; index > 0; index -= 1) {
+    const swapIndex = Math.floor(Math.random() * (index + 1));
+    [copy[index], copy[swapIndex]] = [copy[swapIndex], copy[index]];
+  }
+  return copy;
+}
 
 export default function FlashcardsPage() {
   const [selectedChapter, setSelectedChapter] = useState(null);
@@ -24,6 +38,11 @@ export default function FlashcardsPage() {
   const [flipped, setFlipped] = useState(false);
   const [flipDirection, setFlipDirection] = useState("eng-to-vie");
   const [showReviewList, setShowReviewList] = useState(false);
+  const [studyMode, setStudyMode] = useState(STUDY_MODES.FLASHCARD);
+  const [selectedAnswer, setSelectedAnswer] = useState(null);
+  const [isAnswerRevealed, setIsAnswerRevealed] = useState(false);
+  const [activeRecallInput, setActiveRecallInput] = useState("");
+  const [activeRecallStatus, setActiveRecallStatus] = useState("idle");
   const [reviewedWords, setReviewedWords] = useState(() => {
     if (typeof window === "undefined") return new Set();
     try {
@@ -37,6 +56,13 @@ export default function FlashcardsPage() {
   useEffect(() => {
     localStorage.setItem(REVIEW_KEY, JSON.stringify([...reviewedWords]));
   }, [reviewedWords]);
+
+  useEffect(() => {
+    setSelectedAnswer(null);
+    setIsAnswerRevealed(false);
+    setActiveRecallInput("");
+    setActiveRecallStatus("idle");
+  }, [cardIndex, studyMode]);
 
   const chapterCards = useMemo(
     () =>
@@ -68,12 +94,46 @@ export default function FlashcardsPage() {
     ? filteredCards[cardIndex % filteredCards.length]
     : null;
 
+  const multipleChoiceOptions = useMemo(() => {
+    if (!activeCard) return [];
+
+    const correctAnswer = activeCard.vietnamese;
+    const distractors = content.flashcards
+      .filter(
+        (card) =>
+          String(card.id) !== String(activeCard.id) &&
+          card.vietnamese !== correctAnswer,
+      )
+      .map((card) => card.vietnamese)
+      .filter(Boolean);
+
+    const options = [correctAnswer];
+    for (const option of shuffleArray(distractors)) {
+      if (options.length >= 4) break;
+      if (!options.includes(option)) {
+        options.push(option);
+      }
+    }
+
+    while (options.length < 4) {
+      const fallback = content.flashcards.find(
+        (card) => !options.includes(card.vietnamese),
+      );
+      if (!fallback) break;
+      options.push(fallback.vietnamese);
+    }
+
+    return shuffleArray(options).slice(0, 4);
+  }, [activeCard]);
+
   function nextCard(direction) {
     if (!filteredCards.length) return;
     setCardIndex(
       (i) => (i + direction + filteredCards.length) % filteredCards.length,
     );
     setFlipped(false);
+    setActiveRecallInput("");
+    setActiveRecallStatus("idle");
   }
 
   function toggleReviewWord(cardId) {
@@ -103,6 +163,7 @@ export default function FlashcardsPage() {
     setFlipped(false);
     setSearch("");
     setShowReviewList(false);
+    setStudyMode(STUDY_MODES.FLASHCARD);
   }
 
   function toggleFlipDirection() {
@@ -128,6 +189,292 @@ export default function FlashcardsPage() {
     flipDirection === "eng-to-vie"
       ? activeCard?.vietnamese
       : activeCard?.english;
+
+  const modeOptions = [
+    { id: STUDY_MODES.FLASHCARD, label: "Flashcard", icon: Layers3 },
+    {
+      id: STUDY_MODES.MULTIPLE_CHOICE,
+      label: "Multiple choice",
+      icon: Layers3,
+    },
+    { id: STUDY_MODES.ACTIVE_RECALL, label: "Active recall", icon: Star },
+  ];
+
+  const progressValue = filteredCards.length
+    ? ((cardIndex + 1) / filteredCards.length) * 100
+    : 0;
+
+  function handleActiveRecallCheck() {
+    if (!activeCard) return;
+
+    const trimmed = activeRecallInput.trim();
+    if (!trimmed) {
+      setActiveRecallStatus("empty");
+      return;
+    }
+
+    const normalizedUser = trimmed.toLowerCase().replace(/\s+/g, " ");
+    const normalizedAnswer = activeCard.english
+      .toLowerCase()
+      .replace(/\s+/g, " ");
+
+    if (normalizedUser === normalizedAnswer) {
+      setActiveRecallStatus("correct");
+      window.setTimeout(() => {
+        nextCard(1);
+      }, 450);
+      return;
+    }
+
+    setActiveRecallStatus("incorrect");
+  }
+
+  function handleActiveRecallSkip() {
+    if (!activeCard) return;
+
+    setActiveRecallInput(activeCard.english);
+    setActiveRecallStatus("revealed");
+  }
+
+  const activeRecallView = activeCard ? (
+    <div className="active-recall-screen">
+      <div className="active-recall-card">
+        <div className="active-recall-header">Fill in the English word</div>
+        <div className="active-recall-word">{activeCard.vietnamese}</div>
+
+        <div
+          className={`active-recall-input-wrap ${
+            activeRecallStatus === "incorrect" ? "error" : ""
+          } ${activeRecallStatus === "revealed" ? "revealed" : ""}`}
+        >
+          <input
+            type="text"
+            value={activeRecallInput}
+            onChange={(event) => {
+              setActiveRecallInput(event.target.value);
+              if (activeRecallStatus !== "idle") {
+                setActiveRecallStatus("idle");
+              }
+            }}
+            className="active-recall-input"
+            placeholder="Type the English term"
+            aria-label="Type the English term"
+          />
+        </div>
+
+        {activeRecallStatus === "incorrect" && (
+          <div className="active-recall-feedback error">
+            Incorrect — the correct answer is{" "}
+            <strong>{activeCard.english}</strong>
+          </div>
+        )}
+
+        {activeRecallStatus === "revealed" && (
+          <div className="active-recall-feedback revealed">
+            Correct answer: <strong>{activeCard.english}</strong>
+          </div>
+        )}
+
+        <div className="active-recall-actions">
+          <button
+            type="button"
+            className="primary-button active-check-button"
+            onClick={handleActiveRecallCheck}
+          >
+            Check
+          </button>
+          <button
+            type="button"
+            className="secondary-button active-skip-button"
+            onClick={handleActiveRecallSkip}
+          >
+            Skip
+          </button>
+        </div>
+      </div>
+    </div>
+  ) : (
+    <EmptyState text="No flashcards found. Try another search." />
+  );
+
+  const flashcardView = activeCard ? (
+    <div className="flashcard-layout">
+      <div className="flashcard-side-note">
+        <span className="tiny-label">YOUR STUDY SESSION</span>
+        <h3>
+          Small steps,
+          <br />
+          <em>big progress.</em>
+        </h3>
+        <p>Try to recall the meaning before you flip the card.</p>
+        <div className="progress-track">
+          <span
+            style={{
+              width: `${((cardIndex + 1) / filteredCards.length) * 100}%`,
+            }}
+          />
+        </div>
+        <small>
+          Card {cardIndex + 1} of {filteredCards.length}
+        </small>
+      </div>
+
+      <div className="flashcard-column">
+        <div
+          className={`flashcard ${flipped ? "flipped" : ""} ${flipDirection === "vie-to-eng" ? "reverse" : ""}`}
+          onClick={() => setFlipped((v) => !v)}
+          onKeyDown={(event) => {
+            if (event.key === "Enter" || event.key === " ") {
+              event.preventDefault();
+              setFlipped((v) => !v);
+            }
+          }}
+          role="button"
+          tabIndex={0}
+          aria-label="Flip flashcard"
+        >
+          <div className="flashcard-inner">
+            <div className="flashcard-face flashcard-front">
+              <button
+                type="button"
+                className={`review-star ${reviewedWords.has(String(activeCard.id)) ? "active" : ""}`}
+                onClick={(event) => {
+                  event.stopPropagation();
+                  toggleReviewWord(activeCard.id);
+                }}
+                aria-label="Mark word for review"
+                title="Mark for review"
+              >
+                <Star size={16} fill="currentColor" />
+              </button>
+              <button
+                type="button"
+                className="card-corner"
+                onClick={(event) => {
+                  event.stopPropagation();
+                  speak(activeCard.english);
+                }}
+                aria-label="Listen to pronunciation"
+                title="Listen to pronunciation"
+              >
+                <Volume2 size={15} />
+              </button>
+              <span className="flashcard-label">{frontLabel}</span>
+              <strong>{displayFront}</strong>
+              <span className="flip-hint">
+                <RotateCcw size={15} /> Click to flip
+              </span>
+              <span className="card-decoration">✳</span>
+            </div>
+
+            <div className="flashcard-face flashcard-back">
+              <button
+                type="button"
+                className={`review-star ${reviewedWords.has(String(activeCard.id)) ? "active" : ""}`}
+                onClick={(event) => {
+                  event.stopPropagation();
+                  toggleReviewWord(activeCard.id);
+                }}
+                aria-label="Mark word for review"
+                title="Mark for review"
+              >
+                <Star size={16} fill="currentColor" />
+              </button>
+              <button
+                type="button"
+                className="card-corner"
+                onClick={(event) => {
+                  event.stopPropagation();
+                  speak(activeCard.english);
+                }}
+                aria-label="Listen to pronunciation"
+                title="Listen to pronunciation"
+              >
+                <Volume2 size={15} />
+              </button>
+              <span className="flashcard-label">{backLabel}</span>
+              <strong>{displayBack}</strong>
+              {activeCard.example && (
+                <span className="flash-example">{activeCard.example}</span>
+              )}
+              <span className="flip-hint">
+                <RotateCcw size={15} /> Click to flip
+              </span>
+              <span className="card-decoration">✳</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="flash-controls">
+          <button className="secondary-button" onClick={() => nextCard(-1)}>
+            ← Previous
+          </button>
+          <button className="primary-button" onClick={() => nextCard(1)}>
+            Next card <ArrowRight size={16} />
+          </button>
+        </div>
+      </div>
+    </div>
+  ) : (
+    <EmptyState text="No flashcards found. Try another search." />
+  );
+
+  const multipleChoiceView = activeCard ? (
+    <div className="multiple-choice-screen">
+      <div className="multiple-choice-card">
+        <div className="multiple-choice-header">CHỌN NGHĨA ĐÚNG</div>
+        <div className="multiple-choice-word">{activeCard.english}</div>
+
+        <div className="multiple-choice-grid">
+          {multipleChoiceOptions.map((option, index) => {
+            const isCorrect = option === activeCard.vietnamese;
+            const isSelected = selectedAnswer === option;
+            const statusClass =
+              isAnswerRevealed && isCorrect
+                ? "correct"
+                : isAnswerRevealed && isSelected && !isCorrect
+                  ? "incorrect"
+                  : "";
+
+            return (
+              <button
+                key={`${option}-${index}`}
+                type="button"
+                className={`multiple-choice-option ${statusClass}`}
+                onClick={() => {
+                  const nextAnswer = option;
+                  setSelectedAnswer(nextAnswer);
+                  setIsAnswerRevealed(true);
+
+                  if (nextAnswer === activeCard.vietnamese) {
+                    window.setTimeout(() => {
+                      setSelectedAnswer(null);
+                      setIsAnswerRevealed(false);
+                      nextCard(1);
+                    }, 550);
+                  }
+                }}
+              >
+                <span className="choice-number">{index + 1}</span>
+                <span>{option}</span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      <div className="multiple-choice-nav">
+        <button className="secondary-button" onClick={() => nextCard(-1)}>
+          <ArrowLeft size={18} />
+        </button>
+        <button className="primary-button" onClick={() => nextCard(1)}>
+          <ArrowRight size={18} />
+        </button>
+      </div>
+    </div>
+  ) : (
+    <EmptyState text="No flashcards found. Try another search." />
+  );
 
   return (
     <>
@@ -159,216 +506,115 @@ export default function FlashcardsPage() {
             </div>
           </div>
 
-          <div className="toolbar">
-            <div className="search-box">
-              <Search size={18} />
-              <input
-                value={search}
-                onChange={(e) => {
-                  setSearch(e.target.value);
-                  setCardIndex(0);
-                  setFlipped(false);
-                }}
-                placeholder="Find a flashcard..."
-              />
-              {search && (
-                <button
-                  type="button"
-                  className="clear-search-button"
-                  aria-label="Clear search"
-                  onClick={() => {
-                    setSearch("");
-                    setCardIndex(0);
-                    setFlipped(false);
-                    setShowReviewList(false);
-                  }}
-                >
-                  ×
-                </button>
-              )}
-            </div>
-
-            <div className="toolbar-actions">
+          <div className="study-mode-switch" aria-label="Study mode selector">
+            {modeOptions.map(({ id, label, icon: Icon }) => (
               <button
+                key={id}
                 type="button"
-                className="flip-direction-button"
-                onClick={toggleFlipDirection}
-                aria-label="Reverse card direction"
-                title="Reverse card direction"
+                className={`mode-toggle-button ${studyMode === id ? "active" : ""}`}
+                onClick={() => setStudyMode(id)}
               >
-                <ArrowUpDown size={16} />
+                <Icon size={14} />
+                <span>{label}</span>
               </button>
-
-              <button
-                type="button"
-                className="review-button"
-                onClick={() => setShowReviewList((value) => !value)}
-              >
-                <Star size={15} /> Words to review{" "}
-                <span>{reviewCards.length}</span>
-              </button>
-            </div>
+            ))}
           </div>
 
-          {showReviewList && (
-            <div className="review-list-panel">
-              {reviewCards.length ? (
-                reviewCards.map((card) => (
-                  <button
-                    key={card.id}
-                    type="button"
-                    className="review-list-item"
-                    onClick={() => {
-                      const index = content.flashcards.findIndex(
-                        (item) => String(item.id) === String(card.id),
-                      );
-                      if (index >= 0) {
-                        setCardIndex(index);
-                      }
-                      setShowReviewList(false);
+          {studyMode === STUDY_MODES.FLASHCARD ||
+          studyMode === STUDY_MODES.ACTIVE_RECALL ? (
+            <>
+              <div className="toolbar">
+                <div className="search-box">
+                  <Search size={18} />
+                  <input
+                    value={search}
+                    onChange={(e) => {
+                      setSearch(e.target.value);
+                      setCardIndex(0);
                       setFlipped(false);
                     }}
-                  >
-                    <span className="review-list-word">{card.english}</span>
-                    <span className="review-list-meaning">
-                      {card.vietnamese}
-                    </span>
-                  </button>
-                ))
-              ) : (
-                <p className="review-empty">No words marked for review yet.</p>
-              )}
-            </div>
-          )}
-
-          {activeCard ? (
-            <div className="flashcard-layout">
-              <div className="flashcard-side-note">
-                <span className="tiny-label">YOUR STUDY SESSION</span>
-                <h3>
-                  Small steps,
-                  <br />
-                  <em>big progress.</em>
-                </h3>
-                <p>Try to recall the meaning before you flip the card.</p>
-                <div className="progress-track">
-                  <span
-                    style={{
-                      width: `${((cardIndex + 1) / filteredCards.length) * 100}%`,
-                    }}
+                    placeholder="Find a flashcard..."
                   />
+                  {search && (
+                    <button
+                      type="button"
+                      className="clear-search-button"
+                      aria-label="Clear search"
+                      onClick={() => {
+                        setSearch("");
+                        setCardIndex(0);
+                        setFlipped(false);
+                        setShowReviewList(false);
+                      }}
+                    >
+                      ×
+                    </button>
+                  )}
                 </div>
-                <small>
-                  Card {cardIndex + 1} of {filteredCards.length}
-                </small>
+
+                <div className="toolbar-actions">
+                  {studyMode === STUDY_MODES.FLASHCARD && (
+                    <button
+                      type="button"
+                      className="flip-direction-button"
+                      onClick={toggleFlipDirection}
+                      aria-label="Reverse card direction"
+                      title="Reverse card direction"
+                    >
+                      <ArrowUpDown size={16} />
+                    </button>
+                  )}
+
+                  <button
+                    type="button"
+                    className="review-button"
+                    onClick={() => setShowReviewList((value) => !value)}
+                  >
+                    <Star size={15} /> Words to review{" "}
+                    <span>{reviewCards.length}</span>
+                  </button>
+                </div>
               </div>
 
-              <div className="flashcard-column">
-                <div
-                  className={`flashcard ${flipped ? "flipped" : ""} ${flipDirection === "vie-to-eng" ? "reverse" : ""}`}
-                  onClick={() => setFlipped((v) => !v)}
-                  onKeyDown={(event) => {
-                    if (event.key === "Enter" || event.key === " ") {
-                      event.preventDefault();
-                      setFlipped((v) => !v);
-                    }
-                  }}
-                  role="button"
-                  tabIndex={0}
-                  aria-label="Flip flashcard"
-                >
-                  <div className="flashcard-inner">
-                    <div className="flashcard-face flashcard-front">
+              {showReviewList && (
+                <div className="review-list-panel">
+                  {reviewCards.length ? (
+                    reviewCards.map((card) => (
                       <button
+                        key={card.id}
                         type="button"
-                        className={`review-star ${reviewedWords.has(String(activeCard.id)) ? "active" : ""}`}
-                        onClick={(event) => {
-                          event.stopPropagation();
-                          toggleReviewWord(activeCard.id);
+                        className="review-list-item"
+                        onClick={() => {
+                          const index = content.flashcards.findIndex(
+                            (item) => String(item.id) === String(card.id),
+                          );
+                          if (index >= 0) {
+                            setCardIndex(index);
+                          }
+                          setShowReviewList(false);
+                          setFlipped(false);
                         }}
-                        aria-label="Mark word for review"
-                        title="Mark for review"
                       >
-                        <Star size={16} fill="currentColor" />
-                      </button>
-                      <button
-                        type="button"
-                        className="card-corner"
-                        onClick={(event) => {
-                          event.stopPropagation();
-                          speak(activeCard.english);
-                        }}
-                        aria-label="Listen to pronunciation"
-                        title="Listen to pronunciation"
-                      >
-                        <Volume2 size={15} />
-                      </button>
-                      <span className="flashcard-label">{frontLabel}</span>
-                      <strong>{displayFront}</strong>
-                      <span className="flip-hint">
-                        <RotateCcw size={15} /> Click to flip
-                      </span>
-                      <span className="card-decoration">✳</span>
-                    </div>
-
-                    <div className="flashcard-face flashcard-back">
-                      <button
-                        type="button"
-                        className={`review-star ${reviewedWords.has(String(activeCard.id)) ? "active" : ""}`}
-                        onClick={(event) => {
-                          event.stopPropagation();
-                          toggleReviewWord(activeCard.id);
-                        }}
-                        aria-label="Mark word for review"
-                        title="Mark for review"
-                      >
-                        <Star size={16} fill="currentColor" />
-                      </button>
-                      <button
-                        type="button"
-                        className="card-corner"
-                        onClick={(event) => {
-                          event.stopPropagation();
-                          speak(activeCard.english);
-                        }}
-                        aria-label="Listen to pronunciation"
-                        title="Listen to pronunciation"
-                      >
-                        <Volume2 size={15} />
-                      </button>
-                      <span className="flashcard-label">{backLabel}</span>
-                      <strong>{displayBack}</strong>
-                      {activeCard.example && (
-                        <span className="flash-example">
-                          {activeCard.example}
+                        <span className="review-list-word">{card.english}</span>
+                        <span className="review-list-meaning">
+                          {card.vietnamese}
                         </span>
-                      )}
-                      <span className="flip-hint">
-                        <RotateCcw size={15} /> Click to flip
-                      </span>
-                      <span className="card-decoration">✳</span>
-                    </div>
-                  </div>
+                      </button>
+                    ))
+                  ) : (
+                    <p className="review-empty">
+                      No words marked for review yet.
+                    </p>
+                  )}
                 </div>
+              )}
 
-                <div className="flash-controls">
-                  <button
-                    className="secondary-button"
-                    onClick={() => nextCard(-1)}
-                  >
-                    ← Previous
-                  </button>
-                  <button
-                    className="primary-button"
-                    onClick={() => nextCard(1)}
-                  >
-                    Next card <ArrowRight size={16} />
-                  </button>
-                </div>
-              </div>
-            </div>
+              {studyMode === STUDY_MODES.ACTIVE_RECALL
+                ? activeRecallView
+                : flashcardView}
+            </>
           ) : (
-            <EmptyState text="No flashcards found. Try another search." />
+            multipleChoiceView
           )}
 
           <FeedbackForm />
