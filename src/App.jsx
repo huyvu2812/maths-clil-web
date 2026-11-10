@@ -1,5 +1,4 @@
 import React, { useMemo, useState } from "react";
-import { ChevronDown } from "lucide-react";
 import content from "./data/content.json";
 import HomePage from "./pages/HomePage";
 import TermsPage, { TermsChapterPage } from "./pages/TermsPage";
@@ -183,49 +182,45 @@ function App() {
                 className={`nav-menu ${openGradeMenu === item.id ? "open" : ""}`}
               >
                 <button
+                  type="button"
                   className={`nav-link ${
                     page === item.id ||
                     (page === PAGES.TIPS_DETAIL && item.id === PAGES.TIPS)
                       ? "active"
                       : ""
                   }`}
-                  onClick={() => navigate(item.id)}
+                  aria-haspopup={hasGradeMenu ? "true" : undefined}
+                  aria-expanded={hasGradeMenu ? openGradeMenu === item.id : undefined}
+                  onClick={() => {
+                    if (hasGradeMenu) {
+                      setOpenGradeMenu((current) =>
+                        current === item.id ? null : item.id,
+                      );
+                    } else {
+                      navigate(item.id);
+                    }
+                  }}
                 >
                   <span>{item.label}</span>
                 </button>
                 {hasGradeMenu && (
-                  <>
-                    <button
-                      type="button"
-                      className="grade-menu-toggle"
-                      aria-label={`Choose a grade for ${item.label}`}
-                      aria-expanded={openGradeMenu === item.id}
-                      onClick={() =>
-                        setOpenGradeMenu((current) =>
-                          current === item.id ? null : item.id,
-                        )
-                      }
-                    >
-                      <ChevronDown size={16} />
-                    </button>
-                    <div className="grade-menu" aria-label={`${item.label} grades`}>
-                      {GRADES.map((grade) => (
-                        <button
-                          key={grade}
-                          type="button"
-                          className="grade-option"
-                          onClick={() => selectGrade(item.id, grade)}
-                        >
-                          <span>Grade {grade}</span>
-                          {grade !== 6 && (
-                            <span className="grade-option-status">
-                              Coming soon
-                            </span>
-                          )}
-                        </button>
-                      ))}
-                    </div>
-                  </>
+                  <div className="grade-menu" aria-label={`${item.label} grades`}>
+                    {GRADES.map((grade) => (
+                      <button
+                        key={grade}
+                        type="button"
+                        className="grade-option"
+                        onClick={() => selectGrade(item.id, grade)}
+                      >
+                        <span>Grade {grade}</span>
+                        {grade !== 6 && (
+                          <span className="grade-option-status">
+                            Coming soon
+                          </span>
+                        )}
+                      </button>
+                    ))}
+                  </div>
                 )}
               </div>
             );

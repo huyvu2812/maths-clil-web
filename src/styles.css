@@ -220,19 +220,6 @@ select:focus-visible {
   color: var(--green);
 }
 
-.grade-menu-toggle {
-  display: none;
-  align-items: center;
-  justify-content: center;
-  width: 30px;
-  height: 34px;
-  padding: 0;
-  border: 0;
-  border-radius: 10px;
-  background: transparent;
-  color: #293c37;
-}
-
 .grade-menu {
   position: absolute;
   top: calc(100% - 2px);
@@ -251,8 +238,6 @@ select:focus-visible {
   backdrop-filter: blur(12px);
 }
 
-.nav-menu:hover .grade-menu,
-.nav-menu:focus-within .grade-menu,
 .nav-menu.open .grade-menu {
   display: grid;
 }
@@ -2557,9 +2542,6 @@ select:focus-visible {
   }
   .nav-link {
     font-size: 14px;
-  }
-  .grade-menu-toggle {
-    display: inline-flex;
   }
   .grade-menu {
     top: 100%;
