@@ -58,78 +58,12 @@
       .completion { display: flex; align-items: center; gap: 9px; margin-top: 12px; color: var(--muted); font-size: 14px; }
       .completion input { width: 18px; height: 18px; accent-color: var(--green); }
       .empty { margin-top: 30px; padding: 24px; border-radius: 18px; background: #fffefa; }
-      .print-header { display: none; }
       @media (max-width: 600px) {
         .page { width: min(100% - 24px, 1050px); padding-top: 20px; }
         .progress-panel { grid-template-columns: 1fr; gap: 6px; }
         .progress-panel progress { grid-column: auto; margin: 6px 0; }
         .toolbar { justify-content: flex-start; }
         .question { padding: 16px; }
-      }
-      @media print {
-        @page { size: A4 portrait; margin: 34mm 16mm 18mm; }
-        :root { color: #202020; }
-        body { min-width: 0; background: white; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-        body::before, body::after {
-          position: fixed;
-          top: -34mm;
-          bottom: -18mm;
-          width: 7mm;
-          background: #102783;
-          content: "";
-        }
-        body::before { left: -16mm; }
-        body::after { right: -16mm; }
-        .page { width: 100%; padding: 0; margin: 0; }
-        .back-link, .heading, .toolbar, .status, .completion, .progress-panel, .answer-feedback { display: none !important; }
-        .print-header {
-          position: fixed;
-          z-index: 1;
-          top: -30mm;
-          left: 0;
-          display: block;
-          width: 100%;
-          color: #202020;
-        }
-        .print-meta {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 3mm 8mm;
-          margin-bottom: 4mm;
-          font-size: 10pt;
-        }
-        .print-field { border-bottom: 1px solid #777; padding-bottom: 1mm; }
-        .print-header h1 {
-          margin: 0;
-          color: #1762a1;
-          font-size: 20pt;
-          line-height: 1.1;
-          text-transform: uppercase;
-        }
-        .question-list { display: block; }
-        .question {
-          break-inside: avoid;
-          padding: 0 0 3mm;
-          border: 0;
-          border-radius: 0;
-          background: white;
-        }
-        .question h2 { margin: 0 0 1.5mm; color: #202020; font-size: 11pt; }
-        .prompt { margin: 0 0 2mm; font-size: 11pt; line-height: 1.45; }
-        .answer {
-          height: 24mm;
-          min-height: 24mm;
-          padding: 0 1mm;
-          border: 0;
-          border-radius: 0;
-          background: repeating-linear-gradient(to bottom, transparent 0, transparent calc(6mm - 1px), #222 6mm);
-          color: #202020;
-          line-height: 6mm;
-          resize: none;
-          overflow: hidden;
-        }
-        .answer::placeholder { color: transparent; }
-        .empty { display: none; }
       }
     </style>
   </head>
@@ -141,6 +75,16 @@
     <script src="/worksheet-content.js"></script>
     <script>
       const sets = window.WORKSHEET_SETS;
+      const printablePdfs = {
+        "lesson-1": "https://drive.google.com/file/d/1dBl0c7a2gNWKzc1lm0acqJUf00z7tnJU/view?usp=sharing",
+        "lesson-2": "https://drive.google.com/file/d/1gchpB7h5cUrDAB_VKtjGMYzkLe6p5nUC/view?usp=sharing",
+        "lesson-3": "https://drive.google.com/file/d/1Ga9SV_-UatZGyPs77IuG5zYlcVii5I12/view?usp=sharing",
+        "lesson-4": "https://drive.google.com/file/d/1ln5FIiFr22hHEr20dFKwSWWTU6o2vC4h/view?usp=sharing",
+        "lesson-5": "https://drive.google.com/file/d/10ogU1Ktp3-gV1GS_3cGfxXS-tZd0L1kG/view?usp=sharing",
+        "lesson-6": "https://drive.google.com/file/d/1hOQFNSeqCCiSbThjoAKHHylSbQOhTpYs/view?usp=sharing",
+        "lesson-7": "https://drive.google.com/file/d/117DX0epkCpbZM_m2eZmn-GYIkKdgp1Lo/view?usp=sharing",
+        review: "https://drive.google.com/file/d/1EGrt6uglC0ppEmb2KiiRwaF25o9DFRK5/view?usp=sharing",
+      };
       const id = new URLSearchParams(window.location.search).get("lesson");
       const worksheet = sets[id];
       const root = document.getElementById("worksheet-content");
@@ -158,24 +102,9 @@
         const title = document.createElement("h1");
         title.textContent = worksheet.title;
         const description = document.createElement("p");
-        description.textContent = "Write your answers below. Your work is saved in this browser.";
+        description.textContent = "Write your answers below. Your work is saved in this browser. Print opens the original worksheet PDF.";
         heading.append(eyebrow, title, description);
         root.append(heading);
-
-        const printHeader = document.createElement("header");
-        printHeader.className = "print-header";
-        const printMeta = document.createElement("div");
-        printMeta.className = "print-meta";
-        ["Name", "Teacher", "Class", "Date"].forEach((label) => {
-          const field = document.createElement("span");
-          field.className = "print-field";
-          field.textContent = `${label}:`;
-          printMeta.append(field);
-        });
-        const printTitle = document.createElement("h1");
-        printTitle.textContent = worksheet.title.replace(": ", ". ");
-        printHeader.append(printMeta, printTitle);
-        root.append(printHeader);
 
         const progressPanel = document.createElement("section");
         progressPanel.className = "progress-panel";
@@ -196,7 +125,7 @@
         const printButton = document.createElement("button");
         printButton.type = "button";
         printButton.textContent = "Print / Save as PDF";
-        printButton.addEventListener("click", () => window.print());
+        printButton.addEventListener("click", openPrintablePdf);
         const checkButton = document.createElement("button");
         checkButton.type = "button";
         checkButton.textContent = "Check answers";
@@ -211,6 +140,40 @@
         status.setAttribute("role", "status");
         status.setAttribute("aria-live", "polite");
         root.append(status);
+
+        function openPrintablePdf() {
+          const pdfUrl = printablePdfs[id];
+          if (!pdfUrl) {
+            status.textContent = "The original PDF is unavailable for this worksheet.";
+            status.classList.add("error");
+            console.error(`No original PDF is configured for worksheet "${id}".`);
+            return;
+          }
+          const printWindow = window.open(pdfUrl, "_blank");
+          if (!printWindow) {
+            const pdfLink = document.createElement("a");
+            pdfLink.href = pdfUrl;
+            pdfLink.target = "_blank";
+            pdfLink.rel = "noopener noreferrer";
+            pdfLink.textContent = "Open the PDF manually.";
+            status.replaceChildren(
+              document.createTextNode("Your browser blocked the new tab. "),
+              pdfLink,
+            );
+            status.classList.add("error");
+            return;
+          }
+          printWindow.opener = null;
+          status.textContent = "The original worksheet PDF opened in a new tab. Use its Print button to print or save as PDF.";
+          status.classList.remove("error");
+        }
+
+        document.addEventListener("keydown", (event) => {
+          if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "p") {
+            event.preventDefault();
+            openPrintablePdf();
+          }
+        });
 
         const list = document.createElement("div");
         list.className = "question-list";
