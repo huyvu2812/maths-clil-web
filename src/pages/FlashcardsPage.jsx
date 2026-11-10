@@ -4,7 +4,6 @@ import {
   Layers3,
   Search,
   ArrowRight,
-  RotateCcw,
   Volume2,
   Star,
   ArrowUpDown,
@@ -65,12 +64,16 @@ export default function FlashcardsPage() {
   }, [cardIndex, studyMode]);
 
   const chapterCards = useMemo(
-    () =>
-      selectedChapter === "chapter-1"
-        ? content.flashcards
-        : selectedChapter
-          ? []
-          : [],
+    () => {
+      const chapterCode = {
+        "chapter-1": "MATH6_U1_C1",
+        "chapter-2": "MATH6_U1_C2",
+      }[selectedChapter];
+
+      return chapterCode
+        ? content.flashcards.filter((card) => card.chapterCode === chapterCode)
+        : [];
+    },
     [selectedChapter],
   );
 
@@ -85,13 +88,20 @@ export default function FlashcardsPage() {
   );
 
   const reviewCards = useMemo(
-    () =>
-      content.flashcards.filter((card) => reviewedWords.has(String(card.id))),
-    [reviewedWords],
+    () => chapterCards.filter((card) => reviewedWords.has(String(card.id))),
+    [chapterCards, reviewedWords],
   );
 
-  const activeCard = filteredCards.length
-    ? filteredCards[cardIndex % filteredCards.length]
+  const studyCards = useMemo(
+    () =>
+      studyMode === STUDY_MODES.MULTIPLE_CHOICE && reviewCards.length
+        ? filteredCards.filter((card) => reviewedWords.has(String(card.id)))
+        : filteredCards,
+    [filteredCards, reviewedWords, reviewCards.length, studyMode],
+  );
+
+  const activeCard = studyCards.length
+    ? studyCards[cardIndex % studyCards.length]
     : null;
 
   const multipleChoiceOptions = useMemo(() => {
@@ -127,9 +137,9 @@ export default function FlashcardsPage() {
   }, [activeCard]);
 
   function nextCard(direction) {
-    if (!filteredCards.length) return;
+    if (!studyCards.length) return;
     setCardIndex(
-      (i) => (i + direction + filteredCards.length) % filteredCards.length,
+      (i) => (i + direction + studyCards.length) % studyCards.length,
     );
     setFlipped(false);
     setActiveRecallInput("");
@@ -299,27 +309,22 @@ export default function FlashcardsPage() {
 
   const flashcardView = activeCard ? (
     <div className="flashcard-layout">
-      <div className="flashcard-side-note">
-        <span className="tiny-label">YOUR STUDY SESSION</span>
-        <h3>
-          Small steps,
-          <br />
-          <em>big progress.</em>
-        </h3>
-        <p>Try to recall the meaning before you flip the card.</p>
-        <div className="progress-track">
-          <span
-            style={{
-              width: `${((cardIndex + 1) / filteredCards.length) * 100}%`,
-            }}
-          />
-        </div>
-        <small>
-          Card {cardIndex + 1} of {filteredCards.length}
-        </small>
-      </div>
-
       <div className="flashcard-column">
+        <div className="flashcard-progress">
+          <strong>
+            {cardIndex + 1}/{filteredCards.length}
+          </strong>
+          <div
+            className="flashcard-progress-track"
+            role="progressbar"
+            aria-label="Flashcard progress"
+            aria-valuemin={0}
+            aria-valuemax={filteredCards.length}
+            aria-valuenow={cardIndex + 1}
+          >
+            <span style={{ width: `${progressValue}%` }} />
+          </div>
+        </div>
         <div
           className={`flashcard ${flipped ? "flipped" : ""} ${flipDirection === "vie-to-eng" ? "reverse" : ""}`}
           onClick={() => setFlipped((v) => !v)}
@@ -362,9 +367,8 @@ export default function FlashcardsPage() {
               <span className="flashcard-label">{frontLabel}</span>
               <strong>{displayFront}</strong>
               <span className="flip-hint">
-                <RotateCcw size={15} /> Click to flip
+                Flip the card to see Vietnamese and example
               </span>
-              <span className="card-decoration">✳</span>
             </div>
 
             <div className="flashcard-face flashcard-back">
@@ -398,19 +402,28 @@ export default function FlashcardsPage() {
                 <span className="flash-example">{activeCard.example}</span>
               )}
               <span className="flip-hint">
-                <RotateCcw size={15} /> Click to flip
+                Flip the card to see the English term
               </span>
-              <span className="card-decoration">✳</span>
             </div>
           </div>
         </div>
 
         <div className="flash-controls">
-          <button className="secondary-button" onClick={() => nextCard(-1)}>
-            ← Previous
+          <button
+            type="button"
+            className="secondary-button"
+            onClick={() => nextCard(-1)}
+            aria-label="Previous flashcard"
+          >
+            <ArrowLeft size={34} />
           </button>
-          <button className="primary-button" onClick={() => nextCard(1)}>
-            Next card <ArrowRight size={16} />
+          <button
+            type="button"
+            className="primary-button"
+            onClick={() => nextCard(1)}
+            aria-label="Next flashcard"
+          >
+            <ArrowRight size={34} />
           </button>
         </div>
       </div>
@@ -419,10 +432,97 @@ export default function FlashcardsPage() {
     <EmptyState text="No flashcards found. Try another search." />
   );
 
+  const searchTools = (
+    <>
+      <div className="toolbar">
+        <div className="search-box">
+          <Search size={18} />
+          <input
+            value={search}
+            onChange={(e) => {
+              setSearch(e.target.value);
+              setCardIndex(0);
+              setFlipped(false);
+            }}
+            placeholder="Find a flashcard..."
+          />
+          {search && (
+            <button
+              type="button"
+              className="clear-search-button"
+              aria-label="Clear search"
+              onClick={() => {
+                setSearch("");
+                setCardIndex(0);
+                setFlipped(false);
+                setShowReviewList(false);
+              }}
+            >
+              ×
+            </button>
+          )}
+        </div>
+
+        <div className="toolbar-actions">
+          {studyMode === STUDY_MODES.FLASHCARD && (
+            <button
+              type="button"
+              className="flip-direction-button"
+              onClick={toggleFlipDirection}
+              aria-label="Reverse card direction"
+              title="Reverse card direction"
+            >
+              <ArrowUpDown size={16} />
+            </button>
+          )}
+
+          <button
+            type="button"
+            className="review-button"
+            onClick={() => setShowReviewList((value) => !value)}
+          >
+            <Star size={15} /> Words to review{" "}
+            <span>{reviewCards.length}</span>
+          </button>
+        </div>
+      </div>
+
+      {showReviewList && (
+        <div className="review-list-panel">
+          {reviewCards.length ? (
+            reviewCards.map((card) => (
+              <button
+                key={card.id}
+                type="button"
+                className="review-list-item"
+                onClick={() => {
+                  const index = chapterCards.findIndex(
+                    (item) => String(item.id) === String(card.id),
+                  );
+                  if (index >= 0) {
+                    setCardIndex(index);
+                  }
+                  setSearch("");
+                  setShowReviewList(false);
+                  setFlipped(false);
+                }}
+              >
+                <span className="review-list-word">{card.english}</span>
+                <span className="review-list-meaning">{card.vietnamese}</span>
+              </button>
+            ))
+          ) : (
+            <p className="review-empty">No words marked for review yet.</p>
+          )}
+        </div>
+      )}
+    </>
+  );
+
   const multipleChoiceView = activeCard ? (
     <div className="multiple-choice-screen">
       <div className="multiple-choice-card">
-        <div className="multiple-choice-header">CHỌN NGHĨA ĐÚNG</div>
+        <div className="multiple-choice-header">CHOOSE THE CORRECT MEANING</div>
         <div className="multiple-choice-word">{activeCard.english}</div>
 
         <div className="multiple-choice-grid">
@@ -455,7 +555,9 @@ export default function FlashcardsPage() {
                   }
                 }}
               >
-                <span className="choice-number">{index + 1}</span>
+                <span className="choice-number">
+                  {String.fromCharCode(65 + index)}
+                </span>
                 <span>{option}</span>
               </button>
             );
@@ -490,8 +592,10 @@ export default function FlashcardsPage() {
           volumeId="volume-1"
           onOpenChapter={handleSelectChapter}
         />
-      ) : selectedChapter === "chapter-1" ? (
-        <section className="page-section flashcards-page-shell">
+      ) : ["chapter-1", "chapter-2"].includes(selectedChapter) ? (
+        <section
+          className={`page-section flashcards-page-shell ${studyMode === STUDY_MODES.FLASHCARD ? "flashcard-mode" : ""}`}
+        >
           <div className="chapter-detail-header">
             <button
               type="button"
@@ -520,98 +624,15 @@ export default function FlashcardsPage() {
             ))}
           </div>
 
-          {studyMode === STUDY_MODES.FLASHCARD ||
-          studyMode === STUDY_MODES.ACTIVE_RECALL ? (
+          {studyMode === STUDY_MODES.FLASHCARD ? (
             <>
-              <div className="toolbar">
-                <div className="search-box">
-                  <Search size={18} />
-                  <input
-                    value={search}
-                    onChange={(e) => {
-                      setSearch(e.target.value);
-                      setCardIndex(0);
-                      setFlipped(false);
-                    }}
-                    placeholder="Find a flashcard..."
-                  />
-                  {search && (
-                    <button
-                      type="button"
-                      className="clear-search-button"
-                      aria-label="Clear search"
-                      onClick={() => {
-                        setSearch("");
-                        setCardIndex(0);
-                        setFlipped(false);
-                        setShowReviewList(false);
-                      }}
-                    >
-                      ×
-                    </button>
-                  )}
-                </div>
-
-                <div className="toolbar-actions">
-                  {studyMode === STUDY_MODES.FLASHCARD && (
-                    <button
-                      type="button"
-                      className="flip-direction-button"
-                      onClick={toggleFlipDirection}
-                      aria-label="Reverse card direction"
-                      title="Reverse card direction"
-                    >
-                      <ArrowUpDown size={16} />
-                    </button>
-                  )}
-
-                  <button
-                    type="button"
-                    className="review-button"
-                    onClick={() => setShowReviewList((value) => !value)}
-                  >
-                    <Star size={15} /> Words to review{" "}
-                    <span>{reviewCards.length}</span>
-                  </button>
-                </div>
-              </div>
-
-              {showReviewList && (
-                <div className="review-list-panel">
-                  {reviewCards.length ? (
-                    reviewCards.map((card) => (
-                      <button
-                        key={card.id}
-                        type="button"
-                        className="review-list-item"
-                        onClick={() => {
-                          const index = content.flashcards.findIndex(
-                            (item) => String(item.id) === String(card.id),
-                          );
-                          if (index >= 0) {
-                            setCardIndex(index);
-                          }
-                          setShowReviewList(false);
-                          setFlipped(false);
-                        }}
-                      >
-                        <span className="review-list-word">{card.english}</span>
-                        <span className="review-list-meaning">
-                          {card.vietnamese}
-                        </span>
-                      </button>
-                    ))
-                  ) : (
-                    <p className="review-empty">
-                      No words marked for review yet.
-                    </p>
-                  )}
-                </div>
-              )}
-
-              {studyMode === STUDY_MODES.ACTIVE_RECALL
-                ? activeRecallView
-                : flashcardView}
+              {searchTools}
+              {flashcardView}
+            </>
+          ) : studyMode === STUDY_MODES.ACTIVE_RECALL ? (
+            <>
+              {searchTools}
+              {activeRecallView}
             </>
           ) : (
             multipleChoiceView

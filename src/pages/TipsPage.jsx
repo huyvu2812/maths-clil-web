@@ -1,14 +1,8 @@
 import React from "react";
-import {
-  Lightbulb,
-  Sparkles,
-  BookOpen,
-  GraduationCap,
-  ExternalLink,
-} from "lucide-react";
-import content from "../data/content.json";
+import { ArrowLeft, Lightbulb } from "lucide-react";
+import teachingTips from "../data/teachingTips";
 
-export default function TipsPage() {
+export default function TipsPage({ onOpenTip }) {
   return (
     <section className="page-section">
       <div className="page-heading">
@@ -26,56 +20,74 @@ export default function TipsPage() {
         </div>
       </div>
 
-      <div className="tips-feature">
-        <div className="tips-art">
-          <span className="sun">✳</span>
-          <span className="art-letter">Aa</span>
-          <span className="art-number">1, 2, 3</span>
-          <span className="art-shape">△</span>
-        </div>
-
-        <div className="tips-copy">
-          <div className="eyebrow">TEACHER RESOURCE</div>
-          <h2>Classroom tips &amp; ideas</h2>
-          <p>
-            Open the teaching tips document connected to your materials
-            spreadsheet. Use it as a starting point for planning engaging,
-            language-rich maths lessons.
-          </p>
-          {content.teachingTipsUrl ? (
-            <a
-              className="primary-button link-button"
-              href={content.teachingTipsUrl}
-              target="_blank"
-              rel="noreferrer"
-            >
-              Open teaching tips <ExternalLink size={16} />
-            </a>
-          ) : (
-            <span className="muted">
-              No teaching tips link was found in the workbook.
-            </span>
-          )}
-        </div>
+      <div className="teaching-tip-grid">
+        {teachingTips.map((tip) => (
+          <button
+            key={tip.id}
+            type="button"
+            className="teaching-tip-card"
+            onClick={() => onOpenTip(tip.id)}
+          >
+            <img src={tip.image} alt={tip.imageAlt} />
+            <span className="teaching-tip-card-title">{tip.title}</span>
+          </button>
+        ))}
       </div>
+    </section>
+  );
+}
 
-      <div className="tip-mini-grid">
-        <div>
-          <Sparkles size={20} />
-          <strong>Make it visual</strong>
-          <p>Pair new vocabulary with images, diagrams and worked examples.</p>
+export function TeachingTipDetailPage({ tipId, onBack }) {
+  const tip = teachingTips.find((item) => item.id === tipId);
+
+  if (!tip) {
+    return null;
+  }
+
+  return (
+    <section className="page-section">
+      <button
+        type="button"
+        className="secondary-button back-button teaching-tip-back"
+        onClick={onBack}
+      >
+        <ArrowLeft size={16} /> Quay lại Teaching Tips
+      </button>
+
+      <article
+        className="teaching-tip-details"
+        aria-labelledby={`teaching-tip-title-${tip.id}`}
+      >
+        <img
+          className="teaching-tip-detail-image"
+          src={tip.image}
+          alt={tip.imageAlt}
+        />
+        <div className="teaching-tip-detail-content">
+          <div className="eyebrow">TEACHING TIP</div>
+          <h1 id={`teaching-tip-title-${tip.id}`}>{tip.title}</h1>
+          <div className="teaching-tip-copy">
+            {tip.intro.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+
+            {tip.items.length > 0 && (
+              <>
+                {tip.itemsHeading && <h2>{tip.itemsHeading}</h2>}
+                <ul>
+                  {tip.items.map((item) => (
+                    <li key={item.title}>
+                      <strong>{item.title}:</strong> {item.text}
+                    </li>
+                  ))}
+                </ul>
+              </>
+            )}
+
+            {tip.closing && <p>{tip.closing}</p>}
+          </div>
         </div>
-        <div>
-          <BookOpen size={20} />
-          <strong>Use the language</strong>
-          <p>Model maths terms in short, meaningful English sentences.</p>
-        </div>
-        <div>
-          <GraduationCap size={20} />
-          <strong>Check understanding</strong>
-          <p>Invite learners to explain a concept in their own words.</p>
-        </div>
-      </div>
+      </article>
     </section>
   );
 }

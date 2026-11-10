@@ -1,17 +1,13 @@
 import React from "react";
-import { getVolumeById } from "../constants/chapterMeta";
+import { VOLUMES } from "../constants/chapterMeta";
 
 export default function VolumeChapterPage({
   eyebrow,
   title,
   description,
-  volumeId = "volume-1",
   onOpenChapter,
   chapterContent,
 }) {
-  const volume = getVolumeById(volumeId);
-  const chapters = chapterContent ?? volume?.chapters ?? [];
-
   return (
     <section className="page-section">
       <div className="page-heading">
@@ -22,22 +18,32 @@ export default function VolumeChapterPage({
         </div>
       </div>
 
-      <div className="chapter-volume-wrap">
-        <div className="volume-pill">{volume?.label ?? "Volume 1"}</div>
-      </div>
+      <div className="volume-chapters-grid">
+        {VOLUMES.map((volume) => {
+          const chapters = chapterContent ?? volume.chapters;
 
-      <div className="chapter-selector-grid">
-        {chapters.map((chapter) => (
-          <button
-            key={chapter.id}
-            type="button"
-            className="chapter-choice"
-            onClick={() => onOpenChapter(chapter.id)}
-          >
-            <span className="chapter-label">{chapter.label}</span>
-            <span className="chapter-title">{chapter.title}</span>
-          </button>
-        ))}
+          return (
+            <div className="volume-chapter-column" key={volume.id}>
+              <div className="chapter-volume-wrap">
+                <div className="volume-pill">{volume.label}</div>
+              </div>
+
+              <div className="chapter-selector-grid">
+                {chapters.map((chapter) => (
+                  <button
+                    key={chapter.id}
+                    type="button"
+                    className="chapter-choice"
+                    onClick={() => onOpenChapter(chapter.id)}
+                  >
+                    <span className="chapter-label">{chapter.label}</span>
+                    <span className="chapter-title">{chapter.title}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          );
+        })}
       </div>
     </section>
   );

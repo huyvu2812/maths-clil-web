@@ -33,7 +33,28 @@ export const VOLUMES = [
   {
     id: "volume-2",
     label: "Volume 2",
-    chapters: [],
+    chapters: [
+      {
+        id: "chapter-6",
+        label: "Chapter VI:",
+        title: "FRACTIONS",
+      },
+      {
+        id: "chapter-7",
+        label: "Chapter VII:",
+        title: "DECIMALS",
+      },
+      {
+        id: "chapter-8",
+        label: "Chapter VIII:",
+        title: "BASIC GEOMETRIC FIGURES",
+      },
+      {
+        id: "chapter-9",
+        label: "Chapter IX:",
+        title: "DATA AND EXPERIMENTAL PROBABILITY",
+      },
+    ],
   },
 ];
 
