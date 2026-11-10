@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Complete and save interactive Maths CLIL worksheets."
+    />
+    <title>Interactive worksheet · Maths CLIL</title>
+    <style>
+      :root {
+        font-family: "DM Sans", "Segoe UI", sans-serif;
+        color: #25342d;
+        background: #edf3ee;
+        font-synthesis: none;
+        line-height: 1.55;
+        text-rendering: optimizeLegibility;
+        --green: #2d684d;
+        --line: #e2e8e1;
+        --ink: #25342d;
+        --muted: #62706a;
+      }
+
+      * { box-sizing: border-box; }
+      body { margin: 0; min-width: 320px; }
+      button, textarea { font: inherit; }
+      a { color: inherit; }
+      a:focus-visible, button:focus-visible, textarea:focus-visible {
+        outline: 3px solid #8cc9a4;
+        outline-offset: 3px;
+      }
+      .page { width: min(1050px, calc(100% - 36px)); margin: 0 auto; padding: 28px 0 56px; }
+      .back-link { color: var(--green); font-weight: 700; text-decoration: none; }
+      .heading { margin: 28px 0 20px; }
+      .eyebrow { color: #5d776b; font-size: 12px; font-weight: 800; letter-spacing: 1.5px; }
+      h1 { margin: 8px 0; font-size: clamp(30px, 5vw, 46px); line-height: 1.12; letter-spacing: -1.6px; }
+      .heading p { color: var(--muted); margin: 0; }
+      .progress-panel { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 12px 20px; padding: 18px; border: 1px solid var(--line); border-radius: 18px; background: #fffefa; }
+      .progress-panel progress { grid-column: 1 / -1; width: 100%; height: 10px; accent-color: var(--green); }
+      .progress-label { font-weight: 700; }
+      .progress-count { color: var(--muted); font-size: 14px; }
+      .toolbar { display: flex; justify-content: flex-end; gap: 10px; margin: 16px 0; }
+      .toolbar button { padding: 9px 14px; border: 1px solid var(--line); border-radius: 10px; background: #fffefa; color: var(--ink); font-weight: 700; }
+      .toolbar button:hover { border-color: var(--green); }
+      .toolbar button:disabled { cursor: not-allowed; opacity: 0.55; }
+      .status { min-height: 24px; color: var(--green); font-size: 14px; }
+      .status.error { color: #a33b2c; }
+      .question-list { display: grid; gap: 14px; }
+      .question { padding: 20px; border: 1px solid var(--line); border-radius: 18px; background: #fffefa; }
+      .question h2 { margin: 0 0 8px; color: var(--green); font-size: 15px; }
+      .prompt { margin: 0 0 14px; white-space: pre-line; }
+      .answer { display: block; width: 100%; min-height: 100px; padding: 12px; resize: vertical; border: 1px solid #cbd6cc; border-radius: 10px; background: #fff; color: var(--ink); }
+      .answer-feedback { margin-top: 14px; padding: 14px 16px; border-left: 4px solid var(--green); border-radius: 8px; background: #eff7f0; }
+      .answer-feedback h3 { margin: 0 0 5px; font-size: 14px; }
+      .answer-feedback p { margin: 0; white-space: pre-line; }
+      .unanswered-feedback { border-left-color: #9c8050; background: #fbf5e9; }
+      .completion { display: flex; align-items: center; gap: 9px; margin-top: 12px; color: var(--muted); font-size: 14px; }
+      .completion input { width: 18px; height: 18px; accent-color: var(--green); }
+      .empty { margin-top: 30px; padding: 24px; border-radius: 18px; background: #fffefa; }
+      .print-header { display: none; }
+      @media (max-width: 600px) {
+        .page { width: min(100% - 24px, 1050px); padding-top: 20px; }
+        .progress-panel { grid-template-columns: 1fr; gap: 6px; }
+        .progress-panel progress { grid-column: auto; margin: 6px 0; }
+        .toolbar { justify-content: flex-start; }
+        .question { padding: 16px; }
+      }
+      @media print {
+        @page { size: A4 portrait; margin: 34mm 16mm 18mm; }
+        :root { color: #202020; }
+        body { min-width: 0; background: white; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        body::before, body::after {
+          position: fixed;
+          top: -34mm;
+          bottom: -18mm;
+          width: 7mm;
+          background: #102783;
+          content: "";
+        }
+        body::before { left: -16mm; }
+        body::after { right: -16mm; }
+        .page { width: 100%; padding: 0; margin: 0; }
+        .back-link, .heading, .toolbar, .status, .completion, .progress-panel, .answer-feedback { display: none !important; }
+        .print-header {
+          position: fixed;
+          z-index: 1;
+          top: -30mm;
+          left: 0;
+          display: block;
+          width: 100%;
+          color: #202020;
+        }
+        .print-meta {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 3mm 8mm;
+          margin-bottom: 4mm;
+          font-size: 10pt;
+        }
+        .print-field { border-bottom: 1px solid #777; padding-bottom: 1mm; }
+        .print-header h1 {
+          margin: 0;
+          color: #1762a1;
+          font-size: 20pt;
+          line-height: 1.1;
+          text-transform: uppercase;
+        }
+        .question-list { display: block; }
+        .question {
+          break-inside: avoid;
+          padding: 0 0 3mm;
+          border: 0;
+          border-radius: 0;
+          background: white;
+        }
+        .question h2 { margin: 0 0 1.5mm; color: #202020; font-size: 11pt; }
+        .prompt { margin: 0 0 2mm; font-size: 11pt; line-height: 1.45; }
+        .answer {
+          height: 24mm;
+          min-height: 24mm;
+          padding: 0 1mm;
+          border: 0;
+          border-radius: 0;
+          background: repeating-linear-gradient(to bottom, transparent 0, transparent calc(6mm - 1px), #222 6mm);
+          color: #202020;
+          line-height: 6mm;
+          resize: none;
+          overflow: hidden;
+        }
+        .answer::placeholder { color: transparent; }
+        .empty { display: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page" id="worksheet">
+      <a class="back-link" href="/?page=worksheets-chapter&amp;chapter=chapter-1">← Back to worksheets</a>
+      <div id="worksheet-content"></div>
+    </main>
+    <script src="/worksheet-content.js"></script>
+    <script>
+      const sets = window.WORKSHEET_SETS;
+      const id = new URLSearchParams(window.location.search).get("lesson");
+      const worksheet = sets[id];
+      const root = document.getElementById("worksheet-content");
+
+      if (!worksheet) {
+        root.innerHTML = '<section class="empty"><h1>Worksheet not found</h1><p>Choose a worksheet from the worksheets page.</p></section>';
+      } else {
+        document.title = `${worksheet.title} · Maths CLIL`;
+        const key = `maths-clil-worksheet:${id}`;
+        const heading = document.createElement("header");
+        heading.className = "heading";
+        const eyebrow = document.createElement("div");
+        eyebrow.className = "eyebrow";
+        eyebrow.textContent = "PRACTISE & APPLY";
+        const title = document.createElement("h1");
+        title.textContent = worksheet.title;
+        const description = document.createElement("p");
+        description.textContent = "Write your answers below. Your work is saved in this browser.";
+        heading.append(eyebrow, title, description);
+        root.append(heading);
+
+        const printHeader = document.createElement("header");
+        printHeader.className = "print-header";
+        const printMeta = document.createElement("div");
+        printMeta.className = "print-meta";
+        ["Name", "Teacher", "Class", "Date"].forEach((label) => {
+          const field = document.createElement("span");
+          field.className = "print-field";
+          field.textContent = `${label}:`;
+          printMeta.append(field);
+        });
+        const printTitle = document.createElement("h1");
+        printTitle.textContent = worksheet.title.replace(": ", ". ");
+        printHeader.append(printMeta, printTitle);
+        root.append(printHeader);
+
+        const progressPanel = document.createElement("section");
+        progressPanel.className = "progress-panel";
+        const progressLabel = document.createElement("span");
+        progressLabel.className = "progress-label";
+        progressLabel.textContent = "Worksheet progress";
+        const count = document.createElement("span");
+        count.className = "progress-count";
+        count.setAttribute("aria-live", "polite");
+        count.setAttribute("aria-atomic", "true");
+        const progress = document.createElement("progress");
+        progress.max = worksheet.questions.length;
+        progressPanel.append(progressLabel, count, progress);
+        root.append(progressPanel);
+
+        const toolbar = document.createElement("div");
+        toolbar.className = "toolbar";
+        const printButton = document.createElement("button");
+        printButton.type = "button";
+        printButton.textContent = "Print / Save as PDF";
+        printButton.addEventListener("click", () => window.print());
+        const checkButton = document.createElement("button");
+        checkButton.type = "button";
+        checkButton.textContent = "Check answers";
+        const resetButton = document.createElement("button");
+        resetButton.type = "button";
+        resetButton.textContent = "Clear my answers";
+        toolbar.append(printButton, checkButton, resetButton);
+        root.append(toolbar);
+
+        const status = document.createElement("p");
+        status.className = "status";
+        status.setAttribute("role", "status");
+        status.setAttribute("aria-live", "polite");
+        root.append(status);
+
+        const list = document.createElement("div");
+        list.className = "question-list";
+        root.append(list);
+
+        let saved = { answers: {}, completed: {} };
+        let storageAvailable = true;
+        let progressMigrated = false;
+        try {
+          const value = localStorage.getItem(key);
+          if (value) {
+            const parsed = JSON.parse(value);
+            if (
+              !parsed ||
+              typeof parsed !== "object" ||
+              !parsed.answers ||
+              typeof parsed.answers !== "object" ||
+              !parsed.completed ||
+              typeof parsed.completed !== "object"
+            ) {
+              throw new Error("Saved worksheet progress has an unexpected format.");
+            }
+            saved = parsed;
+            worksheet.questions.forEach((question) => {
+              if (!question.legacyNumber) return;
+              for (const section of ["answers", "completed"]) {
+                if (
+                  Object.prototype.hasOwnProperty.call(saved[section], question.legacyNumber)
+                ) {
+                  if (
+                    !Object.prototype.hasOwnProperty.call(saved[section], question.number)
+                  ) {
+                    saved[section][question.number] = saved[section][question.legacyNumber];
+                  }
+                  delete saved[section][question.legacyNumber];
+                  progressMigrated = true;
+                }
+              }
+            });
+          }
+        } catch (error) {
+          storageAvailable = false;
+          status.textContent = "Saved work could not be loaded or stored in this browser.";
+          status.classList.add("error");
+          console.error("Unable to load worksheet progress.", error);
+        }
+
+        function updateProgress() {
+          const completed = worksheet.questions.filter(
+            (question) => saved.completed[question.number],
+          ).length;
+          count.textContent = `${completed} of ${worksheet.questions.length} questions completed`;
+          progress.value = completed;
+        }
+
+        function saveProgress() {
+          if (!storageAvailable) return;
+          try {
+            localStorage.setItem(key, JSON.stringify(saved));
+            status.textContent = "Progress saved on this device.";
+            status.classList.remove("error");
+          } catch (error) {
+            storageAvailable = false;
+            status.textContent = "Your browser could not save this worksheet. Keep this page open to avoid losing your answers.";
+            status.classList.add("error");
+            console.error("Unable to save worksheet progress.", error);
+          }
+        }
+
+        if (progressMigrated) saveProgress();
+
+        let answersVisible = false;
+
+        function updateCheckButton() {
+          checkButton.disabled =
+            !answersVisible &&
+            worksheet.questions.every(
+              (question) => !saved.answers[question.number]?.trim(),
+            );
+        }
+
+        updateCheckButton();
+
+        function updateAnswerFeedback(question, feedback) {
+          feedback.replaceChildren();
+          const heading = document.createElement("h3");
+          const answer = document.createElement("p");
+          if (saved.answers[question.number]?.trim()) {
+            feedback.className = "answer-feedback";
+            heading.textContent = "Suggested answer";
+            answer.textContent = question.answer;
+          } else {
+            feedback.className = "answer-feedback unanswered-feedback";
+            heading.textContent = "Try this question first";
+            answer.textContent = "Write your answer above, then select “Check answers” to reveal the suggested answer.";
+          }
+          feedback.append(heading, answer);
+          feedback.hidden = !answersVisible;
+        }
+
+        checkButton.addEventListener("click", () => {
+          answersVisible = !answersVisible;
+          checkButton.textContent = answersVisible ? "Hide answers" : "Check answers";
+          worksheet.questions.forEach((question) => {
+            updateAnswerFeedback(question, feedbackByQuestion.get(question.number));
+          });
+          if (answersVisible) {
+            status.textContent = "Suggested answers are shown for questions you have answered. Compare your work and mark each question complete when you are ready.";
+          } else {
+            status.textContent = "Suggested answers hidden.";
+          }
+        });
+
+        const feedbackByQuestion = new Map();
+        worksheet.questions.forEach((question) => {
+          const card = document.createElement("section");
+          card.className = "question";
+          const number = document.createElement("h2");
+          number.textContent = question.number;
+          const prompt = document.createElement("p");
+          prompt.className = "prompt";
+          prompt.textContent = question.prompt;
+          const answer = document.createElement("textarea");
+          answer.className = "answer";
+          answer.setAttribute("aria-label", `Answer to question ${question.number}`);
+          answer.placeholder = "Write your answer here...";
+          answer.value = saved.answers[question.number] || "";
+          answer.addEventListener("input", () => {
+            saved.answers[question.number] = answer.value;
+            updateCheckButton();
+            if (answersVisible) {
+              updateAnswerFeedback(question, feedbackByQuestion.get(question.number));
+            }
+            saveProgress();
+          });
+          const feedback = document.createElement("section");
+          feedback.setAttribute("aria-live", "polite");
+          feedback.hidden = true;
+          feedbackByQuestion.set(question.number, feedback);
+          const completion = document.createElement("label");
+          completion.className = "completion";
+          const checkbox = document.createElement("input");
+          checkbox.type = "checkbox";
+          checkbox.checked = Boolean(saved.completed[question.number]);
+          checkbox.addEventListener("change", () => {
+            saved.completed[question.number] = checkbox.checked;
+            updateProgress();
+            saveProgress();
+          });
+          completion.append(checkbox, document.createTextNode("Mark this question complete"));
+          card.append(number, prompt, answer, feedback, completion);
+          list.append(card);
+        });
+
+        resetButton.addEventListener("click", () => {
+          if (!window.confirm("Clear all saved answers for this worksheet?")) return;
+          saved = { answers: {}, completed: {} };
+          list.querySelectorAll("textarea").forEach((answer) => { answer.value = ""; });
+          list.querySelectorAll(".answer-feedback").forEach((feedback) => { feedback.hidden = true; });
+          list.querySelectorAll('input[type="checkbox"]').forEach((checkbox) => { checkbox.checked = false; });
+          answersVisible = false;
+          checkButton.textContent = "Check answers";
+          updateCheckButton();
+          updateProgress();
+          saveProgress();
+        });
+
+        updateProgress();
+      }
+    </script>
+  </body>
+</html>

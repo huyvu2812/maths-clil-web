@@ -3,11 +3,23 @@ import { ArrowLeft, ArrowRight, Calculator } from "lucide-react";
 import VolumeChapterPage from "../components/VolumeChapterPage";
 import { getChapterById } from "../constants/chapterMeta";
 
+const CHAPTER_LESSON_RANGES = {
+  "chapter-1": [1, 7],
+  "chapter-2": [8, 12],
+};
+
 export function TermsChapterPage({ chapterId, lessons, onBack, onOpenLesson }) {
   const chapter = getChapterById(chapterId);
+  const lessonRange = CHAPTER_LESSON_RANGES[chapterId];
   const lessonList = useMemo(
-    () => (chapterId === "chapter-1" ? lessons : []),
-    [chapterId, lessons],
+    () =>
+      lessonRange
+        ? lessons.filter((lesson) => {
+            const number = Number(lesson.match(/^Lesson (\d+):/)?.[1]);
+            return number >= lessonRange[0] && number <= lessonRange[1];
+          })
+        : [],
+    [lessonRange, lessons],
   );
 
   return (
@@ -50,7 +62,6 @@ export function TermsChapterPage({ chapterId, lessons, onBack, onOpenLesson }) {
               <span className="resource-number">
                 {String(index + 1).padStart(2, "0")}
               </span>
-              <span className="resource-chapter">LESSON {index + 1}</span>
               <strong>{item}</strong>
               <span className="resource-link">
                 Open lesson <ArrowRight size={15} />

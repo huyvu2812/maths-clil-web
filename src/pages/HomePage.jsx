@@ -1,10 +1,13 @@
 import React from "react";
 import {
   BookOpen,
-  Calculator,
   Layers3,
   ArrowRight,
   UserRound,
+  NotebookPen,
+  PencilRuler,
+  Star,
+  UsersRound,
 } from "lucide-react";
 
 export default function HomePage({ navigate }) {
@@ -15,7 +18,7 @@ export default function HomePage({ navigate }) {
           <h1>Welcome to The Hunt</h1>
           <p className="hunt-quote">"Hunt the terms, grasp Mathematics"</p>
           <p className="hunt-sub">
-            — assisting you with vivid CLIL Mathematics teaching materials.
+            — assisting you with Mathematics teaching materials.
           </p>
         </div>
 
@@ -34,8 +37,7 @@ export default function HomePage({ navigate }) {
           </div>
           <p>
             The Hunt is a dedicated digital hub designed specifically for
-            educators teaching Grade 6 Mathematics using the Content and
-            Language Integrated Learning (CLIL) approach.
+            educators teaching Secondary school Mathematics in English.
           </p>
         </div>
 
@@ -44,101 +46,99 @@ export default function HomePage({ navigate }) {
             <BookOpen size={36} />
           </div>
           <p>
-            Based on the Kết nối tri thức với cuộc sống curriculum (Volume 1),
-            our platform provides you with practical, ready-to-use resources to
-            make your bilingual lessons engaging and effective.
+            Based on the Kết nối tri thức với cuộc sống curriculum, our platform
+            provides you with practical, ready-to-use resources to make your
+            bilingual lessons engaging and effective.
           </p>
         </div>
       </div>
 
       <div className="section-heading">
-        <div>
-          <div className="eyebrow">PICK YOUR PATH</div>
-          <h2>
-            Where will you <em>start?</em>
-          </h2>
-        </div>
-        <span className="section-note">
-          A little practice goes a long way <span>↘</span>
-        </span>
+        <h2>
+          Where will we <em>start?</em>
+        </h2>
       </div>
 
       <div className="feature-grid">
         <button
-          className="feature-card feature-green"
+          className="feature-card feature-card-simple"
           onClick={() => navigate("terms")}
         >
-          <span className="feature-top">
-            <span className="feature-icon">
-              <Calculator size={22} />
-            </span>
-            <span className="feature-arrow">
-              <ArrowRight size={18} />
-            </span>
-          </span>
-          <span className="feature-tag">BUILD YOUR VOCABULARY</span>
+          <PencilRuler
+            className="feature-card-icon"
+            size={44}
+            strokeWidth={1.3}
+          />
           <strong>Maths terms</strong>
           <p>
-            Discover key concepts in English and Vietnamese, with examples and
-            pronunciation.
+            Discover key concepts in English, with examples and pronunciation.
           </p>
           <span className="feature-bottom">
             Explore glossary <ArrowRight size={15} />
           </span>
-          <span className="feature-doodle">∑</span>
         </button>
 
         <button
-          className="feature-card feature-peach"
+          className="feature-card feature-card-simple"
           onClick={() => navigate("flashcards")}
         >
-          <span className="feature-top">
-            <span className="feature-icon">
-              <Layers3 size={22} />
-            </span>
-            <span className="feature-arrow">
-              <ArrowRight size={18} />
-            </span>
-          </span>
-          <span className="feature-tag">PRACTISE & REMEMBER</span>
+          <Layers3
+            className="feature-card-icon"
+            size={44}
+            strokeWidth={1.3}
+          />
           <strong>Flashcards</strong>
           <p>Flip each card, test your memory, and make new words stick.</p>
           <span className="feature-bottom">
             Start practising <ArrowRight size={15} />
           </span>
-          <span className="feature-doodle">Aa</span>
         </button>
 
         <button
-          className="feature-card feature-lilac"
+          className="feature-card feature-card-simple"
           onClick={() => navigate("worksheets")}
         >
-          <span className="feature-top">
-            <span className="feature-icon">
-              <BookOpen size={22} />
-            </span>
-            <span className="feature-arrow">
-              <ArrowRight size={18} />
-            </span>
-          </span>
-          <span className="feature-tag">TAKE IT FURTHER</span>
+          <NotebookPen
+            className="feature-card-icon"
+            size={44}
+            strokeWidth={1.3}
+          />
           <strong>Worksheets</strong>
           <p>Find lesson materials and continue learning beyond the screen.</p>
           <span className="feature-bottom">
             Browse resources <ArrowRight size={15} />
           </span>
-          <span className="feature-doodle">✳</span>
+        </button>
+
+        <button
+          className="feature-card feature-card-simple"
+          onClick={() => navigate("tips")}
+        >
+          <Star className="feature-card-icon" size={44} strokeWidth={1.3} />
+          <strong>Teaching tips</strong>
+          <p>Find practical ideas for engaging, language-rich maths lessons.</p>
+          <span className="feature-bottom">
+            Explore teaching tips <ArrowRight size={15} />
+          </span>
+        </button>
+
+        <button
+          className="feature-card feature-card-simple"
+          onClick={() => navigate("about")}
+        >
+          <UsersRound
+            className="feature-card-icon"
+            size={44}
+            strokeWidth={1.3}
+          />
+          <strong>About us</strong>
+          <p>Get to know about us</p>
+          <span className="feature-bottom">
+            Learn about us <ArrowRight size={15} />
+          </span>
         </button>
       </div>
 
-      <div className="quote-banner">
-        <span className="quote-mark">“</span>
-        <p>
-          Mathematics is not about numbers, equations, computations, or
-          algorithms: it is about <em>understanding.</em>
-        </p>
-        <span className="quote-decoration">✳</span>
-      </div>
     </section>
   );
 }

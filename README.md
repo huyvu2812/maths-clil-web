@@ -7,7 +7,7 @@ A responsive React + Vite prototype based on the supplied `Materials for MathsCL
 - **Home** — learning-space landing page and shortcuts
 - **Maths terms** — searchable English/Vietnamese glossary with lesson filtering, examples, IPA and browser text-to-speech pronunciation
 - **Flashcards** — searchable flip cards with previous/next controls
-- **Worksheets** — links imported from the workbook
+- **Worksheets** — interactive HTML worksheets converted from the workbook's PDF resources, with saved progress and suggested answers revealed after learners attempt questions
 - **Teaching tips** — opens the Google Docs resource linked in the workbook
 
 ## Requirements
@@ -58,7 +58,7 @@ By default, the script reads `Materials for MathsCLILweb.xlsx` in the project ro
 python3 scripts/import_excel.py "/path/to/your-updated-workbook.xlsx"
 ```
 
-This first version imports data at build time into `src/data/content.json`; it does not connect to a live database or require database credentials.
+This first version imports data at build time into `src/data/content.json`; it does not connect to a live database or require database credentials. Worksheet exercises are included in `public/worksheet-content.js` and are served by `public/worksheet.html`, so they open directly inside the site without relying on Google Drive.
 
 ## Project structure
 
@@ -82,4 +82,4 @@ The Canva edit URL did not expose a readable preview in the environment used to 
 1. Confirm the UI against the Canva design.
 2. Decide whether content needs a teacher/admin dashboard.
 3. Add Firebase/another database only if the content must be edited without rebuilding the frontend.
-4. Review Google Drive sharing permissions for worksheet links.
+4. Confirm users access their saved worksheet answers from the same browser and device.

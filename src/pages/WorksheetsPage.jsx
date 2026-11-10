@@ -3,12 +3,16 @@ import {
   ArrowLeft,
   BookOpen,
   ClipboardList,
-  ExternalLink,
   ArrowRight,
 } from "lucide-react";
 import content from "../data/content.json";
 import VolumeChapterPage from "../components/VolumeChapterPage";
 import { getChapterById } from "../constants/chapterMeta";
+
+function getWorksheetPath(lesson) {
+  const lessonNumber = /^lesson\s*(\d+)/i.exec(lesson)?.[1];
+  return `/worksheet.html?lesson=${lessonNumber ? `lesson-${lessonNumber}` : "review"}`;
+}
 
 export function WorksheetsChapterPage({ chapterId, onBack }) {
   const chapter = getChapterById(chapterId);
@@ -28,7 +32,7 @@ export function WorksheetsChapterPage({ chapterId, onBack }) {
             Your learning <em>toolkit.</em>
           </h1>
           <p>
-            Open the worksheets and lesson resources linked in your workbook.
+            Choose a lesson and complete its interactive worksheet on this site.
           </p>
         </div>
       </div>
@@ -56,7 +60,8 @@ export function WorksheetsChapterPage({ chapterId, onBack }) {
             <div>
               <strong>Maths CLIL worksheets</strong>
               <p>
-                Resources are opened from their original Google Drive links.
+                Complete each worksheet here. Your answers are saved in this
+                browser.
               </p>
             </div>
             <span className="resource-total">{resources.length} resources</span>
@@ -67,22 +72,20 @@ export function WorksheetsChapterPage({ chapterId, onBack }) {
               <a
                 key={`${w.lesson}-${i}`}
                 className="resource-card"
-                href={w.url || "#"}
-                target="_blank"
-                rel="noreferrer"
+                href={getWorksheetPath(w.lesson)}
               >
                 <div className="resource-card-top">
                   <span className="resource-number">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <span className="resource-open">
-                    <ExternalLink size={16} />
+                    <ClipboardList size={16} />
                   </span>
                 </div>
                 <span className="resource-chapter">{w.chapter}</span>
                 <strong>{w.lesson}</strong>
                 <span className="resource-link">
-                  Open resource <ArrowRight size={15} />
+                  Start worksheet <ArrowRight size={15} />
                 </span>
               </a>
             ))}
@@ -106,7 +109,7 @@ export default function WorksheetsPage({ onOpenChapter }) {
         </>
       }
       title="Your learning <em>toolkit.</em>"
-      description="Open the worksheets and lesson resources linked in your workbook."
+      description="Choose a chapter to explore interactive maths worksheets."
       volumeId="volume-1"
       onOpenChapter={onOpenChapter}
     />

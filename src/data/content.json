@@ -4,7 +4,7 @@
   "terms": [
     {
       "id": "1",
-      "lesson": "LESSON 1: SET",
+      "lesson": "Lesson 1: Set",
       "vietnamese": "Tập hợp",
       "english": "Set",
       "example": "A is the set of 1, 2, and 3.",
@@ -12,7 +12,7 @@
     },
     {
       "id": "2",
-      "lesson": "LESSON 1: SET",
+      "lesson": "Lesson 1: Set",
       "vietnamese": "Phần tử",
       "english": "Element/member",
       "example": "2 is an element of A.",
@@ -20,7 +20,7 @@
     },
     {
       "id": "3",
-      "lesson": "LESSON 1: SET",
+      "lesson": "Lesson 1: Set",
       "vietnamese": "Thuộc",
       "english": "Belongs to",
       "example": "3 belongs to A.",
@@ -28,7 +28,7 @@
     },
     {
       "id": "4",
-      "lesson": "LESSON 1: SET",
+      "lesson": "Lesson 1: Set",
       "vietnamese": "Không thuộc",
       "english": "Does not belong to",
       "example": "5 does not belong to A.",
@@ -36,7 +36,7 @@
     },
     {
       "id": "5",
-      "lesson": "LESSON 1: SET",
+      "lesson": "Lesson 1: Set",
       "vietnamese": "Tập hợp rỗng",
       "english": "Empty set",
       "example": "The empty set has no elements.",
@@ -44,7 +44,7 @@
     },
     {
       "id": "6",
-      "lesson": "LESSON 1: SET",
+      "lesson": "Lesson 1: Set",
       "vietnamese": "Tập hợp các số tự nhiên",
       "english": "Set of natural numbers",
       "example": "The set of natural numbers is ℕ={0;1;2;3;… }",
@@ -425,6 +425,174 @@
       "english": "Value of an expression",
       "example": "The value of the expression 2+3×4 is 14.",
       "ipa": "/ˈvæljuː ɒv ən ɪkˈsprɛʃən/"
+    },
+    {
+      "id": "55",
+      "lesson": "Lesson 8: Divisibility relations and properties",
+      "vietnamese": "Chia hết",
+      "english": "Divisible by",
+      "example": "15 is divisible by 3.",
+      "ipa": "/dɪˈvɪzəbl baɪ/"
+    },
+    {
+      "id": "56",
+      "lesson": "Lesson 8: Divisibility relations and properties",
+      "vietnamese": "Không chia hết",
+      "english": "Not divisible by",
+      "example": "16 is not divisible by 3.",
+      "ipa": "/nɒt dɪˈvɪzəbl baɪ/"
+    },
+    {
+      "id": "57",
+      "lesson": "Lesson 8: Divisibility relations and properties",
+      "vietnamese": "Ước",
+      "english": "Divisor / Factor",
+      "example": "3 is a factor of 15.",
+      "ipa": "/dɪˈvaɪzər / ˈfæktər/"
+    },
+    {
+      "id": "58",
+      "lesson": "Lesson 8: Divisibility relations and properties",
+      "vietnamese": "Bội",
+      "english": "Multiple",
+      "example": "18 is a multiple of 6.",
+      "ipa": "/ˈmʌltɪpl/"
+    },
+    {
+      "id": "59",
+      "lesson": "Lesson 8: Divisibility relations and properties",
+      "vietnamese": "Tính chất chia hết của một tổng",
+      "english": "Divisibility properties of a sum",
+      "example": "If all terms are divisible by m, their sum is divisible by m.",
+      "ipa": "/dɪˈvɪzəbɪlɪti ˈprɒpərtiz ɒv ə sʌm/"
+    },
+    {
+      "id": "60",
+      "lesson": "Lesson 9: Divisibility rules",
+      "vietnamese": "Dấu hiệu chia hết",
+      "english": "Divisibility rule / test",
+      "example": "Criteria to quickly check divisibility without dividing.",
+      "ipa": "/dɪˈvɪzəbɪlɪti ruːl / tɛst/"
+    },
+    {
+      "id": "61",
+      "lesson": "Lesson 9: Divisibility rules",
+      "vietnamese": "Chữ số tận cùng",
+      "english": "Last digit / Terminal digit",
+      "example": "Numbers ending in even digits are divisible by 2.",
+      "ipa": "/læst ˈdɪdʒɪt / ˈtɜːmɪnəl ˈdɪdʒɪt/"
+    },
+    {
+      "id": "62",
+      "lesson": "Lesson 9: Divisibility rules",
+      "vietnamese": "Tổng các chữ số",
+      "english": "Sum of digits",
+      "example": "If the sum of digits is divisible by 9, the number is divisible by 9.",
+      "ipa": "/sʌm ɒv ˈdɪdʒɪts/"
+    },
+    {
+      "id": "63",
+      "lesson": "Lesson 10: Prime numbers",
+      "vietnamese": "Số nguyên tố",
+      "english": "Prime number",
+      "example": "17 is a prime number because it has only two divisors.",
+      "ipa": "/praɪm ˈnʌmbər/"
+    },
+    {
+      "id": "64",
+      "lesson": "Lesson 10: Prime numbers",
+      "vietnamese": "Hợp số",
+      "english": "Composite number",
+      "example": "10 is a composite number because it has more than two divisors.",
+      "ipa": "/ˈkɒmpəzɪt ˈnʌmbər/"
+    },
+    {
+      "id": "65",
+      "lesson": "Lesson 10: Prime numbers",
+      "vietnamese": "Phân tích ra thừa số nguyên tố",
+      "english": "Prime factorization",
+      "example": "Writing a composite number as a product of prime factors.",
+      "ipa": "/praɪm ˈfæktəraɪzɪŋ/"
+    },
+    {
+      "id": "66",
+      "lesson": "Lesson 10: Prime numbers",
+      "vietnamese": "Sơ đồ cây",
+      "english": "Factor tree",
+      "example": "A diagram structure used to find prime factors.",
+      "ipa": "/ˈfæktər triː/"
+    },
+    {
+      "id": "67",
+      "lesson": "Lesson 10: Prime numbers",
+      "vietnamese": "Sơ đồ cột",
+      "english": "Ladder method / Vertical layout",
+      "example": "Dividing sequentially by prime numbers in a vertical format.",
+      "ipa": "/ˈlædər ˈmɛθəd / ˈvɜːtɪkəl ˈleɪaʊt/"
+    },
+    {
+      "id": "68",
+      "lesson": "Lesson 11: Common divisors. Greatest common divisor",
+      "vietnamese": "Ước chung",
+      "english": "Common divisor / Common factor",
+      "example": "A number that is a factor of two or more numbers.",
+      "ipa": "/ˈkɒmən dɪˈvaɪzər / ˈkɒmən ˈfæktər/"
+    },
+    {
+      "id": "69",
+      "lesson": "Lesson 11: Common divisors. Greatest common divisor",
+      "vietnamese": "Ước chung lớn nhất",
+      "english": "Greatest Common Divisor (GCD)",
+      "example": "The largest common factor among given numbers.",
+      "ipa": "/ˈɡreɪtɪst ˈkɒmən dɪˈvaɪzər (ˌdʒiːˌsiːˈdiː)/"
+    },
+    {
+      "id": "70",
+      "lesson": "Lesson 11: Common divisors. Greatest common divisor",
+      "vietnamese": "Hai số nguyên tố cùng nhau",
+      "english": "Coprime / Relatively prime",
+      "example": "Two numbers are coprime if their GCD is 1.",
+      "ipa": "/ˈkoʊpraɪm / ˈrɛlətɪvli praɪm/"
+    },
+    {
+      "id": "71",
+      "lesson": "Lesson 11: Common divisors. Greatest common divisor",
+      "vietnamese": "Phân số tối giản",
+      "english": "Reduced fraction / Simplest form",
+      "example": "A fraction where numerator and denominator are coprime.",
+      "ipa": "/rɪˈduːst ˈfrækʃən / ˈsɪmplɪst fɔːrm/"
+    },
+    {
+      "id": "72",
+      "lesson": "Lesson 11: Common divisors. Greatest common divisor",
+      "vietnamese": "Thuật toán Euclid",
+      "english": "Euclidean algorithm",
+      "example": "An efficient method for computing the GCD of two integers.",
+      "ipa": "/ˈjuːklɪdiən ˈælɡərɪðəm/"
+    },
+    {
+      "id": "73",
+      "lesson": "Lesson 12: Common multiples. Least common multiple",
+      "vietnamese": "Bội chung",
+      "english": "Common multiple",
+      "example": "A number that is a multiple of two or more numbers.",
+      "ipa": "/ˈkɒmən ˈmʌltɪpl/"
+    },
+    {
+      "id": "74",
+      "lesson": "Lesson 12: Common multiples. Least common multiple",
+      "vietnamese": "Bội chung nhỏ nhất",
+      "english": "Least Common multiple (LCM)",
+      "example": "The smallest non-zero common multiple of given numbers.",
+      "ipa": "/liːst ˈkɒmən ˈmʌltɪpl (ˌɛlˌsiːˈɛm)/"
+    },
+    {
+      "id": "75",
+      "lesson": "Lesson 12: Common multiples. Least common multiple",
+      "vietnamese": "Quy đồng mẫu các phân số",
+      "english": "Finding a common denominator",
+      "example": "Converting fractions to have a shared denominator using LCM.",
+      "ipa": "/ˈfaɪndɪŋ ə ˈkɒmən dɪˈnɒmɪneɪtər/"
     }
   ],
   "flashcards": [
@@ -798,6 +966,153 @@
       "vietnamese": "Giá trị của biểu thức",
       "english": "Value of an expression",
       "example": "The value of the expression 2+3×4 is 14."
+    },
+    {
+      "id": "FC_54",
+      "chapterCode": "MATH6_U1_C2",
+      "vietnamese": "Chia hết",
+      "english": "Divisible by",
+      "example": "15 is divisible by 3."
+    },
+    {
+      "id": "FC_55",
+      "chapterCode": "MATH6_U1_C2",
+      "vietnamese": "Không chia hết",
+      "english": "Not divisible by",
+      "example": "16 is not divisible by 3."
+    },
+    {
+      "id": "FC_56",
+      "chapterCode": "MATH6_U1_C2",
+      "vietnamese": "Ước",
+      "english": "Divisor / Factor",
+      "example": "3 is a factor of 15."
+    },
+    {
+      "id": "FC_57",
+      "chapterCode": "MATH6_U1_C2",
+      "vietnamese": "Bội",
+      "english": "Multiple",
+      "example": "18 is a multiple of 6."
+    },
+    {
+      "id": "FC_58",
+      "chapterCode": "MATH6_U1_C2",
+      "vietnamese": "Tính chất chia hết của một tổng",
+      "english": "Divisibility properties of a sum",
+      "example": "If all terms are divisible by m, their sum is divisible by m."
+    },
+    {
+      "id": "FC_59",
+      "chapterCode": "MATH6_U1_C2",
+      "vietnamese": "Dấu hiệu chia hết",
+      "english": "Divisibility rule / test",
+      "example": "Criteria to quickly check divisibility without dividing."
+    },
+    {
+      "id": "FC_60",
+      "chapterCode": "MATH6_U1_C2",
+      "vietnamese": "Chữ số tận cùng",
+      "english": "Last digit / Terminal digit",
+      "example": "Numbers ending in even digits are divisible by 2."
+    },
+    {
+      "id": "FC_61",
+      "chapterCode": "MATH6_U1_C2",
+      "vietnamese": "Tổng các chữ số",
+      "english": "Sum of digits",
+      "example": "If the sum of digits is divisible by 9, the number is divisible by 9."
+    },
+    {
+      "id": "FC_62",
+      "chapterCode": "MATH6_U1_C2",
+      "vietnamese": "Số nguyên tố",
+      "english": "Prime number",
+      "example": "17 is a prime number because it has only two divisors."
+    },
+    {
+      "id": "FC_63",
+      "chapterCode": "MATH6_U1_C2",
+      "vietnamese": "Hợp số",
+      "english": "Composite number",
+      "example": "10 is a composite number because it has more than two divisors."
+    },
+    {
+      "id": "FC_64",
+      "chapterCode": "MATH6_U1_C2",
+      "vietnamese": "Phân tích ra thừa số nguyên tố",
+      "english": "Prime factorization",
+      "example": "Writing a composite number as a product of prime factors."
+    },
+    {
+      "id": "FC_65",
+      "chapterCode": "MATH6_U1_C2",
+      "vietnamese": "Sơ đồ cây",
+      "english": "Factor tree",
+      "example": "A diagram structure used to find prime factors."
+    },
+    {
+      "id": "FC_66",
+      "chapterCode": "MATH6_U1_C2",
+      "vietnamese": "Sơ đồ cột",
+      "english": "Ladder method / Vertical layout",
+      "example": "Dividing sequentially by prime numbers in a vertical format."
+    },
+    {
+      "id": "FC_67",
+      "chapterCode": "MATH6_U1_C2",
+      "vietnamese": "Ước chung",
+      "english": "Common divisor / Common factor",
+      "example": "A number that is a factor of two or more numbers."
+    },
+    {
+      "id": "FC_68",
+      "chapterCode": "MATH6_U1_C2",
+      "vietnamese": "Ước chung lớn nhất",
+      "english": "Greatest Common Divisor (GCD)",
+      "example": "The largest common factor among given numbers."
+    },
+    {
+      "id": "FC_69",
+      "chapterCode": "MATH6_U1_C2",
+      "vietnamese": "Hai số nguyên tố cùng nhau",
+      "english": "Coprime / Relatively prime",
+      "example": "Two numbers are coprime if their GCD is 1."
+    },
+    {
+      "id": "FC_70",
+      "chapterCode": "MATH6_U1_C2",
+      "vietnamese": "Phân số tối giản",
+      "english": "Reduced fraction / Simplest form",
+      "example": "A fraction where numerator and denominator are coprime."
+    },
+    {
+      "id": "FC_71",
+      "chapterCode": "MATH6_U1_C2",
+      "vietnamese": "Thuật toán Euclid",
+      "english": "Euclidean algorithm",
+      "example": "An efficient method for computing the GCD of two integers."
+    },
+    {
+      "id": "FC_72",
+      "chapterCode": "MATH6_U1_C2",
+      "vietnamese": "Bội chung",
+      "english": "Common multiple",
+      "example": "A number that is a multiple of two or more numbers."
+    },
+    {
+      "id": "FC_73",
+      "chapterCode": "MATH6_U1_C2",
+      "vietnamese": "Bội chung nhỏ nhất",
+      "english": "Least Common multiple (LCM)",
+      "example": "The smallest non-zero common multiple of given numbers."
+    },
+    {
+      "id": "FC_74",
+      "chapterCode": "MATH6_U1_C2",
+      "vietnamese": "Quy đồng mẫu các phân số",
+      "english": "Finding a common denominator",
+      "example": "Converting fractions to have a shared denominator using LCM."
     }
   ],
   "worksheets": [
