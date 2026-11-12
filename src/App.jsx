@@ -180,6 +180,39 @@ function App() {
               <div
                 key={item.id}
                 className={`nav-menu ${openGradeMenu === item.id ? "open" : ""}`}
+                onMouseEnter={() => {
+                  if (
+                    hasGradeMenu &&
+                    window.matchMedia("(hover: hover)").matches
+                  ) {
+                    setOpenGradeMenu(item.id);
+                  }
+                }}
+                onMouseLeave={() => {
+                  if (
+                    hasGradeMenu &&
+                    window.matchMedia("(hover: hover)").matches
+                  ) {
+                    setOpenGradeMenu((current) =>
+                      current === item.id ? null : current,
+                    );
+                  }
+                }}
+                onFocus={() => {
+                  if (hasGradeMenu) {
+                    setOpenGradeMenu(item.id);
+                  }
+                }}
+                onBlur={(event) => {
+                  if (
+                    hasGradeMenu &&
+                    !event.currentTarget.contains(event.relatedTarget)
+                  ) {
+                    setOpenGradeMenu((current) =>
+                      current === item.id ? null : current,
+                    );
+                  }
+                }}
               >
                 <button
                   type="button"
@@ -191,11 +224,15 @@ function App() {
                   }`}
                   aria-haspopup={hasGradeMenu ? "true" : undefined}
                   aria-expanded={hasGradeMenu ? openGradeMenu === item.id : undefined}
-                  onClick={() => {
+                  onClick={(event) => {
                     if (hasGradeMenu) {
-                      setOpenGradeMenu((current) =>
-                        current === item.id ? null : item.id,
-                      );
+                      if (event.detail > 0) {
+                        setOpenGradeMenu(item.id);
+                      } else {
+                        setOpenGradeMenu((current) =>
+                          current === item.id ? null : item.id,
+                        );
+                      }
                     } else {
                       navigate(item.id);
                     }

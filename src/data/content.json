@@ -99,6 +99,22 @@
       "ipa": "/pleɪs ˈvæljuː/"
     },
     {
+      "id": "76",
+      "lesson": "Lesson 2: Writing natural numbers",
+      "vietnamese": "Số La Mã",
+      "english": "Roman numeral",
+      "example": "The first three Roman numerals are I, II, and III.",
+      "ipa": "/ˈrəʊmən ˈnuːmərəl/"
+    },
+    {
+      "id": "77",
+      "lesson": "Lesson 2: Writing natural numbers",
+      "vietnamese": "Hệ thập phân",
+      "english": "Decimal system",
+      "example": "The decimal system is used for everyday math, like adding and subtracting.",
+      "ipa": "/ˈdesɪməl ˈsɪstəm/"
+    },
+    {
       "id": "13",
       "lesson": "Lesson 3: Order in the set of natural numbers",
       "vietnamese": "Nhỏ hơn",
@@ -593,6 +609,438 @@
       "english": "Finding a common denominator",
       "example": "Converting fractions to have a shared denominator using LCM.",
       "ipa": "/ˈfaɪndɪŋ ə ˈkɒmən dɪˈnɒmɪneɪtər/"
+    },
+    {
+      "id": "78",
+      "lesson": "Lesson 13: The set of integers",
+      "vietnamese": "Số nguyên",
+      "english": "Integer",
+      "example": "Z. Z is the set of integers.",
+      "ipa": "/ˈɪntɪdʒər/"
+    },
+    {
+      "id": "79",
+      "lesson": "Lesson 13: The set of integers",
+      "vietnamese": "Số nguyên dương",
+      "english": "Positive integer",
+      "example": "1, 2, 3, ... Positive integers are natural numbers greater than zero.",
+      "ipa": "/ˈpɒzətɪv ˈɪntɪdʒər/"
+    },
+    {
+      "id": "80",
+      "lesson": "Lesson 13: The set of integers",
+      "vietnamese": "Số nguyên âm",
+      "english": "Negative integer",
+      "example": "-1, -2, -3, ... Negative integers are numbers less than zero written with a minus sign.",
+      "ipa": "/ˈnɛɡətɪv ˈɪntɪdʒər/"
+    },
+    {
+      "id": "81",
+      "lesson": "Lesson 13: The set of integers",
+      "vietnamese": "Trục số",
+      "english": "Number line",
+      "example": "Number line with origin O. A straight line used to represent integers.",
+      "ipa": "/ˈnʌmbər laɪn/"
+    },
+    {
+      "id": "82",
+      "lesson": "Lesson 13: The set of integers",
+      "vietnamese": "Gốc (của trục số)",
+      "english": "Origin",
+      "example": "O. The point 0 on a number line is called the origin.",
+      "ipa": "/ˈɒrɪdʒɪn/"
+    },
+    {
+      "id": "83",
+      "lesson": "Lesson 13: The set of integers",
+      "vietnamese": "Chiều dương",
+      "english": "Positive direction",
+      "example": "Left-to-right direction. On a horizontal number line, the left-to-right direction is positive.",
+      "ipa": "/ˈpɒzətɪv dɪˈrɛkʃən/"
+    },
+    {
+      "id": "84",
+      "lesson": "Lesson 13: The set of integers",
+      "vietnamese": "Chiều âm",
+      "english": "Negative direction",
+      "example": "Right-to-left direction. The opposite of the positive direction is the negative direction.",
+      "ipa": "/ˈnɛɡətɪv dɪˈrɛkʃən/"
+    },
+    {
+      "id": "85",
+      "lesson": "Lesson 14: Addition and subtraction of integers",
+      "vietnamese": "Cộng hai số nguyên cùng dấu",
+      "english": "Adding integers with the same sign",
+      "example": "(-28) + (-37) = -65. Add their absolute values and keep the common sign.",
+      "ipa": "/ˈædɪŋ ˈɪntɪdʒərz wɪð ðə seɪm saɪn/"
+    },
+    {
+      "id": "86",
+      "lesson": "Lesson 14: Addition and subtraction of integers",
+      "vietnamese": "Số đối",
+      "english": "Opposite number / Additive inverse",
+      "example": "3 and -3. 3 and -3 are opposite numbers; their sum is 0.",
+      "ipa": "/ˈɒpəzɪt ˈnʌmbər / ˈædɪtɪv ɪnˈvɜːrs/"
+    },
+    {
+      "id": "87",
+      "lesson": "Lesson 14: Addition and subtraction of integers",
+      "vietnamese": "Cộng hai số nguyên khác dấu",
+      "english": "Adding integers with different signs",
+      "example": "(-12) + 9 = -3. Subtract the smaller value from the larger value and take the sign of the larger one.",
+      "ipa": "/ˈædɪŋ ˈɪntɪdʒərz wɪð ˈdɪfərənt saɪnz/"
+    },
+    {
+      "id": "88",
+      "lesson": "Lesson 14: Addition and subtraction of integers",
+      "vietnamese": "Tính chất giao hoán",
+      "english": "Commutative property",
+      "example": "a + b = b + a. Changing the order of addends does not change the sum.",
+      "ipa": "/kəˈmjuːtətɪv ˈprɒpərti/"
+    },
+    {
+      "id": "89",
+      "lesson": "Lesson 14: Addition and subtraction of integers",
+      "vietnamese": "Tính chất kết hợp",
+      "english": "Associative property",
+      "example": "(a + b) + c = a + (b + c). Changing the grouping of addends does not change the sum.",
+      "ipa": "/ˌæsoʊsiˈeɪtɪv ˈprɒpərti/"
+    },
+    {
+      "id": "90",
+      "lesson": "Lesson 14: Addition and subtraction of integers",
+      "vietnamese": "Phép trừ số nguyên",
+      "english": "Subtraction of integers",
+      "example": "a - b = a + (-b). Subtracting an integer is the same as adding its opposite.",
+      "ipa": "/səbˈtrækʃən ɒv ˈɪntɪdʒərz/"
+    },
+    {
+      "id": "91",
+      "lesson": "Lesson 15: Rules of brackets / sign rules",
+      "vietnamese": "Quy tắc dấu ngoặc",
+      "english": "Rule of brackets / Parentheses rule",
+      "example": "a - (b + c) = a - b - c. Remove brackets preceded by a minus sign by changing all internal signs.",
+      "ipa": "/ruːl ɒv ˈbrækɪts / pəˈrɛnθəsiːz ruːl/"
+    },
+    {
+      "id": "92",
+      "lesson": "Lesson 15: Rules of brackets / sign rules",
+      "vietnamese": "Bỏ dấu ngoặc",
+      "english": "Removing brackets / Expanding parentheses",
+      "example": "4 + (12 - 15) = 4 + 12 - 15. When removing brackets with a plus sign in front, keep all signs unchanged.",
+      "ipa": "/rɪˈmuːvɪŋ ˈbrækɪts / ɪkˈspændɪŋ pəˈrɛnθəsiːz/"
+    },
+    {
+      "id": "93",
+      "lesson": "Lesson 15: Rules of brackets / sign rules",
+      "vietnamese": "Biến đổi biểu thức",
+      "english": "Transforming an expression",
+      "example": "a - b - c = a - (b + c). Grouping or rearranging terms according to bracket rules.",
+      "ipa": "/trænsˈfɔːrmɪŋ ən ɪkˈsprɛʃən/"
+    },
+    {
+      "id": "94",
+      "lesson": "Lesson 16: Multiplication of integers",
+      "vietnamese": "Nhân hai số nguyên khác dấu",
+      "english": "Multiplying integers with different signs",
+      "example": "25(-4) = -100. The product of two integers with different signs is always negative.",
+      "ipa": "/ˈmʌltɪpleɪɪŋ ˈɪntɪdʒərz wɪð ˈdɪfərənt saɪnz/"
+    },
+    {
+      "id": "95",
+      "lesson": "Lesson 16: Multiplication of integers",
+      "vietnamese": "Nhân hai số nguyên cùng dấu",
+      "english": "Multiplying integers with the same sign",
+      "example": "(-10)(-15) = 150. The product of two negative integers is always positive.",
+      "ipa": "/ˈmʌltɪpleɪɪŋ ˈɪntɪdʒərz wɪð ðə seɪm saɪn/"
+    },
+    {
+      "id": "96",
+      "lesson": "Lesson 16: Multiplication of integers",
+      "vietnamese": "Tính chất phân phối của phép nhân đối với phép cộng",
+      "english": "Distributive property of multiplication over addition",
+      "example": "a(b + c) = ab + ac. Multiplying a sum by a number is equal to multiplying each addend separately.",
+      "ipa": "/dɪˈstrɪbyətɪv ˈprɒpərti ɒv ˌmʌltɪplɪˈkeɪʃən ˈoʊvər əˈdɪʃən/"
+    },
+    {
+      "id": "97",
+      "lesson": "Lesson 16: Multiplication of integers",
+      "vietnamese": "Tính chất giao hoán",
+      "english": "Commutative property",
+      "example": "ab = ba. Changing the order of factors does not change the product.",
+      "ipa": "/kəˈmjuːtətɪv ˈprɒpərti/"
+    },
+    {
+      "id": "98",
+      "lesson": "Lesson 16: Multiplication of integers",
+      "vietnamese": "Tính chất kết hợp",
+      "english": "Associative property",
+      "example": "Changing the grouping of factors does not change the product.",
+      "ipa": "/ˌæsoʊsiˈeɪtɪv ˈprɒpərti/"
+    },
+    {
+      "id": "99",
+      "lesson": "Lesson 17: Divisibility, factors and multiples of an integer",
+      "vietnamese": "Phép chia hết trong tập số nguyên",
+      "english": "Exact division of integers",
+      "example": "(-35) : 7 = -5. An integer a is divisible by b if a = bq for some integer q.",
+      "ipa": "/ɪɡˈzækt dɪˈvɪʒən ɒv ˈɪntɪdʒərz/"
+    },
+    {
+      "id": "100",
+      "lesson": "Lesson 17: Divisibility, factors and multiples of an integer",
+      "vietnamese": "Dấu của thương",
+      "english": "Sign of the quotient",
+      "example": "(-) : (-) = (+). Dividing two negative integers yields a positive quotient.",
+      "ipa": "/saɪn ɒv ðə ˈkwoʊʃənt/"
+    },
+    {
+      "id": "101",
+      "lesson": "Lesson 17: Divisibility, factors and multiples of an integer",
+      "vietnamese": "Ước (của một số nguyên)",
+      "english": "Factor / Divisor (of an integer)",
+      "example": "Ư(-9)={1;3;9}. Factors of an integer include both positive divisors and their opposites.",
+      "ipa": "/ˈfæktər / dɪˈvaɪzər (ɒv ən ˈɪntɪdʒər)/"
+    },
+    {
+      "id": "102",
+      "lesson": "Lesson 17: Divisibility, factors and multiples of an integer",
+      "vietnamese": "Bội (của một số nguyên)",
+      "english": "Multiple (of an integer)",
+      "example": "B(7)={0;7;14;...}. Multiples of an integer are obtained by multiplying it by any integer.",
+      "ipa": "/ˈmʌltɪpl (ɒv ən ˈɪntɪdʒər)/"
+    },
+    {
+      "id": "103",
+      "lesson": "Lesson 18: Equilateral triangle, square, regular hexagon",
+      "vietnamese": "Hình tam giác đều",
+      "english": "Equilateral triangle",
+      "example": "An equilateral triangle has 3 equal sides and 3 equal angles.",
+      "ipa": "/ˌiːkwɪˌlætərəl ˈtraɪæŋɡl/"
+    },
+    {
+      "id": "104",
+      "lesson": "Lesson 18: Equilateral triangle, square, regular hexagon",
+      "vietnamese": "Hình vuông",
+      "english": "Square",
+      "example": "A square has 4 equal sides and 4 right angles.",
+      "ipa": "/skwer/"
+    },
+    {
+      "id": "105",
+      "lesson": "Lesson 18: Equilateral triangle, square, regular hexagon",
+      "vietnamese": "Hình lục giác đều",
+      "english": "Regular hexagon",
+      "example": "A regular hexagon has 6 equal sides.",
+      "ipa": "/ˈreɡ.jə.ləʳ ˈhek.sə.ɡɒn/"
+    },
+    {
+      "id": "106",
+      "lesson": "Lesson 18: Equilateral triangle, square, regular hexagon",
+      "vietnamese": "Cạnh",
+      "english": "Side",
+      "example": "A square has 4 sides.",
+      "ipa": "/saɪd/"
+    },
+    {
+      "id": "107",
+      "lesson": "Lesson 18: Equilateral triangle, square, regular hexagon",
+      "vietnamese": "Đỉnh",
+      "english": "Vertex",
+      "example": "A triangle has 3 vertices (plural of vertex).",
+      "ipa": "/ˈvɜː.teks/"
+    },
+    {
+      "id": "108",
+      "lesson": "Lesson 18: Equilateral triangle, square, regular hexagon",
+      "vietnamese": "Góc",
+      "english": "Angle",
+      "example": "The sum of angles in a triangle is 180°.",
+      "ipa": "/ˈæŋ.ɡəl/"
+    },
+    {
+      "id": "109",
+      "lesson": "Lesson 18: Equilateral triangle, square, regular hexagon",
+      "vietnamese": "Đường chéo",
+      "english": "Diagonal",
+      "example": "A square has 2 diagonals.",
+      "ipa": "/daɪˈæɡ.ən.əl/"
+    },
+    {
+      "id": "110",
+      "lesson": "Lesson 19: Rectangles, rhombuses, parallelograms and isosceles trapezoids",
+      "vietnamese": "Hình chữ nhật",
+      "english": "Rectangle",
+      "example": "Opposite sides of a rectangle are equal.",
+      "ipa": "/ˈrektæŋɡl/"
+    },
+    {
+      "id": "111",
+      "lesson": "Lesson 19: Rectangles, rhombuses, parallelograms and isosceles trapezoids",
+      "vietnamese": "Hình thoi",
+      "english": "Rhombus",
+      "example": "All 4 sides of a rhombus are equal in length.",
+      "ipa": "/ˈrɒmbəs/"
+    },
+    {
+      "id": "112",
+      "lesson": "Lesson 19: Rectangles, rhombuses, parallelograms and isosceles trapezoids",
+      "vietnamese": "Hình bình hành",
+      "english": "Parallelogram",
+      "example": "A parallelogram has two pairs of parallel sides.",
+      "ipa": "/ˌpærəˈleləɡræm/"
+    },
+    {
+      "id": "113",
+      "lesson": "Lesson 19: Rectangles, rhombuses, parallelograms and isosceles trapezoids",
+      "vietnamese": "Hình thang cân",
+      "english": "Isosceles trapezoid (A-M) / Isosceles trapezium (A-A)",
+      "example": "An isosceles trapezoid has equal base angles.",
+      "ipa": "/aɪˌsɑː.sə.liːz ˈtræp.ə.zɔɪd/ /aɪˌsɒs.ə.liːz træˈpiː.zi.əm/"
+    },
+    {
+      "id": "114",
+      "lesson": "Lesson 19: Rectangles, rhombuses, parallelograms and isosceles trapezoids",
+      "vietnamese": "Cạnh đối",
+      "english": "Opposite side",
+      "example": "In a rectangle, the top side and the bottom side are opposite sides.",
+      "ipa": "/ˈɒpəzɪt saɪd/"
+    },
+    {
+      "id": "115",
+      "lesson": "Lesson 19: Rectangles, rhombuses, parallelograms and isosceles trapezoids",
+      "vietnamese": "Cạnh bên tam giác cân",
+      "english": "Leg",
+      "example": "An isosceles trapezoid has two equal legs.",
+      "ipa": "/leɡ/"
+    },
+    {
+      "id": "116",
+      "lesson": "Lesson 19: Rectangles, rhombuses, parallelograms and isosceles trapezoids",
+      "vietnamese": "Góc đối",
+      "english": "Opposite angle",
+      "example": "When two lines cross each other, the opposite angles are equal.",
+      "ipa": "/ˈɒpəzɪt æŋ.ɡəl/"
+    },
+    {
+      "id": "117",
+      "lesson": "Lesson 20: Perimeter and area of quadrilaterals",
+      "vietnamese": "Chu vi (hình tứ giác)",
+      "english": "Perimeter",
+      "example": "The perimeter is the total distance around the outside of a shape.",
+      "ipa": "/pəˈrɪm.ɪ.tər/"
+    },
+    {
+      "id": "118",
+      "lesson": "Lesson 20: Perimeter and area of quadrilaterals",
+      "vietnamese": "Diện tích",
+      "english": "Area",
+      "example": "The area measures how much surface a shape covers.",
+      "ipa": "/ˈeə.ri.ə/"
+    },
+    {
+      "id": "119",
+      "lesson": "Lesson 20: Perimeter and area of quadrilaterals",
+      "vietnamese": "Tứ giác",
+      "english": "Quadrilateral",
+      "example": "A quadrilateral is a 4-sided polygon.",
+      "ipa": "/ˌkwɒd.rɪˈlæt.ər.əl/"
+    },
+    {
+      "id": "120",
+      "lesson": "Lesson 21: Line / axial symmetry",
+      "vietnamese": "Trục đối xứng",
+      "english": "Axis of symmetry",
+      "example": "An axis of symmetry divides a shape into two equal halves.",
+      "ipa": "/ˈæksɪs əv ˈsɪm.ə.tri/"
+    },
+    {
+      "id": "121",
+      "lesson": "Lesson 21: Line / axial symmetry",
+      "vietnamese": "Hình có trục đối xứng",
+      "english": "Axially symmetric figure",
+      "example": "A square is an axially symmetric figure.",
+      "ipa": "/ˈæk.ʃi.ə.li sɪˈmet.rɪk ˈfɪg.ər/"
+    },
+    {
+      "id": "122",
+      "lesson": "Lesson 21: Line / axial symmetry",
+      "vietnamese": "Hai nửa đối xứng",
+      "english": "Symmetrical halves",
+      "example": "When you fold a heart shape, the two symmetrical halves match.",
+      "ipa": "/sɪˈmet.rɪ.kəl hævz/"
+    },
+    {
+      "id": "123",
+      "lesson": "Lesson 21: Line / axial symmetry",
+      "vietnamese": "Bất đối xứng, không đối xứng",
+      "english": "Non-symmetric(al)",
+      "example": "A random cloud shape is usually non-symmetric.",
+      "ipa": "/ˌnɒn sɪˈmet.rɪ.kəl/"
+    },
+    {
+      "id": "124",
+      "lesson": "Lesson 21: Line / axial symmetry",
+      "vietnamese": "Chồng khít",
+      "english": "Overlap",
+      "example": "Two equal triangles overlap completely when placed together.",
+      "ipa": "/ˌəʊ.vəˈlæp/"
+    },
+    {
+      "id": "125",
+      "lesson": "Lesson 21: Line / axial symmetry",
+      "vietnamese": "Trung điểm",
+      "english": "Midpoint",
+      "example": "Point M is the midpoint of line segment AB.",
+      "ipa": "/ˈmɪd.pɔɪnt/"
+    },
+    {
+      "id": "126",
+      "lesson": "Lesson 22: Point / central symmetry",
+      "vietnamese": "Tâm đối xứng",
+      "english": "Center symmetry",
+      "example": "A circle has a center of symmetry right in the middle.",
+      "ipa": "/ˈsentər ˈsɪmətri/"
+    },
+    {
+      "id": "127",
+      "lesson": "Lesson 22: Point / central symmetry",
+      "vietnamese": "Hình có tâm đối xứng",
+      "english": "Centrally symmetric figure",
+      "example": "The letter S is a centrally symmetric figure.",
+      "ipa": "/ˈsentrəli sɪˈmetrɪk ˈfɪɡjər/"
+    },
+    {
+      "id": "128",
+      "lesson": "Lesson 22: Point / central symmetry",
+      "vietnamese": "Hình tròn",
+      "english": "Circle",
+      "example": "A bicycle wheel has the shape of a circle.",
+      "ipa": "/ˈsɜːrkl/"
+    },
+    {
+      "id": "129",
+      "lesson": "Lesson 22: Point / central symmetry",
+      "vietnamese": "Tâm",
+      "english": "Center",
+      "example": "Point O is the center of the circle.",
+      "ipa": "/’sentəl/"
+    },
+    {
+      "id": "130",
+      "lesson": "Lesson 22: Point / central symmetry",
+      "vietnamese": "Hình chữ nhật",
+      "english": "Rectangle",
+      "example": "A standard door has the shape of a rectangle.",
+      "ipa": "/ˈrektæŋɡl/"
+    },
+    {
+      "id": "131",
+      "lesson": "Lesson 22: Point / central symmetry",
+      "vietnamese": "Giao điểm",
+      "english": "Intersection point",
+      "example": "The two lines cross each other at an intersection point.",
+      "ipa": "/ɪn.təˈsek.ʃən pɔɪnt/"
     }
   ],
   "flashcards": [
@@ -679,6 +1127,20 @@
       "vietnamese": "Giá trị vị trí",
       "english": "Place value",
       "example": "In the number 345, the place value of 3 is 300."
+    },
+    {
+      "id": "FC_76",
+      "chapterCode": "MATH6_U1_C1",
+      "vietnamese": "Số La Mã",
+      "english": "Roman numeral",
+      "example": "The first three Roman numerals are I, II, and III."
+    },
+    {
+      "id": "FC_77",
+      "chapterCode": "MATH6_U1_C1",
+      "vietnamese": "Hệ thập phân",
+      "english": "Decimal system",
+      "example": "The decimal system is used for everyday math, like adding and subtracting."
     },
     {
       "id": "FC_13",
@@ -1113,6 +1575,384 @@
       "vietnamese": "Quy đồng mẫu các phân số",
       "english": "Finding a common denominator",
       "example": "Converting fractions to have a shared denominator using LCM."
+    },
+    {
+      "id": "FC_78",
+      "chapterCode": "MATH6_U1_C3",
+      "vietnamese": "Số nguyên",
+      "english": "Integer",
+      "example": "Z. Z is the set of integers."
+    },
+    {
+      "id": "FC_79",
+      "chapterCode": "MATH6_U1_C3",
+      "vietnamese": "Số nguyên dương",
+      "english": "Positive integer",
+      "example": "1, 2, 3, ... Positive integers are natural numbers greater than zero."
+    },
+    {
+      "id": "FC_80",
+      "chapterCode": "MATH6_U1_C3",
+      "vietnamese": "Số nguyên âm",
+      "english": "Negative integer",
+      "example": "-1, -2, -3, ... Negative integers are numbers less than zero written with a minus sign."
+    },
+    {
+      "id": "FC_81",
+      "chapterCode": "MATH6_U1_C3",
+      "vietnamese": "Trục số",
+      "english": "Number line",
+      "example": "Number line with origin O. A straight line used to represent integers."
+    },
+    {
+      "id": "FC_82",
+      "chapterCode": "MATH6_U1_C3",
+      "vietnamese": "Gốc (của trục số)",
+      "english": "Origin",
+      "example": "O. The point 0 on a number line is called the origin."
+    },
+    {
+      "id": "FC_83",
+      "chapterCode": "MATH6_U1_C3",
+      "vietnamese": "Chiều dương",
+      "english": "Positive direction",
+      "example": "Left-to-right direction. On a horizontal number line, the left-to-right direction is positive."
+    },
+    {
+      "id": "FC_84",
+      "chapterCode": "MATH6_U1_C3",
+      "vietnamese": "Chiều âm",
+      "english": "Negative direction",
+      "example": "Right-to-left direction. The opposite of the positive direction is the negative direction."
+    },
+    {
+      "id": "FC_85",
+      "chapterCode": "MATH6_U1_C3",
+      "vietnamese": "Cộng hai số nguyên cùng dấu",
+      "english": "Adding integers with the same sign",
+      "example": "(-28) + (-37) = -65. Add their absolute values and keep the common sign."
+    },
+    {
+      "id": "FC_86",
+      "chapterCode": "MATH6_U1_C3",
+      "vietnamese": "Số đối",
+      "english": "Opposite number / Additive inverse",
+      "example": "3 and -3. 3 and -3 are opposite numbers; their sum is 0."
+    },
+    {
+      "id": "FC_87",
+      "chapterCode": "MATH6_U1_C3",
+      "vietnamese": "Cộng hai số nguyên khác dấu",
+      "english": "Adding integers with different signs",
+      "example": "(-12) + 9 = -3. Subtract the smaller value from the larger value and take the sign of the larger one."
+    },
+    {
+      "id": "FC_88",
+      "chapterCode": "MATH6_U1_C3",
+      "vietnamese": "Tính chất giao hoán",
+      "english": "Commutative property",
+      "example": "a + b = b + a. Changing the order of addends does not change the sum."
+    },
+    {
+      "id": "FC_89",
+      "chapterCode": "MATH6_U1_C3",
+      "vietnamese": "Tính chất kết hợp",
+      "english": "Associative property",
+      "example": "(a + b) + c = a + (b + c). Changing the grouping of addends does not change the sum."
+    },
+    {
+      "id": "FC_90",
+      "chapterCode": "MATH6_U1_C3",
+      "vietnamese": "Phép trừ số nguyên",
+      "english": "Subtraction of integers",
+      "example": "a - b = a + (-b). Subtracting an integer is the same as adding its opposite."
+    },
+    {
+      "id": "FC_91",
+      "chapterCode": "MATH6_U1_C3",
+      "vietnamese": "Quy tắc dấu ngoặc",
+      "english": "Rule of brackets / Parentheses rule",
+      "example": "a - (b + c) = a - b - c. Remove brackets preceded by a minus sign by changing all internal signs."
+    },
+    {
+      "id": "FC_92",
+      "chapterCode": "MATH6_U1_C3",
+      "vietnamese": "Bỏ dấu ngoặc",
+      "english": "Removing brackets / Expanding parentheses",
+      "example": "4 + (12 - 15) = 4 + 12 - 15. When removing brackets with a plus sign in front, keep all signs unchanged."
+    },
+    {
+      "id": "FC_93",
+      "chapterCode": "MATH6_U1_C3",
+      "vietnamese": "Biến đổi biểu thức",
+      "english": "Transforming an expression",
+      "example": "a - b - c = a - (b + c). Grouping or rearranging terms according to bracket rules."
+    },
+    {
+      "id": "FC_94",
+      "chapterCode": "MATH6_U1_C3",
+      "vietnamese": "Nhân hai số nguyên khác dấu",
+      "english": "Multiplying integers with different signs",
+      "example": "25(-4) = -100. The product of two integers with different signs is always negative."
+    },
+    {
+      "id": "FC_95",
+      "chapterCode": "MATH6_U1_C3",
+      "vietnamese": "Nhân hai số nguyên cùng dấu",
+      "english": "Multiplying integers with the same sign",
+      "example": "(-10)(-15) = 150. The product of two negative integers is always positive."
+    },
+    {
+      "id": "FC_96",
+      "chapterCode": "MATH6_U1_C3",
+      "vietnamese": "Tính chất phân phối của phép nhân đối với phép cộng",
+      "english": "Distributive property of multiplication over addition",
+      "example": "a(b + c) = ab + ac. Multiplying a sum by a number is equal to multiplying each addend separately."
+    },
+    {
+      "id": "FC_97",
+      "chapterCode": "MATH6_U1_C3",
+      "vietnamese": "Tính chất giao hoán",
+      "english": "Commutative property",
+      "example": "ab = ba. Changing the order of factors does not change the product."
+    },
+    {
+      "id": "FC_98",
+      "chapterCode": "MATH6_U1_C3",
+      "vietnamese": "Tính chất kết hợp",
+      "english": "Associative property",
+      "example": "Changing the grouping of factors does not change the product."
+    },
+    {
+      "id": "FC_99",
+      "chapterCode": "MATH6_U1_C3",
+      "vietnamese": "Phép chia hết trong tập số nguyên",
+      "english": "Exact division of integers",
+      "example": "(-35) : 7 = -5. An integer a is divisible by b if a = bq for some integer q."
+    },
+    {
+      "id": "FC_100",
+      "chapterCode": "MATH6_U1_C3",
+      "vietnamese": "Dấu của thương",
+      "english": "Sign of the quotient",
+      "example": "(-) : (-) = (+). Dividing two negative integers yields a positive quotient."
+    },
+    {
+      "id": "FC_101",
+      "chapterCode": "MATH6_U1_C3",
+      "vietnamese": "Ước (của một số nguyên)",
+      "english": "Factor / Divisor (of an integer)",
+      "example": "Ư(-9)={1;3;9}. Factors of an integer include both positive divisors and their opposites."
+    },
+    {
+      "id": "FC_102",
+      "chapterCode": "MATH6_U1_C3",
+      "vietnamese": "Bội (của một số nguyên)",
+      "english": "Multiple (of an integer)",
+      "example": "B(7)={0;7;14;...}. Multiples of an integer are obtained by multiplying it by any integer."
+    },
+    {
+      "id": "FC_103",
+      "chapterCode": "MATH6_U1_C4",
+      "vietnamese": "Hình tam giác đều",
+      "english": "Equilateral triangle",
+      "example": "An equilateral triangle has 3 equal sides and 3 equal angles."
+    },
+    {
+      "id": "FC_104",
+      "chapterCode": "MATH6_U1_C4",
+      "vietnamese": "Hình vuông",
+      "english": "Square",
+      "example": "A square has 4 equal sides and 4 right angles."
+    },
+    {
+      "id": "FC_105",
+      "chapterCode": "MATH6_U1_C4",
+      "vietnamese": "Hình lục giác đều",
+      "english": "Regular hexagon",
+      "example": "A regular hexagon has 6 equal sides."
+    },
+    {
+      "id": "FC_106",
+      "chapterCode": "MATH6_U1_C4",
+      "vietnamese": "Cạnh",
+      "english": "Side",
+      "example": "A square has 4 sides."
+    },
+    {
+      "id": "FC_107",
+      "chapterCode": "MATH6_U1_C4",
+      "vietnamese": "Đỉnh",
+      "english": "Vertex",
+      "example": "A triangle has 3 vertices (plural of vertex)."
+    },
+    {
+      "id": "FC_108",
+      "chapterCode": "MATH6_U1_C4",
+      "vietnamese": "Góc",
+      "english": "Angle",
+      "example": "The sum of angles in a triangle is 180°."
+    },
+    {
+      "id": "FC_109",
+      "chapterCode": "MATH6_U1_C4",
+      "vietnamese": "Đường chéo",
+      "english": "Diagonal",
+      "example": "A square has 2 diagonals."
+    },
+    {
+      "id": "FC_110",
+      "chapterCode": "MATH6_U1_C4",
+      "vietnamese": "Hình chữ nhật",
+      "english": "Rectangle",
+      "example": "Opposite sides of a rectangle are equal."
+    },
+    {
+      "id": "FC_111",
+      "chapterCode": "MATH6_U1_C4",
+      "vietnamese": "Hình thoi",
+      "english": "Rhombus",
+      "example": "All 4 sides of a rhombus are equal in length."
+    },
+    {
+      "id": "FC_112",
+      "chapterCode": "MATH6_U1_C4",
+      "vietnamese": "Hình bình hành",
+      "english": "Parallelogram",
+      "example": "A parallelogram has two pairs of parallel sides."
+    },
+    {
+      "id": "FC_113",
+      "chapterCode": "MATH6_U1_C4",
+      "vietnamese": "Hình thang cân",
+      "english": "Isosceles trapezoid (A-M) / Isosceles trapezium (A-A)",
+      "example": "An isosceles trapezoid has equal base angles."
+    },
+    {
+      "id": "FC_114",
+      "chapterCode": "MATH6_U1_C4",
+      "vietnamese": "Cạnh đối",
+      "english": "Opposite side",
+      "example": "In a rectangle, the top side and the bottom side are opposite sides."
+    },
+    {
+      "id": "FC_115",
+      "chapterCode": "MATH6_U1_C4",
+      "vietnamese": "Cạnh bên tam giác cân",
+      "english": "Leg",
+      "example": "An isosceles trapezoid has two equal legs."
+    },
+    {
+      "id": "FC_116",
+      "chapterCode": "MATH6_U1_C4",
+      "vietnamese": "Góc đối",
+      "english": "Opposite angle",
+      "example": "When two lines cross each other, the opposite angles are equal."
+    },
+    {
+      "id": "FC_117",
+      "chapterCode": "MATH6_U1_C4",
+      "vietnamese": "Chu vi (hình tứ giác)",
+      "english": "Perimeter",
+      "example": "The perimeter is the total distance around the outside of a shape."
+    },
+    {
+      "id": "FC_118",
+      "chapterCode": "MATH6_U1_C4",
+      "vietnamese": "Diện tích",
+      "english": "Area",
+      "example": "The area measures how much surface a shape covers."
+    },
+    {
+      "id": "FC_119",
+      "chapterCode": "MATH6_U1_C4",
+      "vietnamese": "Tứ giác",
+      "english": "Quadrilateral",
+      "example": "A quadrilateral is a 4-sided polygon."
+    },
+    {
+      "id": "FC_120",
+      "chapterCode": "MATH6_U1_C5",
+      "vietnamese": "Trục đối xứng",
+      "english": "Axis of symmetry",
+      "example": "An axis of symmetry divides a shape into two equal halves."
+    },
+    {
+      "id": "FC_121",
+      "chapterCode": "MATH6_U1_C5",
+      "vietnamese": "Hình có trục đối xứng",
+      "english": "Axially symmetric figure",
+      "example": "A square is an axially symmetric figure."
+    },
+    {
+      "id": "FC_122",
+      "chapterCode": "MATH6_U1_C5",
+      "vietnamese": "Hai nửa đối xứng",
+      "english": "Symmetrical halves",
+      "example": "When you fold a heart shape, the two symmetrical halves match."
+    },
+    {
+      "id": "FC_123",
+      "chapterCode": "MATH6_U1_C5",
+      "vietnamese": "Bất đối xứng, không đối xứng",
+      "english": "Non-symmetric(al)",
+      "example": "A random cloud shape is usually non-symmetric."
+    },
+    {
+      "id": "FC_124",
+      "chapterCode": "MATH6_U1_C5",
+      "vietnamese": "Chồng khít",
+      "english": "Overlap",
+      "example": "Two equal triangles overlap completely when placed together."
+    },
+    {
+      "id": "FC_125",
+      "chapterCode": "MATH6_U1_C5",
+      "vietnamese": "Trung điểm",
+      "english": "Midpoint",
+      "example": "Point M is the midpoint of line segment AB."
+    },
+    {
+      "id": "FC_126",
+      "chapterCode": "MATH6_U1_C5",
+      "vietnamese": "Tâm đối xứng",
+      "english": "Center symmetry",
+      "example": "A circle has a center of symmetry right in the middle."
+    },
+    {
+      "id": "FC_127",
+      "chapterCode": "MATH6_U1_C5",
+      "vietnamese": "Hình có tâm đối xứng",
+      "english": "Centrally symmetric figure",
+      "example": "The letter S is a centrally symmetric figure."
+    },
+    {
+      "id": "FC_128",
+      "chapterCode": "MATH6_U1_C5",
+      "vietnamese": "Hình tròn",
+      "english": "Circle",
+      "example": "A bicycle wheel has the shape of a circle."
+    },
+    {
+      "id": "FC_129",
+      "chapterCode": "MATH6_U1_C5",
+      "vietnamese": "Tâm",
+      "english": "Center",
+      "example": "Point O is the center of the circle."
+    },
+    {
+      "id": "FC_130",
+      "chapterCode": "MATH6_U1_C5",
+      "vietnamese": "Hình chữ nhật",
+      "english": "Rectangle",
+      "example": "A standard door has the shape of a rectangle."
+    },
+    {
+      "id": "FC_131",
+      "chapterCode": "MATH6_U1_C5",
+      "vietnamese": "Giao điểm",
+      "english": "Intersection point",
+      "example": "The two lines cross each other at an intersection point."
     }
   ],
   "worksheets": [

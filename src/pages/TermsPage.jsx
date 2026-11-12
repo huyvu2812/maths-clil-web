@@ -6,6 +6,9 @@ import { getChapterById } from "../constants/chapterMeta";
 const CHAPTER_LESSON_RANGES = {
   "chapter-1": [1, 7],
   "chapter-2": [8, 12],
+  "chapter-3": [13, 17],
+  "chapter-4": [18, 20],
+  "chapter-5": [21, 22],
 };
 
 export function TermsChapterPage({ chapterId, lessons, onBack, onOpenLesson }) {

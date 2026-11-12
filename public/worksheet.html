@@ -69,10 +69,14 @@
   </head>
   <body>
     <main class="page" id="worksheet">
-      <a class="back-link" href="/?page=worksheets-chapter&amp;chapter=chapter-1">← Back to worksheets</a>
+      <a class="back-link" id="worksheet-back-link" href="/?page=worksheets-chapter&amp;chapter=chapter-1">← Back to worksheets</a>
       <div id="worksheet-content"></div>
     </main>
     <script src="/worksheet-content.js"></script>
+    <script src="/worksheet-content-chapter-2.js"></script>
+    <script src="/worksheet-content-chapter-3.js"></script>
+    <script src="/worksheet-content-chapter-4.js"></script>
+    <script src="/worksheet-content-chapter-5.js"></script>
     <script>
       const sets = window.WORKSHEET_SETS;
       const printablePdfs = {
@@ -86,8 +90,46 @@
         review: "https://drive.google.com/file/d/1EGrt6uglC0ppEmb2KiiRwaF25o9DFRK5/view?usp=sharing",
       };
       const id = new URLSearchParams(window.location.search).get("lesson");
+      const worksheetId = id || "";
+      const lessonMatch = /^lesson-(\d+)$/.exec(worksheetId);
+      const reviewMatch = /^chapter-(\d+)-review$/.exec(worksheetId);
+      const lessonNumber = Number(lessonMatch?.[1] || 0);
+      const chapterNumber =
+        worksheetId === "review"
+          ? 1
+          : reviewMatch
+            ? Number(reviewMatch[1])
+            : lessonNumber >= 1 && lessonNumber <= 7
+              ? 1
+              : lessonNumber <= 12 && lessonNumber >= 8
+                ? 2
+                : lessonNumber <= 17 && lessonNumber >= 13
+                  ? 3
+                  : lessonNumber <= 20 && lessonNumber >= 18
+                    ? 4
+                    : lessonNumber <= 22 && lessonNumber >= 21
+                      ? 5
+                      : 0;
+      if (chapterNumber >= 1 && chapterNumber <= 5) {
+        document.getElementById("worksheet-back-link").href =
+          `/?page=worksheets-chapter&chapter=chapter-${chapterNumber}`;
+      }
+      const pdfParameter = new URLSearchParams(window.location.search).get("pdf");
       const worksheet = sets[id];
       const root = document.getElementById("worksheet-content");
+
+      function getRequestedPdfUrl() {
+        if (pdfParameter === null) return printablePdfs[id];
+        try {
+          const url = new URL(pdfParameter, window.location.href);
+          if (url.origin === window.location.origin && /\.pdf$/i.test(url.pathname)) {
+            return url.href;
+          }
+        } catch (error) {
+          console.error("Invalid printable PDF URL.", error);
+        }
+        return null;
+      }
 
       if (!worksheet) {
         root.innerHTML = '<section class="empty"><h1>Worksheet not found</h1><p>Choose a worksheet from the worksheets page.</p></section>';
@@ -142,11 +184,11 @@
         root.append(status);
 
         function openPrintablePdf() {
-          const pdfUrl = printablePdfs[id];
+          const pdfUrl = getRequestedPdfUrl();
           if (!pdfUrl) {
-            status.textContent = "The original PDF is unavailable for this worksheet.";
+            status.textContent = "The printable PDF is unavailable for this worksheet.";
             status.classList.add("error");
-            console.error(`No original PDF is configured for worksheet "${id}".`);
+            console.error(`No valid printable PDF is configured for worksheet "${id}".`);
             return;
           }
           const printWindow = window.open(pdfUrl, "_blank");

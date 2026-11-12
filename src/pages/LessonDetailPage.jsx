@@ -9,6 +9,34 @@ import {
 import content from "../data/content.json";
 import EmptyState from "../components/EmptyState";
 
+const REAL_LIFE_RESOURCES = {
+  1: {
+    image: "/images/lesson-1-market-preview.png",
+    alt: "A father and child exploring a lively market",
+    previewHref: "/presentation-preview.html",
+  },
+  2: {
+    image: "/images/lesson-2-real-life-preview.png",
+    alt: "Children exploring number 258 at a museum",
+    previewHref: "/presentation-preview.html?lesson=2",
+  },
+  3: {
+    image: "/images/lesson-3-real-life-preview.png",
+    alt: "Children identifying numbers on amusement park seats",
+    previewHref: "/presentation-preview.html?lesson=3",
+  },
+  4: {
+    image: "/images/lesson-4-real-life-preview.png",
+    alt: "A family choosing food at a bakery",
+    previewHref: "/presentation-preview.html?lesson=4",
+  },
+  5: {
+    image: "/images/lesson-5-real-life-preview.png",
+    alt: "Children arranging books and snacks",
+    previewHref: "/presentation-preview.html?lesson=5",
+  },
+};
+
 export default function LessonDetailPage({
   lesson,
   lessons,
@@ -26,6 +54,8 @@ export default function LessonDetailPage({
       return matchesSearch && matchesLesson;
     });
   }, [search, lesson]);
+  const lessonNumber = Number(/^Lesson\s+(\d+)/.exec(lesson)?.[1]);
+  const realLifeResource = REAL_LIFE_RESOURCES[lessonNumber];
 
   function speak(text) {
     if ("speechSynthesis" in window && text) {
@@ -132,6 +162,49 @@ export default function LessonDetailPage({
           <EmptyState text="No terms match your search. Try another keyword." />
         )}
       </div>
+
+      {realLifeResource && (
+        <section
+          className="real-life-resource"
+          aria-labelledby={`real-life-title-${lessonNumber}`}
+        >
+          <div className="real-life-resource-preview">
+            <h2 id={`real-life-title-${lessonNumber}`}>Real-life Maths</h2>
+            <img src={realLifeResource.image} alt={realLifeResource.alt} />
+            {realLifeResource.previewHref ? (
+              <a
+                className="real-life-download"
+                href={realLifeResource.previewHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Preview the Real-life Maths PowerPoint presentation for Lesson ${lessonNumber}`}
+              >
+                PREVIEW NOW
+              </a>
+            ) : (
+              <button
+                className="real-life-download"
+                type="button"
+                disabled
+                aria-label={`Presentation preview for Lesson ${lessonNumber} coming soon`}
+              >
+                PREVIEW COMING SOON
+              </button>
+            )}
+          </div>
+          <div className="real-life-resource-description">
+            <p>
+              Bring Math to our life! Explore our ready-to-use PowerPoint
+              slideshow designed to teach Mathematics through daily, real-world
+              scenarios.
+            </p>
+            <ul>
+              <li>Feel free to download and customize according to your preference</li>
+              <li>Assist you as a source of lesson plans</li>
+            </ul>
+          </div>
+        </section>
+      )}
     </section>
   );
 }

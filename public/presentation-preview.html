@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Preview the Real-life Maths PowerPoint presentation."
+    />
+    <title>Real-life Maths · Presentation preview</title>
+    <style>
+      * { box-sizing: border-box; }
+      html, body { width: 100%; height: 100%; margin: 0; }
+      body {
+        display: flex;
+        flex-direction: column;
+        background: #eaf8fa;
+        color: #25342d;
+        font-family: "Segoe UI", sans-serif;
+      }
+      .toolbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 12px 20px;
+        background: #fff;
+        box-shadow: 0 2px 12px rgba(37, 52, 45, 0.1);
+      }
+      .title { margin: 0; font-size: 18px; }
+      .subtitle { margin: 3px 0 0; color: #62706a; font-size: 13px; }
+      .download {
+        flex-shrink: 0;
+        padding: 10px 16px;
+        border-radius: 10px;
+        background: #2d684d;
+        color: #fff;
+        font-size: 14px;
+        font-weight: 700;
+        text-decoration: none;
+      }
+      .download:hover { background: #24563f; }
+      .viewer {
+        flex: 1;
+        min-height: 0;
+        width: 100%;
+        border: 0;
+      }
+      .fallback {
+        margin: 0;
+        padding: 8px 16px;
+        background: #fff;
+        color: #62706a;
+        font-size: 13px;
+        text-align: center;
+      }
+      .fallback a { color: #2d684d; font-weight: 700; }
+      @media (max-width: 520px) {
+        .toolbar { align-items: flex-start; padding: 12px; }
+        .title { font-size: 16px; }
+        .download { padding: 9px 11px; font-size: 12px; }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="toolbar">
+      <div>
+        <h1 class="title" id="presentation-title">
+          Real-life Maths: Sets at the market
+        </h1>
+        <p class="subtitle">PowerPoint presentation preview</p>
+      </div>
+      <a
+        class="download"
+        id="presentation-download"
+        href="/presentations/lesson-1-sets-at-the-market.pptx"
+        download
+      >
+        Download PowerPoint
+      </a>
+    </header>
+    <iframe
+      class="viewer"
+      id="presentation-viewer"
+      title="Real-life Maths PowerPoint slide preview"
+    ></iframe>
+    <p class="fallback">
+      If the preview does not load,
+      <a
+        id="presentation-fallback-link"
+        href="/presentations/lesson-1-sets-at-the-market-preview.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        open the slides in a new tab
+      </a>.
+    </p>
+    <script>
+      const presentations = {
+        1: {
+          title: "Real-life Maths: Sets at the market",
+          file: "lesson-1-sets-at-the-market",
+        },
+        2: {
+          title: "Real-life Maths: Numbers & Numerals at the Museum",
+          file: "lesson-2-numbers-and-numerals-at-the-museum",
+        },
+        3: {
+          title: "Real-life Maths: Comparing Numbers at the Park",
+          file: "lesson-3-comparing-numbers-at-the-park",
+        },
+        4: {
+          title: "Real-life Maths: Addition & Subtraction at the Bakery",
+          file: "lesson-4-addition-and-subtraction-at-the-bakery",
+        },
+        5: {
+          title: "Real-life Maths: Multiplication & Division at the Kindergarten",
+          file: "lesson-5-multiplication-and-division-at-the-kindergarten",
+        },
+      };
+      const lesson =
+        new URLSearchParams(window.location.search).get("lesson") || "1";
+      const presentation = presentations[lesson];
+
+      if (presentation) {
+        const pdfUrl = `/presentations/${presentation.file}-preview.pdf`;
+        const pptxUrl = `/presentations/${presentation.file}.pptx`;
+        document.title = `${presentation.title} · Presentation preview`;
+        document.getElementById("presentation-title").textContent =
+          presentation.title;
+        document.getElementById("presentation-download").href = pptxUrl;
+        document.getElementById("presentation-viewer").src = `${pdfUrl}#view=FitH`;
+        document.getElementById("presentation-fallback-link").href = pdfUrl;
+      } else {
+        document.title = "Presentation not found";
+        document.getElementById("presentation-title").textContent =
+          "Presentation not found";
+        document.getElementById("presentation-download").hidden = true;
+        document.getElementById("presentation-viewer").hidden = true;
+        document.querySelector(".fallback").textContent =
+          "The requested presentation is unavailable.";
+      }
+    </script>
+  </body>
+</html>

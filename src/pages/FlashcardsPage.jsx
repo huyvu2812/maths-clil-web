@@ -68,6 +68,9 @@ export default function FlashcardsPage() {
       const chapterCode = {
         "chapter-1": "MATH6_U1_C1",
         "chapter-2": "MATH6_U1_C2",
+        "chapter-3": "MATH6_U1_C3",
+        "chapter-4": "MATH6_U1_C4",
+        "chapter-5": "MATH6_U1_C5",
       }[selectedChapter];
 
       return chapterCode
@@ -592,7 +595,9 @@ export default function FlashcardsPage() {
           volumeId="volume-1"
           onOpenChapter={handleSelectChapter}
         />
-      ) : ["chapter-1", "chapter-2"].includes(selectedChapter) ? (
+      ) : ["chapter-1", "chapter-2", "chapter-3", "chapter-4", "chapter-5"].includes(
+          selectedChapter,
+        ) ? (
         <section
           className={`page-section flashcards-page-shell ${studyMode === STUDY_MODES.FLASHCARD ? "flashcard-mode" : ""}`}
         >
