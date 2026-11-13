@@ -1,0 +1,1083 @@
+[
+  {
+    "lessonNumber": 1,
+    "chapterId": "chapter-1",
+    "title": "Lesson 1: Set",
+    "wordBank": [
+      "Set",
+      "Element/member",
+      "Belongs to",
+      "Does not belong to",
+      "Empty set",
+      "Set of natural numbers"
+    ],
+    "exercises": [
+      {
+        "text": "When we group a collection of objects together, such as all school supplies in a backpack, we form a __________.",
+        "answers": [
+          "set"
+        ]
+      },
+      {
+        "text": "Every single item inside a collection is called an __________ of that group.",
+        "answers": [
+          "element/member"
+        ]
+      },
+      {
+        "text": "If the number 3 is part of group A, we write 3 ∈ A and say that 3 __________ group A.",
+        "answers": [
+          "belongs to"
+        ]
+      },
+      {
+        "text": "Since 10 is not inside the group of single-digit numbers, we say that 10 __________ that specific collection.",
+        "answers": [
+          "does not belong to"
+        ]
+      },
+      {
+        "text": "An __________ is a collection that contains absolutely no items or members in it.",
+        "answers": [
+          "empty set"
+        ]
+      },
+      {
+        "text": "The __________ consists of all counting numbers starting from zero: 0, 1, 2, 3,...",
+        "answers": [
+          "set of natural numbers"
+        ]
+      }
+    ]
+  },
+  {
+    "lessonNumber": 2,
+    "chapterId": "chapter-1",
+    "title": "Lesson 2: Writing natural numbers",
+    "wordBank": [
+      "Natural number",
+      "Digit",
+      "Ones place",
+      "Tens place",
+      "Hundreds place",
+      "Place value",
+      "Roman numeral",
+      "Decimal system"
+    ],
+    "exercises": [
+      {
+        "text": "In the number 458, the number 8 is in the __________, meaning it represents 8 units.",
+        "answers": [
+          "ones place"
+        ]
+      },
+      {
+        "text": "The number 10 is the smallest two-digit __________ used for counting objects in everyday life.",
+        "answers": [
+          "natural number"
+        ]
+      },
+      {
+        "text": "To write the number 15 using ancient symbols, we use the __________ XV.",
+        "answers": [
+          "roman numeral"
+        ]
+      },
+      {
+        "text": "A single __________ like 7 can be used to form larger numbers.",
+        "answers": [
+          "digit"
+        ]
+      },
+      {
+        "text": "In the standard base-10 __________, the position of each number determines its overall value.",
+        "answers": [
+          "decimal system"
+        ]
+      },
+      {
+        "text": "In the number 732, the digit 3 is located in the __________, which represents 3 groups of ten.",
+        "answers": [
+          "tens place"
+        ]
+      },
+      {
+        "text": "Each position of a digit in a multi-digit number has a specific __________ that helps us read its exact magnitude.",
+        "answers": [
+          "place value"
+        ]
+      },
+      {
+        "text": "In the number 946, the digit 9 sits in the __________ and has a value of 900.",
+        "answers": [
+          "hundreds place"
+        ]
+      }
+    ]
+  },
+  {
+    "lessonNumber": 3,
+    "chapterId": "chapter-1",
+    "title": "Lesson 3: Order in the set of natural numbers",
+    "wordBank": [
+      "less than",
+      "greater than",
+      "less than or equal to",
+      "greater than or equal to",
+      "predecessor",
+      "successor",
+      "compare"
+    ],
+    "exercises": [
+      {
+        "text": "On the number line starting from origin O, the point representing a number a lies at a distance equal to a units from O. When we want to evaluate two distinct natural numbers to see which one is smaller, we can ___________ them.",
+        "answers": [
+          "Compare"
+        ]
+      },
+      {
+        "text": "On a horizontal number line, the point representing the smaller number is located to the left, which means it is ___________ the larger number.",
+        "answers": [
+          "Less than"
+        ]
+      },
+      {
+        "text": "Conversely, the point representing the larger number is located to the right, meaning it is ___________ the smaller number.",
+        "answers": [
+          "Greater than"
+        ]
+      },
+      {
+        "text": "In mathematics, when we consider values that can be smaller or match another quantity, we use the relation of being ___________.",
+        "answers": [
+          "Less than or equal to"
+        ]
+      },
+      {
+        "text": "Similarly, the relation of being ___________ covers cases where a value is greater than or equal to another.",
+        "answers": [
+          "Greater than or equal to"
+        ]
+      },
+      {
+        "text": "If a ∈ ℕ, then a is called the ___________ of a + 1.",
+        "answers": [
+          "Predecessor"
+        ]
+      },
+      {
+        "text": "On the other hand, a + 1 is called the ___________ of a.",
+        "answers": [
+          "Successor"
+        ]
+      }
+    ]
+  },
+  {
+    "lessonNumber": 4,
+    "chapterId": "chapter-1",
+    "title": "Lesson 4: Addition and subtraction of natural numbers",
+    "wordBank": [
+      "addition",
+      "sum",
+      "addend",
+      "subtraction",
+      "difference",
+      "commutative property",
+      "associative property",
+      "adding zero"
+    ],
+    "exercises": [
+      {
+        "text": "The operation of combining numbers together to find a total is called ___________.",
+        "answers": [
+          "Addition"
+        ]
+      },
+      {
+        "text": "In an addition expression, each of the numbers being added (such as 25 and 11) is called an ___________.",
+        "answers": [
+          "Addend"
+        ]
+      },
+      {
+        "text": "The result of an addition operation (such as 36) is called the ___________.",
+        "answers": [
+          "Sum"
+        ]
+      },
+      {
+        "text": "The operation of taking one number away from another is called ___________.",
+        "answers": [
+          "Subtraction"
+        ]
+      },
+      {
+        "text": "The result of a subtraction operation (such as 25) is called the ___________.",
+        "answers": [
+          "Difference"
+        ]
+      },
+      {
+        "text": "The ___________ allows us to change the order of addends in a sum without changing the final result.",
+        "answers": [
+          "Commutative property"
+        ]
+      },
+      {
+        "text": "The ___________ allows us to group addends differently when calculating a sum.",
+        "answers": [
+          "Associative property"
+        ]
+      },
+      {
+        "text": "The property where adding 0 to any number leaves the number unchanged is known as ___________.",
+        "answers": [
+          "Adding zero"
+        ]
+      }
+    ]
+  },
+  {
+    "lessonNumber": 5,
+    "chapterId": "chapter-1",
+    "title": "Lesson 5: Multiplication and division of natural numbers",
+    "wordBank": [
+      "multiplication",
+      "product",
+      "factor",
+      "division",
+      "quotient",
+      "dividend",
+      "divisor",
+      "divisible",
+      "division with remainder",
+      "Remainder",
+      "Commutative property of multiplication",
+      "Associative property of multiplication",
+      "Distributive property"
+    ],
+    "exercises": [
+      {
+        "text": "To quickly calculate the total number of items arranged in rows and columns (e.g., finding the area or total items), we use the operation of ___________.",
+        "answers": [
+          "Multiplication"
+        ]
+      },
+      {
+        "text": "In the expression 25 × 2 = 50, the numbers 25 and 2 play the role of a ___________, while 50 is called the ___________.",
+        "answers": [
+          "Factor",
+          "Product"
+        ]
+      },
+      {
+        "text": "When applying the ___________, we can change the order or group numbers differently when multiplying multiple terms together without altering the final outcome.",
+        "answers": [
+          "Commutative property of multiplication"
+        ]
+      },
+      {
+        "text": "To calculate 12 × (10 + 3) efficiently by expanding it as (12 × 10) + (12 × 3), we rely on the ___________.",
+        "answers": [
+          "Distributive property"
+        ]
+      },
+      {
+        "text": "If we have 36 candies to share equally among 12 friends, we use ___________ to find out how many each person gets, which gives a ___________ of 3.",
+        "answers": [
+          "Division",
+          "Quotient"
+        ]
+      },
+      {
+        "text": "In a standard division setup like 36 ÷ 12 = 3, the number 36 being shared is the ___________, and 12 is the ___________.",
+        "answers": [
+          "Dividend",
+          "Divisor"
+        ]
+      },
+      {
+        "text": "When a natural number can be divided by another with no left-over amount, we say that the first number is ___________ by the second.",
+        "answers": [
+          "Divisible"
+        ]
+      },
+      {
+        "text": "If we distribute 36 items among 15 people and find that some are left over, we are performing a ___________.",
+        "answers": [
+          "Division with remainder"
+        ]
+      },
+      {
+        "text": "In the division statement 36 ÷ 15 = 2 (remainder 6), the amount left over (6) is specifically called the ___________, and it must always be strictly less than the divisor.",
+        "answers": [
+          "Remainder"
+        ]
+      }
+    ]
+  },
+  {
+    "lessonNumber": 6,
+    "chapterId": "chapter-1",
+    "title": "Lesson 6: Powers with natural-number exponents",
+    "wordBank": [
+      "Power",
+      "Base",
+      "Exponent",
+      "Square",
+      "Cube",
+      "Multiplying powers with the same base",
+      "Dividing powers with the same base",
+      "Power of a product",
+      "Power of a power"
+    ],
+    "exercises": [
+      {
+        "text": "Instead of writing a long multiplication like 3 × 3 × 3 × 3 × 3, we use a shorthand notation called a ___________, written as 3⁵.",
+        "answers": [
+          "Power"
+        ]
+      },
+      {
+        "text": "In the expression 3⁵, the repeated factor 3 is the ___________, while 5 is the ___________, which tells us how many times 3 is multiplied by itself.",
+        "answers": [
+          "Base",
+          "Exponent"
+        ]
+      },
+      {
+        "text": "When a number is raised to the second power, such as 10² = 10 × 10, we call this operation finding the ___________ of 10.",
+        "answers": [
+          "Square"
+        ]
+      },
+      {
+        "text": "Similarly, raising a number to the third power, like 4³ = 4 × 4 × 4, is known as finding its ___________.",
+        "answers": [
+          "Cube"
+        ]
+      },
+      {
+        "text": "To simplify 5³ × 5² into 5³⁺² = 5⁵, we apply the rule for ___________ by keeping the base and adding the exponents.",
+        "answers": [
+          "Multiplying powers with the same base"
+        ]
+      },
+      {
+        "text": "When simplifying 5³ ÷ 5² into 5³⁻² = 5¹ (for a ≠ 0 and m ≥ n), we use the rule for ___________, which requires subtracting the exponents.",
+        "answers": [
+          "Dividing powers with the same base"
+        ]
+      },
+      {
+        "text": "If you encounter an expression like (2 × 5)³ and rewrite it as 2³ × 5³, you are applying the ___________ rule.",
+        "answers": [
+          "Power of a product"
+        ]
+      },
+      {
+        "text": "To simplify a nested exponential expression such as (5²)³ into 5²×³ = 5⁶, you multiply the exponents using the ___________ rule.",
+        "answers": [
+          "Power of a power"
+        ]
+      }
+    ]
+  },
+  {
+    "lessonNumber": 7,
+    "chapterId": "chapter-1",
+    "title": "Lesson 7: Order of operations",
+    "wordBank": [
+      "Order of operations",
+      "Brackets / parentheses",
+      "Expression",
+      "Value of an expression"
+    ],
+    "exercises": [
+      {
+        "text": "Look at the mathematical phrase 2x + 1. Because it combines numbers, operations, and a variable without an equals sign, we call it an algebraic ___________.",
+        "answers": [
+          "Expression"
+        ]
+      },
+      {
+        "text": "If we substitute x = 2 into 2x + 1 and compute 2 × 2 + 1 = 5, the final result 5 is called the ___________ when x = 2.",
+        "answers": [
+          "Value of an expression"
+        ]
+      },
+      {
+        "text": "To solve 3² - 5[3(4 - 1) - 8] without making mistakes, we must first simplify the inner grouping symbols, known as ___________, before moving to the outer ones.",
+        "answers": [
+          "Brackets / parentheses"
+        ]
+      },
+      {
+        "text": "Why does 12 + 3 × 2⁵ ÷ 4 - 3 equal 33 instead of a different number? Because we strictly follow the ___________: calculating the power 2⁵ first, then multiplying and dividing, and finally adding and subtracting.",
+        "answers": [
+          "Order of operations"
+        ]
+      }
+    ]
+  },
+  {
+    "lessonNumber": 8,
+    "chapterId": "chapter-2",
+    "title": "Lesson 8: Divisibility relations and properties",
+    "wordBank": [
+      "Divisible by",
+      "Not divisible by",
+      "Divisor / Factor",
+      "Multiple",
+      "Divisibility properties of a sum"
+    ],
+    "exercises": [
+      {
+        "text": "When we write a = kb (with k ∈ ℕ), we state that a is ___________ b (denoted as b | a).",
+        "answers": [
+          "Divisible by"
+        ]
+      },
+      {
+        "text": "If 12 is divisible by 4, then 4 is called a ___________ of 12, and conversely, 12 is called a ___________ of 4.",
+        "answers": [
+          "Divisor / Factor",
+          "Multiple"
+        ]
+      },
+      {
+        "text": "If you divide 10 by 3, you get a remainder, which means 10 is ___________ by 3.",
+        "answers": [
+          "Not divisible by"
+        ]
+      },
+      {
+        "text": "When examining whether the sum 15 + 12 is divisible by 3, we use the ___________, knowing that since both 15 and 12 are divisible by 3, their sum is also divisible by 3.",
+        "answers": [
+          "Divisibility properties of a sum"
+        ]
+      },
+      {
+        "text": "On the other hand, if we check the sum 15 + 13 with respect to 3, since 15 is divisible by 3 but 13 is not, the sum (15+13) is ___________ by 3.",
+        "answers": [
+          "Not divisible by"
+        ]
+      }
+    ]
+  },
+  {
+    "lessonNumber": 9,
+    "chapterId": "chapter-2",
+    "title": "Lesson 9: Divisibility rules",
+    "wordBank": [
+      "Divisibility rule / test",
+      "Last digit / Terminal digit",
+      "Sum of digits"
+    ],
+    "exercises": [
+      {
+        "text": "When checking whether a large number can divide evenly by 2 or 5 without doing long division, we apply a specific ___________ to find out quickly.",
+        "answers": [
+          "Divisibility rule / test"
+        ]
+      },
+      {
+        "text": "To test if a number is divisible by 2 (ending in 0,2,4,6,8) or by 5 (ending in 0 or 5), we only need to inspect its ___________.",
+        "answers": [
+          "Last digit / Terminal digit"
+        ]
+      },
+      {
+        "text": "Unlike numbers divisible by 2 or 5, checking whether a number is divisible by 3 or 9 requires us to calculate the ___________ of all its digits.",
+        "answers": [
+          "Sum of digits"
+        ]
+      }
+    ]
+  },
+  {
+    "lessonNumber": 10,
+    "chapterId": "chapter-2",
+    "title": "Lesson 10: Prime numbers",
+    "wordBank": [
+      "Prime number",
+      "Composite number",
+      "Prime factorization",
+      "Factor tree",
+      "Ladder method / Vertical layout"
+    ],
+    "exercises": [
+      {
+        "text": "When checking the number 7, we find it is only divisible by 1 and itself, so it is classified as a ___________.",
+        "answers": [
+          "Prime number"
+        ]
+      },
+      {
+        "text": "Unlike 7, the number 12 has multiple divisors (1,2,3,4,6,12), which makes it a ___________.",
+        "answers": [
+          "Composite number"
+        ]
+      },
+      {
+        "text": "When you break down a natural number like 60 into a product of prime numbers (2 × 2 × 3 × 5), this process is called performing a ___________.",
+        "answers": [
+          "Prime factorization"
+        ]
+      },
+      {
+        "text": "To find the prime factors of 60 visually by branching it down into smaller factors step-by-step like a plant, students often use a diagram known as a ___________.",
+        "answers": [
+          "Factor tree"
+        ]
+      },
+      {
+        "text": "Alternatively, if you prefer a vertical computation layout where you divide sequentially by ascending prime numbers (60 divided by 2, then 2, then 3, then 5), you are using the ___________.",
+        "answers": [
+          "Ladder method / Vertical layout"
+        ]
+      }
+    ]
+  },
+  {
+    "lessonNumber": 11,
+    "chapterId": "chapter-2",
+    "title": "Lesson 11: Common divisors. Greatest common divisor",
+    "wordBank": [
+      "Common divisor / Common factor",
+      "Greatest Common Divisor (GCD)",
+      "Coprime / Relatively prime",
+      "Reduced fraction / Simplest form",
+      "Euclidean algorithm"
+    ],
+    "exercises": [
+      {
+        "text": "When finding the numbers that can divide both 12 and 18 evenly, any number belonging to both lists is called a ___________ of the two numbers.",
+        "answers": [
+          "Common divisor / Common factor"
+        ]
+      },
+      {
+        "text": "To find the largest number that divides both 12 and 18 (which is 6), we look for their ___________.",
+        "answers": [
+          "Greatest Common Divisor (GCD)"
+        ]
+      },
+      {
+        "text": "Instead of listing all divisors by hand, we can find the GCD quickly for large numbers by successive division using the ___________ or by analyzing prime factors.",
+        "answers": [
+          "Euclidean algorithm"
+        ]
+      },
+      {
+        "text": "If two numbers have a GCD equal to 1 (such as 8 and 9), we say they are ___________ to each other.",
+        "answers": [
+          "Coprime / Relatively prime"
+        ]
+      },
+      {
+        "text": "When simplifying a fraction like 12/18 down to 2/3 by dividing the numerator and denominator by their GCD (6), the resulting fraction is written in its ___________.",
+        "answers": [
+          "Reduced fraction / Simplest form"
+        ]
+      }
+    ]
+  },
+  {
+    "lessonNumber": 12,
+    "chapterId": "chapter-2",
+    "title": "Lesson 12: Common multiples. Least common multiple",
+    "wordBank": [
+      "Common multiple",
+      "Least Common Multiple (LCM)",
+      "Finding a common denominator"
+    ],
+    "exercises": [
+      {
+        "text": "When listing the multiples of 4 and 6, any number that appears in both lists (such as 12, 24,...) is called a ___________ of those numbers.",
+        "answers": [
+          "Common multiple"
+        ]
+      },
+      {
+        "text": "To find the smallest non-zero number that both 4 and 6 can divide into (which is 12), we determine their ___________.",
+        "answers": [
+          "Least Common Multiple (LCM)"
+        ]
+      },
+      {
+        "text": "When adding two fractions with different denominators like 1/4 and 1/6, a crucial step is ___________ by using the LCM of the denominators as the new shared bottom number.",
+        "answers": [
+          "Finding a common denominator"
+        ]
+      }
+    ]
+  },
+  {
+    "lessonNumber": 13,
+    "chapterId": "chapter-3",
+    "title": "Lesson 13: The set of integers",
+    "wordBank": [
+      "Integer",
+      "Positive integer",
+      "Negative integer",
+      "Number line",
+      "Origin",
+      "Positive direction",
+      "Negative direction"
+    ],
+    "exercises": [
+      {
+        "text": "When describing opposite real-life quantities like a temperature of 5°C above zero versus 5°C below zero, we use positive numbers and a ___________ such as -5.",
+        "answers": [
+          "Negative integer"
+        ]
+      },
+      {
+        "text": "The set Z containing zero, all natural numbers, and their opposites is known as the set of numbers called ___________.",
+        "answers": [
+          "Integer"
+        ]
+      },
+      {
+        "text": "Natural numbers like 1, 2, 3,... are specifically referred to as ___________.",
+        "answers": [
+          "Positive integer"
+        ]
+      },
+      {
+        "text": "To visualize these numbers graphically, we draw a horizontal ___________ where every point corresponds to a specific number value.",
+        "answers": [
+          "Number line"
+        ]
+      },
+      {
+        "text": "The fixed starting point 0 marked on this line is called the ___________.",
+        "answers": [
+          "Origin"
+        ]
+      },
+      {
+        "text": "Moving to the right from 0 points toward the ___________, while moving to the left points toward the ___________ where negative numbers are located.",
+        "answers": [
+          "Positive direction",
+          "Negative direction"
+        ]
+      }
+    ]
+  },
+  {
+    "lessonNumber": 14,
+    "chapterId": "chapter-3",
+    "title": "Lesson 14: Addition and subtraction of integers",
+    "wordBank": [
+      "Adding integers with the same sign",
+      "Opposite number / Additive inverse",
+      "Adding integers with different signs",
+      "Commutative property",
+      "Associative property",
+      "Subtraction of integers"
+    ],
+    "exercises": [
+      {
+        "text": "When evaluating two numbers like 5 and -5, each of them is referred to as the ___________ of the other, and their sum always equals 0.",
+        "answers": [
+          "Opposite number / Additive inverse"
+        ]
+      },
+      {
+        "text": "To calculate (-3) + (-5), we apply the rule for ___________ by adding their natural numbers together and placing a minus sign in front, resulting in -8.",
+        "answers": [
+          "Adding integers with the same sign"
+        ]
+      },
+      {
+        "text": "When combining two values with different signs like 5 + (-3), we use the rule for ___________, finding the difference between their absolute values and keeping the sign of the larger number.",
+        "answers": [
+          "Adding integers with different signs"
+        ]
+      },
+      {
+        "text": "To solve a calculation like 5 - (-3), we convert it into an equivalent addition problem using the rule for ___________, which rewrites it as 5 + 3.",
+        "answers": [
+          "Subtraction of integers"
+        ]
+      },
+      {
+        "text": "When adding multiple integers, switching the order of numbers such that a+b=b+a demonstrates the ___________.",
+        "answers": [
+          "Commutative property"
+        ]
+      },
+      {
+        "text": "Similarly, grouping terms differently in a sum such that a+(b+c)=(a+b)+c relies on the ___________.",
+        "answers": [
+          "Associative property"
+        ]
+      }
+    ]
+  },
+  {
+    "lessonNumber": 15,
+    "chapterId": "chapter-3",
+    "title": "Lesson 15: Rules of brackets / sign rules",
+    "wordBank": [
+      "Rule of brackets / Parentheses rule",
+      "Removing brackets / Expanding parentheses",
+      "Transforming an expression"
+    ],
+    "exercises": [
+      {
+        "text": "To simplify a long algebraic sum like 15-(5-8)+(-3), we apply the ___________ to decide whether the signs inside should stay the same or flip.",
+        "answers": [
+          "Rule of brackets / Parentheses rule"
+        ]
+      },
+      {
+        "text": "When we rewrite 15-(5-8) as 15-5+8 because there is a minus sign in front, we are performing the step of ___________.",
+        "answers": [
+          "Removing brackets / Expanding parentheses"
+        ]
+      },
+      {
+        "text": "By arbitrarily rearranging the terms along with their signs and grouping convenient numbers together, such as turning 15-5+8-3 into (15-5)+(8-3), we are ___________ to calculate its value much faster.",
+        "answers": [
+          "Transforming an expression"
+        ]
+      }
+    ]
+  },
+  {
+    "lessonNumber": 16,
+    "chapterId": "chapter-3",
+    "title": "Lesson 16: Multiplication of integers",
+    "wordBank": [
+      "Multiplying integers with different signs",
+      "Multiplying integers with the same sign",
+      "Distributive property of multiplication over addition",
+      "Commutative property",
+      "Associative property"
+    ],
+    "exercises": [
+      {
+        "text": "When calculating (-4) × (-5) = 20, we apply the rule for ___________, which always yields a positive product.",
+        "answers": [
+          "Multiplying integers with the same sign"
+        ]
+      },
+      {
+        "text": "Conversely, to evaluate 4 × (-5) = -20, we follow the rule for ___________ by multiplying their natural parts and placing a minus sign in front.",
+        "answers": [
+          "Multiplying integers with different signs"
+        ]
+      },
+      {
+        "text": "To quickly compute (-25) × 17 × (-4), we first swap the positions of 17 and (-4) using the ___________.",
+        "answers": [
+          "Commutative property"
+        ]
+      },
+      {
+        "text": "Next, we group (-25) and (-4) together inside brackets as [(-25) × (-4)] × 17 to get 100 × 17 by applying the ___________.",
+        "answers": [
+          "Associative property"
+        ]
+      },
+      {
+        "text": "When factoring out a common term to simplify (-7) × 38 + (-7) × 62 into (-7) × (38 + 62), we rely on the ___________.",
+        "answers": [
+          "Distributive property of multiplication over addition"
+        ]
+      }
+    ]
+  },
+  {
+    "lessonNumber": 17,
+    "chapterId": "chapter-3",
+    "title": "Lesson 17: Divisibility, factors and multiples of an integer",
+    "wordBank": [
+      "Exact division of integers",
+      "Sign of the quotient",
+      "Factor / Divisor (of an integer)",
+      "Multiple (of an integer)"
+    ],
+    "exercises": [
+      {
+        "text": "Because we can find an integer q = -4 such that -12 = 3 × (-4), the operation (-12) ÷ 3 = -4 is called an ___________ (denoted as -12 ÷ 3).",
+        "answers": [
+          "Exact division of integers"
+        ]
+      },
+      {
+        "text": "When evaluating (-15) ÷ (-5) = 3 versus (-15) ÷ 5 = -3, we determine the ___________ by checking whether the two integers share the same sign (giving a positive result) or have different signs (giving a negative result).",
+        "answers": [
+          "Sign of the quotient"
+        ]
+      },
+      {
+        "text": "Since -12 is divisible by 3, the number 3—along with its opposite, -3—is considered a ___________ of -12.",
+        "answers": [
+          "Factor / Divisor (of an integer)"
+        ]
+      },
+      {
+        "text": "Conversely, because -12 can be divided evenly by 3, both -12 and its opposite 12 belong to the set of every ___________ of 3.",
+        "answers": [
+          "Multiple (of an integer)"
+        ]
+      }
+    ]
+  },
+  {
+    "lessonNumber": 18,
+    "chapterId": "chapter-4",
+    "title": "Lesson 18: Equilateral triangle, square, regular hexagon",
+    "wordBank": [
+      "diagonal",
+      "equilateral triangle",
+      "square",
+      "regular hexagon",
+      "side",
+      "vertex",
+      "angle"
+    ],
+    "exercises": [
+      {
+        "text": "A standard warning traffic sign shaped like a three-sided polygon with all three edges of equal length is an example of an ___________.",
+        "answers": [
+          "equilateral triangle"
+        ]
+      },
+      {
+        "text": "When measuring the corner opening of a chessboard tile, you find that every ___________ is equal to 90°, which confirms the tile is shaped like a ___________.",
+        "answers": [
+          "angle",
+          "square"
+        ]
+      },
+      {
+        "text": "Bees build their honeycombs using cells shaped like a ___________, a six-sided figure where each ___________ has the exact same length and each corner measures 120°.",
+        "answers": [
+          "regular hexagon",
+          "side"
+        ]
+      },
+      {
+        "text": "When using a compass and ruler to construct triangle ABC, the sharp corner point A where two edges meet is called a ___________.",
+        "answers": [
+          "vertex"
+        ]
+      },
+      {
+        "text": "If you draw a straight line connecting two opposite corners of a chessboard tile (such as A and C in ABCD), you create a ___________, and both of these lines in the shape are equal in length.",
+        "answers": [
+          "diagonal"
+        ]
+      }
+    ]
+  },
+  {
+    "lessonNumber": 19,
+    "chapterId": "chapter-4",
+    "title": "Lesson 19: Rectangles, rhombuses, parallelograms and isosceles trapezoids",
+    "wordBank": [
+      "rectangle",
+      "rhombus",
+      "parallelogram",
+      "isosceles trapezoid / isosceles trapezium",
+      "opposite side",
+      "leg"
+    ],
+    "exercises": [
+      {
+        "text": "A standard A4 sheet of paper or a smartphone screen has four 90° corners and equal diagonals, which makes it a ___________.",
+        "answers": [
+          "rectangle"
+        ]
+      },
+      {
+        "text": "When you measure the top edge of a classroom door and find it matches the exact length of the bottom edge, you are comparing an ___________ pair.",
+        "answers": [
+          "opposite side"
+        ]
+      },
+      {
+        "text": "A traditional diamond-shaped kite with four equal edges and two diagonals intersecting at a right angle (90°) is a classic example of a ___________.",
+        "answers": [
+          "rhombus"
+        ]
+      },
+      {
+        "text": "If you gently push the top of a rectangular wooden frame sideways so its corners tilt away from 90° while its opposite edges stay parallel and equal in length, the frame transforms into a ___________.",
+        "answers": [
+          "parallelogram"
+        ]
+      },
+      {
+        "text": "A symmetrical wooden roof beam or a popcorn bucket with a wider top base than its parallel bottom base is shaped like an ___________.",
+        "answers": [
+          "isosceles trapezoid / isosceles trapezium"
+        ]
+      },
+      {
+        "text": "In that symmetrical bucket shape, the two slanted non-parallel edges on the left and right are equal in length, and each one is called a ___________.",
+        "answers": [
+          "leg"
+        ]
+      }
+    ]
+  },
+  {
+    "lessonNumber": 20,
+    "chapterId": "chapter-4",
+    "title": "Lesson 20: Perimeter and area of quadrilaterals",
+    "wordBank": [
+      "perimeter",
+      "area",
+      "quadrilateral"
+    ],
+    "exercises": [
+      {
+        "text": "Squares, rectangles, trapezoids, parallelograms, and rhombuses all share a common feature: they are closed four-sided polygons, which puts them in the family of shapes known as a ___________.",
+        "answers": [
+          "quadrilateral"
+        ]
+      },
+      {
+        "text": "If you want to build a wooden fence completely around a rectangular garden with sides a and b, you need to calculate the total boundary length using the ___________ formula P = 2(a + b).",
+        "answers": [
+          "Perimeter"
+        ]
+      },
+      {
+        "text": "To buy enough grass turf to cover the entire surface inside a diamond-shaped (rhombus) courtyard with diagonals a and b, you must find its total ___________ using the formula S = ab/2.",
+        "answers": [
+          "area"
+        ]
+      }
+    ]
+  },
+  {
+    "lessonNumber": 21,
+    "chapterId": "chapter-5",
+    "title": "Lesson 21: Line / axial symmetry",
+    "wordBank": [
+      "axis of symmetry",
+      "axially symmetric figure",
+      "symmetrical halves",
+      "non-symmetric(al)",
+      "overlap",
+      "midpoint"
+    ],
+    "exercises": [
+      {
+        "text": "If you fold a picture of a butterfly right down its center line and find that both sides match up completely, the butterfly is an example of an ___________.",
+        "answers": [
+          "axially symmetric figure"
+        ]
+      },
+      {
+        "text": "The imaginary straight line running down the middle of a regular hexagon or an isosceles trapezoid that lets you fold the shape into two identical parts is called the ___________.",
+        "answers": [
+          "axis of symmetry"
+        ]
+      },
+      {
+        "text": "When performing a paper-folding test along this folding line, the two halves created on either side must ___________ each other perfectly.",
+        "answers": [
+          "overlap"
+        ]
+      },
+      {
+        "text": "These two folded parts are referred to as ___________ because they have the exact same shape and size.",
+        "answers": [
+          "symmetrical halves"
+        ]
+      },
+      {
+        "text": "If an asymmetric leaf or an irregular shape cannot be folded along any line to make its sides match up, we describe its structure as ___________.",
+        "answers": [
+          "non-symmetric(al)"
+        ]
+      },
+      {
+        "text": "When checking the symmetry of a line segment AB drawn on grid paper, the folding line always passes perpendicularly through the exact ___________ of that segment.",
+        "answers": [
+          "midpoint"
+        ]
+      }
+    ]
+  },
+  {
+    "lessonNumber": 22,
+    "chapterId": "chapter-5",
+    "title": "Lesson 22: Central symmetry",
+    "wordBank": [
+      "central symmetry",
+      "centrally symmetric figure",
+      "circle",
+      "center",
+      "square",
+      "rectangle",
+      "equilateral triangle",
+      "rhombus",
+      "diagonal",
+      "regular hexagon",
+      "intersection point"
+    ],
+    "exercises": [
+      {
+        "text": "If you pin a decorative four-petal flower pattern at a fixed point O and rotate it half a turn (180°) so that it matches its original position, the pattern is called a ___________.",
+        "answers": [
+          "centrally symmetric figure"
+        ]
+      },
+      {
+        "text": "___________ is a geometric property found in many pinwheels and playing cards, where turning the object upside down leaves its appearance unchanged.",
+        "answers": [
+          "Central symmetry"
+        ]
+      },
+      {
+        "text": "When spinning a round bicycle wheel, its ___________ acts as the exact turning point, making every ___________ a symmetric shape.",
+        "answers": [
+          "center",
+          "circle"
+        ]
+      },
+      {
+        "text": "To find the turning point of a ___________ (like an A4 sheet of paper) or a ___________ (like a chessboard tile), you simply draw two lines connecting opposite corners and locate where they cross.",
+        "answers": [
+          "rectangle",
+          "square"
+        ]
+      },
+      {
+        "text": "Each line drawn between opposite vertices in those four-sided shapes is a ___________, and their ___________ marks the exact middle of the shape.",
+        "answers": [
+          "diagonal",
+          "intersection point"
+        ]
+      },
+      {
+        "text": "A diamond-shaped ___________ also shares this half-turn property, with its crossing lines meeting at a right angle.",
+        "answers": [
+          "rhombus"
+        ]
+      },
+      {
+        "text": "A six-sided ___________, like a honeycomb cell, has three main diagonals meeting at one central point, allowing it to overlap itself after a 180° rotation.",
+        "answers": [
+          "regular hexagon"
+        ]
+      },
+      {
+        "text": "Unlike the shapes above, an ___________ does not have a center of symmetry. If you rotate a three-sided warning sign half a turn, it points in the opposite direction instead of overlapping itself.",
+        "answers": [
+          "equilateral triangle"
+        ]
+      }
+    ]
+  }
+]

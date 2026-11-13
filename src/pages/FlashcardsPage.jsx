@@ -7,11 +7,14 @@ import {
   Volume2,
   Star,
   ArrowUpDown,
+  ListChecks,
 } from "lucide-react";
 import content from "../data/content.json";
+import volume2Terms from "../data/volume2Terms.json";
 import EmptyState from "../components/EmptyState";
 import FeedbackForm from "../components/FeedbackForm";
 import VolumeChapterPage from "../components/VolumeChapterPage";
+import FillTheGap from "../components/FillTheGap";
 import { getChapterById } from "../constants/chapterMeta";
 
 const REVIEW_KEY = "maths-clil-review-words";
@@ -19,7 +22,37 @@ const STUDY_MODES = {
   FLASHCARD: "flashcard",
   MULTIPLE_CHOICE: "multiple-choice",
   ACTIVE_RECALL: "active-recall",
+  FILL_THE_GAP: "fill-the-gap",
 };
+const CHAPTER_CODE_BY_ID = {
+  "chapter-1": "MATH6_U1_C1",
+  "chapter-2": "MATH6_U1_C2",
+  "chapter-3": "MATH6_U1_C3",
+  "chapter-4": "MATH6_U1_C4",
+  "chapter-5": "MATH6_U1_C5",
+  "chapter-6": "MATH6_U2_C6",
+  "chapter-7": "MATH6_U2_C7",
+  "chapter-8": "MATH6_U2_C8",
+  "chapter-9": "MATH6_U2_C9",
+};
+const VOLUME_2_LESSON_RANGES = [
+  { chapterCode: "MATH6_U2_C6", start: 23, end: 27 },
+  { chapterCode: "MATH6_U2_C7", start: 28, end: 31 },
+  { chapterCode: "MATH6_U2_C8", start: 32, end: 37 },
+  { chapterCode: "MATH6_U2_C9", start: 38, end: 43 },
+];
+const volume2Flashcards = volume2Terms.map((term) => {
+  const lessonNumber = Number(term.lesson.match(/^Lesson (\d+):/)?.[1]);
+  const chapter = VOLUME_2_LESSON_RANGES.find(
+    ({ start, end }) => lessonNumber >= start && lessonNumber <= end,
+  );
+  if (!chapter) {
+    throw new Error(`No flashcard chapter found for ${term.lesson}.`);
+  }
+  return { ...term, chapterCode: chapter.chapterCode };
+});
+const flashcards = [...content.flashcards, ...volume2Flashcards];
+const volume1ChapterIds = ["chapter-1", "chapter-2", "chapter-3", "chapter-4", "chapter-5"];
 
 function shuffleArray(items) {
   const copy = [...items];
@@ -64,19 +97,10 @@ export default function FlashcardsPage() {
   }, [cardIndex, studyMode]);
 
   const chapterCards = useMemo(
-    () => {
-      const chapterCode = {
-        "chapter-1": "MATH6_U1_C1",
-        "chapter-2": "MATH6_U1_C2",
-        "chapter-3": "MATH6_U1_C3",
-        "chapter-4": "MATH6_U1_C4",
-        "chapter-5": "MATH6_U1_C5",
-      }[selectedChapter];
-
-      return chapterCode
-        ? content.flashcards.filter((card) => card.chapterCode === chapterCode)
-        : [];
-    },
+    () =>
+      flashcards.filter(
+        (card) => card.chapterCode === CHAPTER_CODE_BY_ID[selectedChapter],
+      ),
     [selectedChapter],
   );
 
@@ -111,7 +135,7 @@ export default function FlashcardsPage() {
     if (!activeCard) return [];
 
     const correctAnswer = activeCard.vietnamese;
-    const distractors = content.flashcards
+    const distractors = flashcards
       .filter(
         (card) =>
           String(card.id) !== String(activeCard.id) &&
@@ -129,7 +153,7 @@ export default function FlashcardsPage() {
     }
 
     while (options.length < 4) {
-      const fallback = content.flashcards.find(
+      const fallback = flashcards.find(
         (card) => !options.includes(card.vietnamese),
       );
       if (!fallback) break;
@@ -211,6 +235,9 @@ export default function FlashcardsPage() {
       icon: Layers3,
     },
     { id: STUDY_MODES.ACTIVE_RECALL, label: "Active recall", icon: Star },
+    ...(volume1ChapterIds.includes(selectedChapter)
+      ? [{ id: STUDY_MODES.FILL_THE_GAP, label: "Fill the gap", icon: ListChecks }]
+      : []),
   ];
 
   const progressValue = filteredCards.length
@@ -595,7 +622,8 @@ export default function FlashcardsPage() {
           volumeId="volume-1"
           onOpenChapter={handleSelectChapter}
         />
-      ) : ["chapter-1", "chapter-2", "chapter-3", "chapter-4", "chapter-5"].includes(
+      ) : Object.prototype.hasOwnProperty.call(
+          CHAPTER_CODE_BY_ID,
           selectedChapter,
         ) ? (
         <section
@@ -639,6 +667,8 @@ export default function FlashcardsPage() {
               {searchTools}
               {activeRecallView}
             </>
+          ) : studyMode === STUDY_MODES.FILL_THE_GAP ? (
+            <FillTheGap chapterId={selectedChapter} />
           ) : (
             multipleChoiceView
           )}

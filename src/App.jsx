@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from "react";
 import content from "./data/content.json";
+import volume2Terms from "./data/volume2Terms.json";
 import HomePage from "./pages/HomePage";
 import TermsPage, { TermsChapterPage } from "./pages/TermsPage";
 import LessonDetailPage from "./pages/LessonDetailPage";
@@ -38,9 +39,10 @@ const RESOURCE_PAGES = {
   [PAGES.FLASHCARDS]: "Flashcards",
   [PAGES.WORKSHEETS]: "Worksheets",
 };
+const terms = [...content.terms, ...volume2Terms];
 
 function getDefaultLesson() {
-  return content.terms[0]?.lesson || "all";
+  return terms[0]?.lesson || "all";
 }
 
 function App() {
@@ -62,7 +64,7 @@ function App() {
   const [openGradeMenu, setOpenGradeMenu] = useState(null);
 
   const lessons = useMemo(
-    () => [...new Set(content.terms.map((t) => t.lesson))],
+    () => [...new Set(terms.map((t) => t.lesson))],
     [],
   );
 
@@ -287,6 +289,7 @@ function App() {
         )}
         {page === "terms-lesson" && (
           <LessonDetailPage
+            terms={terms}
             lesson={selectedLesson}
             lessons={lessons}
             search={search}

@@ -1,0 +1,834 @@
+[
+    {
+        "id":  "v2-1",
+        "lesson":  "Lesson 23: Extending the concept of fractions. Equal fractions",
+        "vietnamese":  "Phân số",
+        "english":  "Fraction",
+        "example":  "1/2 is a fraction.",
+        "ipa":  "/ˈfrækʃn/"
+    },
+    {
+        "id":  "v2-2",
+        "lesson":  "Lesson 23: Extending the concept of fractions. Equal fractions",
+        "vietnamese":  "Tử số (Tử)",
+        "english":  "Numerator",
+        "example":  "In 3/4, 3 is the numerator.",
+        "ipa":  "/ˈnjuːməreɪtə(r)/"
+    },
+    {
+        "id":  "v2-3",
+        "lesson":  "Lesson 23: Extending the concept of fractions. Equal fractions",
+        "vietnamese":  "Mẫu số (Mẫu)",
+        "english":  "Denominator",
+        "example":  "In 3/4, 4 is the denominator.",
+        "ipa":  "/dɪˈnɒmɪneɪtə(r)/"
+    },
+    {
+        "id":  "v2-4",
+        "lesson":  "Lesson 23: Extending the concept of fractions. Equal fractions",
+        "vietnamese":  "Phân số bằng nhau",
+        "english":  "Equivalent fractions",
+        "example":  "1/2 and 2/4 are equivalent fractions.",
+        "ipa":  "/ɪˈkwɪvələnt ˈfrækʃnz/"
+    },
+    {
+        "id":  "v2-5",
+        "lesson":  "Lesson 23: Extending the concept of fractions. Equal fractions",
+        "vietnamese":  "Tính chất cơ bản của phân số",
+        "english":  "Fundamental property of fractions",
+        "example":  "Multiplying numerator and denominator by the same non-zero number yields an equivalent fraction.",
+        "ipa":  "/ˌfʌndəˈmentl ˈprɒpəti əv ˈfrækʃnz/"
+    },
+    {
+        "id":  "v2-6",
+        "lesson":  "Lesson 23: Extending the concept of fractions. Equal fractions",
+        "vietnamese":  "Rút gọn phân số",
+        "english":  "Simplifying fractions",
+        "example":  "Simplify 4/8 to 1/2.",
+        "ipa":  "/ˈsɪmplɪfaɪɪŋ ˈfrækʃnz/"
+    },
+    {
+        "id":  "v2-7",
+        "lesson":  "Lesson 23: Extending the concept of fractions. Equal fractions",
+        "vietnamese":  "Phân số tối giản",
+        "english":  "Irreducible fraction",
+        "example":  "3/5 is an irreducible fraction.",
+        "ipa":  "/ˌɪrɪˈdjuːsəbl ˈfrækʃn/"
+    },
+    {
+        "id":  "v2-8",
+        "lesson":  "Lesson 24: Comparing fractions. Positive mixed numbers",
+        "vietnamese":  "Hỗn số dương",
+        "english":  "Positive mixed number",
+        "example":  "2 1/3 is a positive mixed number.",
+        "ipa":  "/ˈpɒzətɪv ˌmɪkst ˈnʌmbə/"
+    },
+    {
+        "id":  "v2-9",
+        "lesson":  "Lesson 24: Comparing fractions. Positive mixed numbers",
+        "vietnamese":  "Bội chung",
+        "english":  "Common multiple",
+        "example":  "12 is a common multiple of 3 and 4.",
+        "ipa":  "/ˌkɒmən ˈmʌltɪpl/"
+    },
+    {
+        "id":  "v2-10",
+        "lesson":  "Lesson 24: Comparing fractions. Positive mixed numbers",
+        "vietnamese":  "Bội chung nhỏ nhất",
+        "english":  "Least common multiple (LCM)",
+        "example":  "The least common multiple of 3 and 4 is 12.",
+        "ipa":  "/ˌliːst ˌkɒmən ˈmʌltɪpl/"
+    },
+    {
+        "id":  "v2-11",
+        "lesson":  "Lesson 24: Comparing fractions. Positive mixed numbers",
+        "vietnamese":  "Quy đồng mẫu số",
+        "english":  "Finding a common denominator",
+        "example":  "Find a common denominator for 1/3 and 1/4.",
+        "ipa":  "/ˈfaɪndɪŋ ə ˈkɒmən dɪˈnɒmɪneɪtə(r)/"
+    },
+    {
+        "id":  "v2-12",
+        "lesson":  "Lesson 24: Comparing fractions. Positive mixed numbers",
+        "vietnamese":  "Mẫu số chung",
+        "english":  "Common denominator",
+        "example":  "12 is a common denominator for 3 and 4.",
+        "ipa":  "/ˈkɒmən dɪˈnɒmɪneɪtə(r)/"
+    },
+    {
+        "id":  "v2-13",
+        "lesson":  "Lesson 24: Comparing fractions. Positive mixed numbers",
+        "vietnamese":  "Mẫu số chung nhỏ nhất",
+        "english":  "Least common denominator (LCD)",
+        "example":  "The least common denominator of 1/4 and 1/6 is 12.",
+        "ipa":  "/liːst ˈkɒmən dɪˈnɒmɪneɪtə(r)/"
+    },
+    {
+        "id":  "v2-14",
+        "lesson":  "Lesson 24: Comparing fractions. Positive mixed numbers",
+        "vietnamese":  "So sánh phân số",
+        "english":  "Comparing fractions",
+        "example":  "Compare 2/5 and 3/5.",
+        "ipa":  "/kəmˈpeərɪŋ ˈfrækʃnz/"
+    },
+    {
+        "id":  "v2-15",
+        "lesson":  "Lesson 24: Comparing fractions. Positive mixed numbers",
+        "vietnamese":  "Hỗn số",
+        "english":  "Mixed number",
+        "example":  "2 ½ is a mixed number.",
+        "ipa":  "/ˌmɪkst ˈnʌmbə(r)/"
+    },
+    {
+        "id":  "v2-16",
+        "lesson":  "Lesson 24: Comparing fractions. Positive mixed numbers",
+        "vietnamese":  "Phần nguyên",
+        "english":  "Whole number part",
+        "example":  "In 2 ½, 2 is the whole number part.",
+        "ipa":  "/hoʊl ˈnʌmbər pɑːrt/"
+    },
+    {
+        "id":  "v2-17",
+        "lesson":  "Lesson 24: Comparing fractions. Positive mixed numbers",
+        "vietnamese":  "Phần phân số",
+        "english":  "Fractional part",
+        "example":  "In 2 ½, ½ is the fractional part.",
+        "ipa":  "/ˈfrækʃənl pɑːrt/"
+    },
+    {
+        "id":  "v2-18",
+        "lesson":  "Lesson 25: Addition and subtraction of fractions",
+        "vietnamese":  "Cộng hai phân số cùng mẫu",
+        "english":  "Adding fractions with the same denominator",
+        "example":  "To add fractions with the same denominator, add their numerators.",
+        "ipa":  "/ˈædɪŋ ˈfrækʃnz wɪð ðə seɪm dɪˈnɒmɪneɪtə(r)/"
+    },
+    {
+        "id":  "v2-19",
+        "lesson":  "Lesson 25: Addition and subtraction of fractions",
+        "vietnamese":  "Cộng hai phân số khác mẫu",
+        "english":  "Adding fractions with different denominators",
+        "example":  "Convert to a common denominator before adding.",
+        "ipa":  "/ˈædɪŋ ˈfrækʃnz wɪð ˈdɪfrənt dɪˈnɒmɪneɪtəz/"
+    },
+    {
+        "id":  "v2-20",
+        "lesson":  "Lesson 25: Addition and subtraction of fractions",
+        "vietnamese":  "Số đối của phân số",
+        "english":  "Additive inverse of a fraction",
+        "example":  "-1/2 is the additive inverse of 1/2.",
+        "ipa":  "/ˌæd.ɪ.tɪv ˈɪn.vɜːs əv ə ˈfrækʃn/"
+    },
+    {
+        "id":  "v2-21",
+        "lesson":  "Lesson 25: Addition and subtraction of fractions",
+        "vietnamese":  "Phép trừ phân số",
+        "english":  "Subtraction of fractions",
+        "example":  "Subtract 1/4 from 3/4 to get 1/2.",
+        "ipa":  "/səbˈtrækʃn əv ˈfrækʃnz/"
+    },
+    {
+        "id":  "v2-22",
+        "lesson":  "Lesson 25: Addition and subtraction of fractions",
+        "vietnamese":  "Tính chất giao hoán",
+        "english":  "Commutative property",
+        "example":  "The commutative property means that a + b = b + a.",
+        "ipa":  "/kəˈmjuːtətɪv ˈprɒpəti/"
+    },
+    {
+        "id":  "v2-23",
+        "lesson":  "Lesson 25: Addition and subtraction of fractions",
+        "vietnamese":  "Tính chất kết hợp",
+        "english":  "Associative property",
+        "example":  "The associative property means that (a + b) + c = a + (b + c).",
+        "ipa":  "/əˈsəʊʃiətɪv ˈprɒpəti/"
+    },
+    {
+        "id":  "v2-24",
+        "lesson":  "Lesson 26: Multiplication and division of fractions",
+        "vietnamese":  "Phép nhân phân số",
+        "english":  "Multiplication of fractions",
+        "example":  "Multiply numerators together and denominators together.",
+        "ipa":  "/ˌmʌltɪplɪˈkeɪʃn əv ˈfrækʃnz/"
+    },
+    {
+        "id":  "v2-25",
+        "lesson":  "Lesson 26: Multiplication and division of fractions",
+        "vietnamese":  "Phân số nghịch đảo",
+        "english":  "Reciprocal",
+        "example":  "The reciprocal of 2/3 is 3/2.",
+        "ipa":  "/rɪˈsɪprəkl/"
+    },
+    {
+        "id":  "v2-26",
+        "lesson":  "Lesson 26: Multiplication and division of fractions",
+        "vietnamese":  "Phép chia phân số",
+        "english":  "Division of fractions",
+        "example":  "To divide by a fraction, multiply by its reciprocal.",
+        "ipa":  "/dɪˈvɪʒn əv ˈfrækʃnz/"
+    },
+    {
+        "id":  "v2-27",
+        "lesson":  "Lesson 27: Two problems on fractions",
+        "vietnamese":  "Giá trị phân số của một số",
+        "english":  "Fraction of a number",
+        "example":  "To find 2/3 of 12, multiply 12 by 2/3.",
+        "ipa":  "/ˈfrækʃn əv ə ˈnʌm.bər/"
+    },
+    {
+        "id":  "v2-28",
+        "lesson":  "Lesson 27: Two problems on fractions",
+        "vietnamese":  "Tìm một số biết giá trị phân số",
+        "english":  "Finding a number from its fraction",
+        "example":  "Find x if 2/5 of x equals 10.",
+        "ipa":  "/ˈfaɪndɪŋ ə ˈnʌmbər frəm ɪts ˈfrækʃn/"
+    },
+    {
+        "id":  "v2-29",
+        "lesson":  "Lesson 28: Decimals",
+        "vietnamese":  "Số thập phân",
+        "english":  "Decimal / Decimal number",
+        "example":  "3.14 is a decimal number.",
+        "ipa":  "/ˈdesɪml/ / /ˈdesɪml ˈnʌmbə(r)/"
+    },
+    {
+        "id":  "v2-30",
+        "lesson":  "Lesson 28: Decimals",
+        "vietnamese":  "Dấu phẩy thập phân",
+        "english":  "Decimal point",
+        "example":  "In 3.14, the dot is the decimal point.",
+        "ipa":  "/ˈdesɪml pɔɪnt/"
+    },
+    {
+        "id":  "v2-31",
+        "lesson":  "Lesson 28: Decimals",
+        "vietnamese":  "Phần số nguyên",
+        "english":  "Whole number part",
+        "example":  "In 12.34, 12 is the whole number part.",
+        "ipa":  "/hoʊl ˈnʌmbər pɑːrt/"
+    },
+    {
+        "id":  "v2-32",
+        "lesson":  "Lesson 28: Decimals",
+        "vietnamese":  "Phần thập phân",
+        "english":  "Decimal part",
+        "example":  "In 12.34, .34 is the decimal part.",
+        "ipa":  "/ˈdesɪml pɑːrt/"
+    },
+    {
+        "id":  "v2-33",
+        "lesson":  "Lesson 28: Decimals",
+        "vietnamese":  "Số đối của số thập phân",
+        "english":  "Additive inverse of a decimal",
+        "example":  "-2.5 is the additive inverse of 2.5.",
+        "ipa":  "/ˌæd.ɪ.tɪv ˈɪn.vɜːs əv ə ˈdesɪml/"
+    },
+    {
+        "id":  "v2-34",
+        "lesson":  "Lesson 28: Decimals",
+        "vietnamese":  "Số thập phân âm",
+        "english":  "Negative decimal",
+        "example":  "-0.75 is a negative decimal.",
+        "ipa":  "/ˈneɡətɪv ˈdesɪml/"
+    },
+    {
+        "id":  "v2-35",
+        "lesson":  "Lesson 28: Decimals",
+        "vietnamese":  "Phân số thập phân",
+        "english":  "Decimal fraction",
+        "example":  "3/10 is a decimal fraction.",
+        "ipa":  "/ˌdesɪml ˈfrækʃn/"
+    },
+    {
+        "id":  "v2-36",
+        "lesson":  "Lesson 28: Decimals",
+        "vietnamese":  "Số thập phân dương",
+        "english":  "Positive decimal",
+        "example":  "2.5 is a positive decimal.",
+        "ipa":  "/ˈpɒzətɪv ˈdesɪml/"
+    },
+    {
+        "id":  "v2-37",
+        "lesson":  "Lesson 28: Decimals",
+        "vietnamese":  "So sánh hai số thập phân",
+        "english":  "Comparing decimal numbers",
+        "example":  "Comparing decimal numbers helps us decide which is greater.",
+        "ipa":  "/kəmˈpeərɪŋ ˈdesɪml ˈnʌmbəz/"
+    },
+    {
+        "id":  "v2-38",
+        "lesson":  "Lesson 29: Calculations with decimals",
+        "vietnamese":  "Phép cộng số thập phân",
+        "english":  "Addition of decimals",
+        "example":  "Add 1.2 and 3.4 to get 4.6.",
+        "ipa":  "/əˈdɪʃn əv ˈdesɪmlz/"
+    },
+    {
+        "id":  "v2-39",
+        "lesson":  "Lesson 29: Calculations with decimals",
+        "vietnamese":  "Phép trừ số thập phân",
+        "english":  "Subtraction of decimals",
+        "example":  "5.5 minus 2.3 equals 3.2.",
+        "ipa":  "/səbˈtrækʃn əv ˈdesɪmlz/"
+    },
+    {
+        "id":  "v2-40",
+        "lesson":  "Lesson 29: Calculations with decimals",
+        "vietnamese":  "Phép nhân số thập phân",
+        "english":  "Multiplication of decimals",
+        "example":  "0.5 times 0.2 equals 0.1.",
+        "ipa":  "/ˌmʌltɪplɪˈkeɪʃn əv ˈdesɪmlz/"
+    },
+    {
+        "id":  "v2-41",
+        "lesson":  "Lesson 29: Calculations with decimals",
+        "vietnamese":  "Phép chia số thập phân",
+        "english":  "Division of decimals",
+        "example":  "4.8 divided by 1.2 equals 4.",
+        "ipa":  "/dɪˈvɪʒn əv ˈdesɪmlz/"
+    },
+    {
+        "id":  "v2-42",
+        "lesson":  "Lesson 30: Rounding and estimation",
+        "vietnamese":  "Làm tròn số",
+        "english":  "Rounding numbers",
+        "example":  "Round 3.67 to one decimal place to get 3.7.",
+        "ipa":  "/ˈraʊndɪŋ ˈnʌmbəz/"
+    },
+    {
+        "id":  "v2-43",
+        "lesson":  "Lesson 30: Rounding and estimation",
+        "vietnamese":  "Quy tắc làm tròn",
+        "english":  "Rounding rule",
+        "example":  "Follow the rounding rule when approximating values.",
+        "ipa":  "/ˈraʊndɪŋ ruːl/"
+    },
+    {
+        "id":  "v2-44",
+        "lesson":  "Lesson 30: Rounding and estimation",
+        "vietnamese":  "Ước lượng",
+        "english":  "Estimation",
+        "example":  "Estimating helps check if a calculation is reasonable.",
+        "ipa":  "/ˌestɪˈmeɪʃn/"
+    },
+    {
+        "id":  "v2-45",
+        "lesson":  "Lesson 31: Some problems on ratios and percentages",
+        "vietnamese":  "Tỉ số",
+        "english":  "Ratio",
+        "example":  "The ratio of 3 to 4 is written as 3:4.",
+        "ipa":  "/ˈreɪʃiəʊ/"
+    },
+    {
+        "id":  "v2-46",
+        "lesson":  "Lesson 31: Some problems on ratios and percentages",
+        "vietnamese":  "Tỉ số phần trăm",
+        "english":  "Percentage",
+        "example":  "25% is a percentage.",
+        "ipa":  "/pəˈsentɪdʒ/"
+    },
+    {
+        "id":  "v2-47",
+        "lesson":  "Lesson 31: Some problems on ratios and percentages",
+        "vietnamese":  "Ký hiệu phần trăm (%)",
+        "english":  "Percent sign (%)",
+        "example":  "The percent sign (%) represents per hundred.",
+        "ipa":  "/pəˈsent saɪn/"
+    },
+    {
+        "id":  "v2-48",
+        "lesson":  "Lesson 31: Some problems on ratios and percentages",
+        "vietnamese":  "Giá trị phần trăm của một số",
+        "english":  "Percentage of a number",
+        "example":  "20% of 50 is 10.",
+        "ipa":  "/pəˈsentɪdʒ əv ə ˈnʌmbə/"
+    },
+    {
+        "id":  "v2-49",
+        "lesson":  "Lesson 31: Some problems on ratios and percentages",
+        "vietnamese":  "Tỉ lệ bản đồ",
+        "english":  "Map scale",
+        "example":  "A map scale of 1:100,000 means 1 cm represents 1 km.",
+        "ipa":  "/mæp skeɪl/"
+    },
+    {
+        "id":  "v2-50",
+        "lesson":  "Lesson 32: Points and lines",
+        "vietnamese":  "Điểm",
+        "english":  "Point",
+        "example":  "Point A is represented by a dot.",
+        "ipa":  "/pɔɪnt/"
+    },
+    {
+        "id":  "v2-51",
+        "lesson":  "Lesson 32: Points and lines",
+        "vietnamese":  "Đường thẳng",
+        "english":  "Line / Straight line",
+        "example":  "A line extends infinitely in both directions.",
+        "ipa":  "/laɪn/ / /streɪt laɪn/"
+    },
+    {
+        "id":  "v2-52",
+        "lesson":  "Lesson 32: Points and lines",
+        "vietnamese":  "Điểm thuộc đường thẳng",
+        "english":  "Point lying on a line",
+        "example":  "Point A belongs to line d.",
+        "ipa":  "/pɔɪnt ˈlaɪɪŋ ɒn ə laɪn/"
+    },
+    {
+        "id":  "v2-53",
+        "lesson":  "Lesson 32: Points and lines",
+        "vietnamese":  "Điểm không thuộc đường thẳng",
+        "english":  "Point not lying on a line",
+        "example":  "Point B does not lie on line d.",
+        "ipa":  "/pɔɪnt nɒt ˈlaɪɪŋ ɒn ə laɪn/"
+    },
+    {
+        "id":  "v2-54",
+        "lesson":  "Lesson 32: Points and lines",
+        "vietnamese":  "Điểm thẳng hàng",
+        "english":  "Collinear points",
+        "example":  "Points A, B, and C are collinear if they lie on the same line.",
+        "ipa":  "/kəˈlɪniər pɔɪnts/"
+    },
+    {
+        "id":  "v2-55",
+        "lesson":  "Lesson 32: Points and lines",
+        "vietnamese":  "Điểm không thẳng hàng",
+        "english":  "Non-collinear points",
+        "example":  "Non-collinear points do not lie on the same line.",
+        "ipa":  "/nɒn kəˈlɪniər pɔɪnts/"
+    },
+    {
+        "id":  "v2-56",
+        "lesson":  "Lesson 32: Points and lines",
+        "vietnamese":  "Hai đường thẳng cắt nhau",
+        "english":  "Intersecting lines",
+        "example":  "Intersecting lines meet at a single point.",
+        "ipa":  "/ˌɪntəˈsektɪŋ laɪnz/"
+    },
+    {
+        "id":  "v2-57",
+        "lesson":  "Lesson 32: Points and lines",
+        "vietnamese":  "Giao điểm",
+        "english":  "Point of intersection",
+        "example":  "Point O is the intersection point of lines a and b.",
+        "ipa":  "/pɔɪnt əv ˌɪntəˈsekʃn/"
+    },
+    {
+        "id":  "v2-58",
+        "lesson":  "Lesson 32: Points and lines",
+        "vietnamese":  "Hai đường thẳng song song",
+        "english":  "Parallel lines",
+        "example":  "Parallel lines never intersect.",
+        "ipa":  "/ˈpærəlel laɪnz/"
+    },
+    {
+        "id":  "v2-59",
+        "lesson":  "Lesson 32: Points and lines",
+        "vietnamese":  "Hai đường thẳng trùng nhau",
+        "english":  "Coincident lines",
+        "example":  "Coincident lines are lines that occupy the same position in space.",
+        "ipa":  "/kəʊˈɪnsɪdənt laɪnz/"
+    },
+    {
+        "id":  "v2-60",
+        "lesson":  "Lesson 33: Points between two points. Rays",
+        "vietnamese":  "Điểm nằm giữa",
+        "english":  "Point between two points",
+        "example":  "Point B is between points A and C.",
+        "ipa":  "/pɔɪnt bɪˈtwiːn tuː pɔɪnts/"
+    },
+    {
+        "id":  "v2-61",
+        "lesson":  "Lesson 33: Points between two points. Rays",
+        "vietnamese":  "Tia (Nửa đường thẳng)",
+        "english":  "Ray / Half-line",
+        "example":  "Ray Ox has an endpoint O and extends infinitely in one direction.",
+        "ipa":  "/reɪ/ / /hɑːf laɪn/"
+    },
+    {
+        "id":  "v2-62",
+        "lesson":  "Lesson 33: Points between two points. Rays",
+        "vietnamese":  "Gốc của tia",
+        "english":  "Endpoint of a ray",
+        "example":  "Point O is the endpoint of ray Ox.",
+        "ipa":  "/ˈendpɔɪnt əv ə reɪ/"
+    },
+    {
+        "id":  "v2-63",
+        "lesson":  "Lesson 33: Points between two points. Rays",
+        "vietnamese":  "Hai điểm cùng phía đối với một điểm",
+        "english":  "Two points on the same side of a point",
+        "example":  "A and B are on the same side of O.",
+        "ipa":  "/tuː pɔɪnts ɒn ðə seɪm saɪd əv ə pɔɪnt/"
+    },
+    {
+        "id":  "v2-64",
+        "lesson":  "Lesson 33: Points between two points. Rays",
+        "vietnamese":  "Hai điểm khác phía đối với một điểm",
+        "english":  "Two points on opposite sides of a point",
+        "example":  "A and C are on opposite sides of B.",
+        "ipa":  "/tuː pɔɪnts ɒn ˈɒpəzɪt saɪdz əv ə pɔɪnt/"
+    },
+    {
+        "id":  "v2-65",
+        "lesson":  "Lesson 33: Points between two points. Rays",
+        "vietnamese":  "Hai tia đối nhau",
+        "english":  "Opposite rays",
+        "example":  "Rays Ox and Oy are opposite rays if they form a line.",
+        "ipa":  "/ˈɒpəzɪt reɪz/"
+    },
+    {
+        "id":  "v2-66",
+        "lesson":  "Lesson 33: Points between two points. Rays",
+        "vietnamese":  "Hai tia trùng nhau",
+        "english":  "Coincident rays",
+        "example":  "Rays Ox and Om are coincident rays.",
+        "ipa":  "/kəʊˈɪnsɪdənt reɪz/"
+    },
+    {
+        "id":  "v2-67",
+        "lesson":  "Lesson 34: Line segments. Length of line segments",
+        "vietnamese":  "Đoạn thẳng",
+        "english":  "Line segment",
+        "example":  "Segment AB connects endpoints A and B.",
+        "ipa":  "/laɪn ˈseɡmənt/"
+    },
+    {
+        "id":  "v2-68",
+        "lesson":  "Lesson 34: Line segments. Length of line segments",
+        "vietnamese":  "Hai đầu mút của đoạn thẳng",
+        "english":  "Endpoints of a line segment",
+        "example":  "A and B are the endpoints of segment AB.",
+        "ipa":  "/ˈendpɔɪnts əv ə laɪn ˈseɡmənt/"
+    },
+    {
+        "id":  "v2-69",
+        "lesson":  "Lesson 34: Line segments. Length of line segments",
+        "vietnamese":  "Độ dài đoạn thẳng",
+        "english":  "Length of a line segment",
+        "example":  "The length of segment AB is 5 cm.",
+        "ipa":  "/leŋkθ əv ə laɪn ˈseɡmənt/"
+    },
+    {
+        "id":  "v2-70",
+        "lesson":  "Lesson 34: Line segments. Length of line segments",
+        "vietnamese":  "So sánh hai đoạn thẳng",
+        "english":  "Comparing line segments",
+        "example":  "Compare the lengths of segments AB and CD.",
+        "ipa":  "/kəmˈpeərɪŋ laɪn ˈseɡmənts/"
+    },
+    {
+        "id":  "v2-71",
+        "lesson":  "Lesson 34: Line segments. Length of line segments",
+        "vietnamese":  "Khoảng cách giữa hai điểm",
+        "english":  "Distance between two points",
+        "example":  "The distance between A and B is 5 cm.",
+        "ipa":  "/ˈdɪstəns bɪˈtwiːn tuː pɔɪnts/"
+    },
+    {
+        "id":  "v2-72",
+        "lesson":  "Lesson 35: Midpoints of line segments",
+        "vietnamese":  "Trung điểm của đoạn thẳng",
+        "english":  "Midpoint of a line segment",
+        "example":  "M is the midpoint of AB if M is between A and B, and AM = MB.",
+        "ipa":  "/ˈmɪdpɔɪnt əv ə laɪn ˈseɡmənt/"
+    },
+    {
+        "id":  "v2-73",
+        "lesson":  "Lesson 35: Midpoints of line segments",
+        "vietnamese":  "Điểm nằm giữa hai điểm",
+        "english":  "Point between two points",
+        "example":  "If point C is a point between two points A and B, then the length of AC plus CB equals AB.",
+        "ipa":  "/pɔɪnt bɪˈtwiːn tuː pɔɪnts/"
+    },
+    {
+        "id":  "v2-74",
+        "lesson":  "Lesson 35: Midpoints of line segments",
+        "vietnamese":  "Cách đều",
+        "english":  "Equidistant",
+        "example":  "Every point on the perpendicular bisector of a line segment is equidistant from its endpoints.",
+        "ipa":  "/ˌiːkwɪˈdɪstənt/"
+    },
+    {
+        "id":  "v2-75",
+        "lesson":  "Lesson 36: Angles",
+        "vietnamese":  "Góc",
+        "english":  "Angle",
+        "example":  "An angle is formed by two rays sharing a common origin.",
+        "ipa":  "/ˈæŋɡl/"
+    },
+    {
+        "id":  "v2-76",
+        "lesson":  "Lesson 36: Angles",
+        "vietnamese":  "Đỉnh của góc",
+        "english":  "Vertex of an angle",
+        "example":  "O is the vertex of angle xOy.",
+        "ipa":  "/ˈvɜːteks əv ən ˈæŋɡl/"
+    },
+    {
+        "id":  "v2-77",
+        "lesson":  "Lesson 36: Angles",
+        "vietnamese":  "Cạnh của góc",
+        "english":  "Sides of an angle",
+        "example":  "Ox and Oy are the sides of angle xOy.",
+        "ipa":  "/saɪdz əv ən ˈæŋɡl/"
+    },
+    {
+        "id":  "v2-78",
+        "lesson":  "Lesson 36: Angles",
+        "vietnamese":  "Điểm nằm trong góc",
+        "english":  "Point in the interior of an angle",
+        "example":  "Point P lies in the interior of angle xOy.",
+        "ipa":  "/pɔɪnt ɪn ði ɪnˈtɪəriə(r)/"
+    },
+    {
+        "id":  "v2-79",
+        "lesson":  "Lesson 37: Angle measures",
+        "vietnamese":  "Số đo góc",
+        "english":  "Angle measure",
+        "example":  "The measure of angle xOy is 60 degrees.",
+        "ipa":  "/ˈæŋɡl ˈmeʒə(r)/"
+    },
+    {
+        "id":  "v2-80",
+        "lesson":  "Lesson 37: Angle measures",
+        "vietnamese":  "Đơn vị độ (°)",
+        "english":  "Degree (°)",
+        "example":  "Angles are measured in degrees.",
+        "ipa":  "/dɪˈɡriː/"
+    },
+    {
+        "id":  "v2-81",
+        "lesson":  "Lesson 37: Angle measures",
+        "vietnamese":  "Góc vuông",
+        "english":  "Right angle",
+        "example":  "A right angle measures 90 degrees.",
+        "ipa":  "/raɪt ˈæŋɡl/"
+    },
+    {
+        "id":  "v2-82",
+        "lesson":  "Lesson 37: Angle measures",
+        "vietnamese":  "Góc nhọn",
+        "english":  "Acute angle",
+        "example":  "An acute angle measures less than 90 degrees.",
+        "ipa":  "/əˈkjuːt ˈæŋɡl/"
+    },
+    {
+        "id":  "v2-83",
+        "lesson":  "Lesson 37: Angle measures",
+        "vietnamese":  "Góc tù",
+        "english":  "Obtuse angle",
+        "example":  "An obtuse angle measures between 90 and 180 degrees.",
+        "ipa":  "/əbˈtjuːs ˈæŋɡl/"
+    },
+    {
+        "id":  "v2-84",
+        "lesson":  "Lesson 37: Angle measures",
+        "vietnamese":  "Góc bẹt",
+        "english":  "Straight angle",
+        "example":  "A straight angle measures 180 degrees.",
+        "ipa":  "/streɪt ˈæŋɡl/"
+    },
+    {
+        "id":  "v2-85",
+        "lesson":  "Lesson 37: Angle measures",
+        "vietnamese":  "Thước đo góc",
+        "english":  "Protractor",
+        "example":  "Use a protractor to measure the angle.",
+        "ipa":  "/prəˈtræktə(r)/"
+    },
+    {
+        "id":  "v2-86",
+        "lesson":  "Lesson 38: Data and data collection",
+        "vietnamese":  "Dữ liệu",
+        "english":  "Data",
+        "example":  "Data can be numbers, words, or symbols.",
+        "ipa":  "/ˈdeɪtə/"
+    },
+    {
+        "id":  "v2-87",
+        "lesson":  "Lesson 38: Data and data collection",
+        "vietnamese":  "Dữ liệu là số (Dữ liệu định lượng)",
+        "english":  "Numerical data / Quantitative data",
+        "example":  "Height and weight are numerical data.",
+        "ipa":  "/njuːˈmerɪkl ˈdeɪtə/ / /ˈkwɒn.tɪ.tə.tɪv ˈdeɪtə/"
+    },
+    {
+        "id":  "v2-88",
+        "lesson":  "Lesson 38: Data and data collection",
+        "vietnamese":  "Dữ liệu không là số (Dữ liệu định tính)",
+        "english":  "Non-numerical data / Qualitative data",
+        "example":  "Colors and names are non-numerical data.",
+        "ipa":  "/nɒn njuːˈmerɪkl ˈdeɪtə/ / /ˈkwɒl.ɪ.tə.tɪv ˈdeɪtə/"
+    },
+    {
+        "id":  "v2-89",
+        "lesson":  "Lesson 38: Data and data collection",
+        "vietnamese":  "Thu thập dữ liệu",
+        "english":  "Data collection",
+        "example":  "Data collection can be done through surveys or observation.",
+        "ipa":  "/ˈdeɪtə kəˈlekʃn/"
+    },
+    {
+        "id":  "v2-90",
+        "lesson":  "Lesson 38: Data and data collection",
+        "vietnamese":  "Tính hợp lý của dữ liệu",
+        "english":  "Validity of data",
+        "example":  "Check the validity of the survey data.",
+        "ipa":  "/vəˈlɪdəti əv ˈdeɪtə/"
+    },
+    {
+        "id":  "v2-91",
+        "lesson":  "Lesson 39: Statistical tables and pictographs",
+        "vietnamese":  "Bảng thống kê",
+        "english":  "Statistical table",
+        "example":  "Summarize the survey results in a statistical table.",
+        "ipa":  "/stəˈtɪstɪkl ˈteɪbl/"
+    },
+    {
+        "id":  "v2-92",
+        "lesson":  "Lesson 39: Statistical tables and pictographs",
+        "vietnamese":  "Biểu đồ tranh",
+        "english":  "Pictogram",
+        "example":  "A pictogram uses icons or pictures to represent data.",
+        "ipa":  "/ˈpɪktəɡræm/"
+    },
+    {
+        "id":  "v2-93",
+        "lesson":  "Lesson 39: Statistical tables and pictographs",
+        "vietnamese":  "Biểu tượng / Bảng giải thích",
+        "english":  "Symbol / Key",
+        "example":  "The key shows that each symbol represents 5 students.",
+        "ipa":  "/ˈsɪmbl/ / /kiː/"
+    },
+    {
+        "id":  "v2-94",
+        "lesson":  "Lesson 40: Bar charts",
+        "vietnamese":  "Biểu đồ cột",
+        "english":  "Bar chart",
+        "example":  "A bar chart represents data using rectangular bars.",
+        "ipa":  "/bɑː tʃɑːt/"
+    },
+    {
+        "id":  "v2-95",
+        "lesson":  "Lesson 40: Bar charts",
+        "vietnamese":  "Trục dọc (Trục tung)",
+        "english":  "Vertical axis",
+        "example":  "The vertical axis shows the frequencies.",
+        "ipa":  "/ˈvɜːtɪkl ˈæksɪs/"
+    },
+    {
+        "id":  "v2-96",
+        "lesson":  "Lesson 40: Bar charts",
+        "vietnamese":  "Trục ngang (Trục hoành)",
+        "english":  "Horizontal axis",
+        "example":  "The horizontal axis shows the categories.",
+        "ipa":  "/ˌhɒrɪˈzɒntl ˈæksɪs/"
+    },
+    {
+        "id":  "v2-97",
+        "lesson":  "Lesson 41: Double bar charts",
+        "vietnamese":  "Biểu đồ cột kép",
+        "english":  "Double bar chart",
+        "example":  "A chart with pairs of bars side-by-side to compare two sets of data across the same categories.",
+        "ipa":  "/ˈdʌbəl ˈbɑː tʃɑːt/"
+    },
+    {
+        "id":  "v2-98",
+        "lesson":  "Lesson 41: Double bar charts",
+        "vietnamese":  "Chú thích",
+        "english":  "Legend / Key",
+        "example":  "A box explaining what the colors or patterns of the bars represent.",
+        "ipa":  "/ˈledʒənd/ / /kiː/"
+    },
+    {
+        "id":  "v2-99",
+        "lesson":  "Lesson 42: Possible outcomes and events in games and experiments",
+        "vietnamese":  "Kết quả có thể",
+        "english":  "Possible outcome",
+        "example":  "A single result that could happen in a game or experiment.",
+        "ipa":  "/ˈpɒsɪbəl ˈaʊtˌkʌm/"
+    },
+    {
+        "id":  "v2-100",
+        "lesson":  "Lesson 42: Possible outcomes and events in games and experiments",
+        "vietnamese":  "Sự kiện (Biến cố)",
+        "english":  "Event",
+        "example":  "One or more outcomes of an experiment.",
+        "ipa":  "/ɪˈvent/"
+    },
+    {
+        "id":  "v2-101",
+        "lesson":  "Lesson 42: Possible outcomes and events in games and experiments",
+        "vietnamese":  "Thí nghiệm",
+        "english":  "Experiment",
+        "example":  "An action with uncertain results, like flipping a coin or rolling a die.",
+        "ipa":  "/ɪkˈsperɪmənt/"
+    },
+    {
+        "id":  "v2-102",
+        "lesson":  "Lesson 43: Experimental probability",
+        "vietnamese":  "Xác suất thực nghiệm",
+        "english":  "Experimental probability",
+        "example":  "The ratio of the number of times an event occurs to the total number of trials.",
+        "ipa":  "/ɪkˌsperɪˈmentəl ˌprɒbəˈbɪləti/"
+    },
+    {
+        "id":  "v2-103",
+        "lesson":  "Lesson 43: Experimental probability",
+        "vietnamese":  "Số lần lặp lại (Số lần thử)",
+        "english":  "Number of trials",
+        "example":  "The total number of times an experiment is repeated.",
+        "ipa":  "/ˈnʌmbə əv ˈtraɪəlz/"
+    },
+    {
+        "id":  "v2-104",
+        "lesson":  "Lesson 43: Experimental probability",
+        "vietnamese":  "Tần suất",
+        "english":  "Frequency",
+        "example":  "How often a specific result appears during an experiment.",
+        "ipa":  "/ˈfriːkwənsi/"
+    }
+]

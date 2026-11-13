@@ -6,7 +6,6 @@ import {
   Volume2,
   ArrowLeft,
 } from "lucide-react";
-import content from "../data/content.json";
 import EmptyState from "../components/EmptyState";
 
 const REAL_LIFE_RESOURCES = {
@@ -38,6 +37,7 @@ const REAL_LIFE_RESOURCES = {
 };
 
 export default function LessonDetailPage({
+  terms,
   lesson,
   lessons,
   search,
@@ -46,14 +46,14 @@ export default function LessonDetailPage({
   onLessonChange,
 }) {
   const filteredTerms = useMemo(() => {
-    return content.terms.filter((t) => {
+    return terms.filter((t) => {
       const text =
         `${t.english} ${t.vietnamese} ${t.example} ${t.ipa} ${t.lesson}`.toLowerCase();
       const matchesSearch = text.includes(search.toLowerCase());
       const matchesLesson = lesson === "all" || t.lesson === lesson;
       return matchesSearch && matchesLesson;
     });
-  }, [search, lesson]);
+  }, [search, lesson, terms]);
   const lessonNumber = Number(/^Lesson\s+(\d+)/.exec(lesson)?.[1]);
   const realLifeResource = REAL_LIFE_RESOURCES[lessonNumber];
 
