@@ -6,7 +6,7 @@
         { number: "3.1", prompt: "Rewrite without using a negative number: “The submarine is at a height of −120 m compared with sea level.”", answer: "The submarine is 120 m below sea level." },
         { number: "3.2", prompt: "Mr Tám's bank message says his balance changed by −356 500 dong. What does this mean?", answer: "356 500 dong was taken out of his account; his balance decreased by that amount." },
         { number: "3.3", prompt: "Which integers do points M, N, P, and Q represent in Figure 3.1 of the original worksheet PDF?", answer: "Read the positions of M, N, P, and Q relative to 0 on the number line in Figure 3.1; points to the left are negative and points to the right are positive." },
-        { number: "3.4", prompt: "Mark 5, −5, −3, 3, −2, and 2 on one number line. Give their order from left to right.", answer: "−5, −3, −2, 2, 3, 5." },
+        { number: "3.4", drawing: { background: "number-line", start: -9 }, prompt: "Mark 5, −5, −3, 3, −2, and 2 on one number line. Give their order from left to right.", answer: "−5, −3, −2, 2, 3, 5." },
         { number: "3.5", prompt: "An ant walks 13 units on a number line. Where does it stop if it starts at O and walks (a) in the positive direction; (b) in the negative direction?", answer: "(a) At 13. (b) At −13." },
         { number: "3.6", prompt: "List in increasing order M = {x ∈ ℤ | x ends in the digit 3 and −25 < x ≤ 30}.", answer: "M = {−23, −13, −3, 3, 13, 23}." },
         { number: "3.7", prompt: "Compare −57 312 and −57 298.", answer: "−57 312 < −57 298." },

@@ -1,0 +1,476 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Mark worksheet files submitted by pupils." />
+    <title>Mark submitted work · Maths CLIL</title>
+    <link rel="stylesheet" href="/drawing-pad.css" />
+    <style>
+      :root {
+        font-family: "DM Sans", "Segoe UI", sans-serif;
+        color: #25342d;
+        background: #edf3ee;
+        line-height: 1.55;
+        --green: #2d684d;
+        --line: #e2e8e1;
+        --ink: #25342d;
+        --muted: #62706a;
+      }
+      * { box-sizing: border-box; }
+      [hidden] { display: none !important; }
+      .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+      body { margin: 0; min-width: 320px; }
+      button, select, textarea, input { font: inherit; }
+      a { color: var(--green); }
+      button:focus-visible, select:focus-visible, textarea:focus-visible, input:focus-visible, a:focus-visible { outline: 3px solid #8cc9a4; outline-offset: 3px; }
+      .page { width: min(1050px, calc(100% - 36px)); margin: 0 auto; padding: 28px 0 56px; }
+      .eyebrow { color: #5d776b; font-size: 12px; font-weight: 800; letter-spacing: 1.5px; }
+      h1 { margin: 8px 0; font-size: clamp(28px, 4.5vw, 42px); line-height: 1.12; letter-spacing: -1.4px; }
+      h2 { margin: 0; font-size: 22px; }
+      .muted { color: var(--muted); }
+      .panel { margin-top: 18px; padding: 18px; border: 1px solid var(--line); border-radius: 18px; background: #fffefa; }
+      .drop { display: grid; gap: 10px; justify-items: start; border-style: dashed; border-width: 2px; border-color: #c4d2c8; }
+      .drop.dragging { border-color: var(--green); background: #eff7f0; }
+      .button { padding: 9px 14px; border: 1px solid var(--line); border-radius: 10px; background: #fffefa; color: var(--ink); font-weight: 700; cursor: pointer; }
+      .button:hover:not(:disabled) { border-color: var(--green); }
+      .button.primary { border-color: var(--green); background: var(--green); color: #fff; }
+      .button:disabled { cursor: not-allowed; opacity: 0.55; }
+      .status { min-height: 24px; margin: 10px 0 0; font-size: 14px; color: var(--green); white-space: pre-line; }
+      .status.error { color: #a33b2c; }
+      .toolbar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; }
+      table { width: 100%; border-collapse: collapse; font-size: 15px; }
+      th, td { padding: 10px 8px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: middle; }
+      th { color: var(--muted); font-size: 13px; font-weight: 700; }
+      .table-wrap { overflow-x: auto; }
+      .pill { display: inline-block; padding: 2px 9px; border-radius: 99px; font-size: 13px; font-weight: 700; }
+      .pill.correct { background: #e1f1e5; color: #22603f; }
+      .pill.incorrect, .pill.empty { background: #f8e3df; color: #9a3324; }
+      .pill.manual { background: #eef1ee; color: var(--muted); }
+      .question { margin-top: 14px; padding: 18px; border: 1px solid var(--line); border-radius: 18px; background: #fffefa; }
+      .question h3 { margin: 0 0 6px; color: var(--green); font-size: 15px; }
+      .question .prompt { margin: 0 0 12px; }
+      .student-text { margin: 0 0 12px; padding: 10px 12px; border-radius: 10px; background: #f3f7f3; white-space: pre-wrap; overflow-wrap: anywhere; }
+      .no-answer { color: var(--muted); font-style: italic; }
+      .suggested { margin: 12px 0 0; padding: 10px 14px; border-left: 4px solid var(--green); border-radius: 8px; background: #eff7f0; font-size: 14px; }
+      .marking { display: grid; grid-template-columns: auto 1fr; gap: 10px 14px; align-items: start; margin-top: 14px; }
+      .marking label { font-weight: 700; font-size: 14px; padding-top: 6px; }
+      .marking select { width: max-content; padding: 6px 10px; border: 1px solid #cbd6cc; border-radius: 9px; }
+      .marking textarea { width: 100%; min-height: 60px; padding: 8px 10px; border: 1px solid #cbd6cc; border-radius: 9px; resize: vertical; }
+      .score-line { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+      .detail-head { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; }
+      .check-result { margin-top: 10px; }
+      @media (max-width: 600px) {
+        .page { width: min(100% - 24px, 1050px); padding-top: 20px; }
+        .marking { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <a href="/?page=worksheets">← Back to worksheets</a>
+      <header>
+        <div class="eyebrow" style="margin-top: 24px">FOR TEACHERS</div>
+        <h1>Mark submitted work</h1>
+        <p class="muted">
+          Open the files pupils downloaded with “Submit work”. Drawings are checked again here,
+          so the result does not depend on the pupil's copy. Files and marks stay in this browser.
+        </p>
+      </header>
+
+      <section class="panel drop" id="drop">
+        <label class="button primary" for="files">Open submission files…</label>
+        <input id="files" type="file" accept=".json,application/json" multiple hidden />
+        <span class="muted">or drop .json files here</span>
+        <p class="status" id="status" role="status" aria-live="polite"></p>
+      </section>
+
+      <section class="panel" id="list-view" hidden>
+        <div class="toolbar">
+          <h2>Submissions</h2>
+          <button type="button" class="button" id="export">Export marks (CSV)</button>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Pupil</th>
+                <th scope="col">Worksheet</th>
+                <th scope="col">Submitted</th>
+                <th scope="col">Answered</th>
+                <th scope="col">Drawings correct</th>
+                <th scope="col">Score</th>
+                <th scope="col"><span class="visually-hidden">Open</span></th>
+              </tr>
+            </thead>
+            <tbody id="rows"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="detail-view" hidden></section>
+    </main>
+
+    <script src="/worksheet-content.js"></script>
+    <script src="/worksheet-content-chapter-2.js"></script>
+    <script src="/worksheet-content-chapter-3.js"></script>
+    <script src="/worksheet-content-chapter-4.js"></script>
+    <script src="/worksheet-content-chapter-5.js"></script>
+    <script src="/worksheet-drawings.js"></script>
+    <script src="/drawing-check.js"></script>
+    <script src="/drawing-pad.js"></script>
+    <script>
+      const sets = window.WORKSHEET_SETS;
+      const MAX_FILE_BYTES = 2 * 1024 * 1024;
+      const MARKS_PREFIX = "maths-clil-marks:";
+      const SCORE_OPTIONS = ["", "0", "0.5", "1"];
+
+      const statusLine = document.getElementById("status");
+      const listView = document.getElementById("list-view");
+      const detailView = document.getElementById("detail-view");
+      const rows = document.getElementById("rows");
+      const submissions = new Map();
+
+      function setStatus(text, isError = false) {
+        statusLine.textContent = text;
+        statusLine.classList.toggle("error", isError);
+      }
+
+      function el(tag, className, text) {
+        const node = document.createElement(tag);
+        if (className) node.className = className;
+        if (text !== undefined) node.textContent = text;
+        return node;
+      }
+
+      // ---------- reading files ----------
+
+      // Submission files come from pupils, so every field is validated and
+      // only known worksheet questions are kept. All text is shown with
+      // textContent, never as HTML.
+      function parseSubmission(text) {
+        let data;
+        try {
+          data = JSON.parse(text);
+        } catch {
+          throw new Error("it is not a valid JSON file");
+        }
+        if (!data || data.format !== "maths-clil-submission" || data.version !== 1) {
+          throw new Error("it is not a Maths CLIL submission file");
+        }
+        const worksheet = typeof data.worksheetId === "string" ? sets[data.worksheetId] : null;
+        if (!worksheet) throw new Error("its worksheet is not on this site");
+        const student = typeof data.student === "string" ? data.student.trim().slice(0, 80) : "";
+        if (!student) throw new Error("it has no pupil name");
+        const submittedAt = new Date(data.submittedAt);
+        if (Number.isNaN(submittedAt.getTime())) throw new Error("it has no valid submission time");
+
+        const answers = {};
+        const drawings = {};
+        for (const question of worksheet.questions) {
+          const answer = data.answers?.[question.number];
+          if (typeof answer === "string" && answer.trim()) answers[question.number] = answer.slice(0, 5000);
+          const drawing = data.drawings?.[question.number];
+          if (drawing && typeof drawing === "object" && Array.isArray(drawing.items) && drawing.items.length) {
+            drawings[question.number] = { v: 1, items: drawing.items.slice(0, 500) };
+          }
+        }
+        return {
+          id: `${data.worksheetId}|${student}|${submittedAt.toISOString()}`,
+          worksheetId: data.worksheetId,
+          worksheet,
+          student,
+          submittedAt,
+          answers,
+          drawings,
+        };
+      }
+
+      async function openFiles(fileList) {
+        const files = [...fileList];
+        if (!files.length) return;
+        const problems = [];
+        let added = 0;
+        for (const file of files) {
+          if (file.size > MAX_FILE_BYTES) {
+            problems.push(`${file.name}: the file is too large.`);
+            continue;
+          }
+          try {
+            const submission = parseSubmission(await file.text());
+            submission.marks = loadMarks(submission.id);
+            submission.checks = runChecks(submission);
+            submissions.set(submission.id, submission);
+            added += 1;
+          } catch (error) {
+            problems.push(`${file.name}: ${error.message}.`);
+          }
+        }
+        const summary = `${added} file${added === 1 ? "" : "s"} opened.`;
+        setStatus(problems.length ? `${summary}\nNot opened:\n${problems.join("\n")}` : summary, problems.length > 0);
+        renderList();
+      }
+
+      document.getElementById("files").addEventListener("change", (event) => {
+        openFiles(event.target.files);
+        event.target.value = "";
+      });
+      const drop = document.getElementById("drop");
+      drop.addEventListener("dragover", (event) => {
+        event.preventDefault();
+        drop.classList.add("dragging");
+      });
+      drop.addEventListener("dragleave", () => drop.classList.remove("dragging"));
+      drop.addEventListener("drop", (event) => {
+        event.preventDefault();
+        drop.classList.remove("dragging");
+        openFiles(event.dataTransfer.files);
+      });
+
+      // ---------- checks and marks ----------
+
+      function runChecks(submission) {
+        const checks = {};
+        for (const question of submission.worksheet.questions) {
+          if (!window.MathsDrawingCheck.hasCheck(question.drawing)) continue;
+          if (!submission.drawings[question.number]) continue;
+          try {
+            checks[question.number] = window.MathsDrawingCheck.check(question.drawing, submission.drawings[question.number]);
+          } catch (error) {
+            console.error(`Check for question ${question.number} failed.`, error);
+          }
+        }
+        return checks;
+      }
+
+      function loadMarks(id) {
+        try {
+          const value = JSON.parse(localStorage.getItem(MARKS_PREFIX + id) || "{}");
+          return value && typeof value === "object" ? value : {};
+        } catch (error) {
+          console.error("Unable to load saved marks.", error);
+          return {};
+        }
+      }
+
+      function saveMarks(submission) {
+        try {
+          localStorage.setItem(MARKS_PREFIX + submission.id, JSON.stringify(submission.marks));
+          return true;
+        } catch (error) {
+          console.error("Unable to save marks.", error);
+          setStatus("Marks could not be saved in this browser. Export them before closing the page.", true);
+          return false;
+        }
+      }
+
+      function totals(submission) {
+        const questions = submission.worksheet.questions;
+        let score = 0;
+        let marked = 0;
+        for (const question of questions) {
+          const value = submission.marks[question.number]?.score;
+          if (value !== undefined && value !== "") {
+            score += Number(value);
+            marked += 1;
+          }
+        }
+        const checks = Object.values(submission.checks);
+        return {
+          score,
+          marked,
+          max: questions.length,
+          answered: questions.filter((q) => submission.answers[q.number] || submission.drawings[q.number]).length,
+          correct: checks.filter((c) => c.status === "correct").length,
+          checked: checks.length,
+        };
+      }
+
+      // ---------- list ----------
+
+      function renderList() {
+        rows.replaceChildren();
+        const sorted = [...submissions.values()].sort(
+          (a, b) => a.worksheet.title.localeCompare(b.worksheet.title) || a.student.localeCompare(b.student),
+        );
+        for (const submission of sorted) {
+          const t = totals(submission);
+          const row = document.createElement("tr");
+          row.append(
+            el("td", "", submission.student),
+            el("td", "", submission.worksheet.title),
+            el("td", "", submission.submittedAt.toLocaleString()),
+            el("td", "", `${t.answered} / ${t.max}`),
+            el("td", "", t.checked ? `${t.correct} / ${t.checked}` : "—"),
+            el("td", "", t.marked ? `${t.score} / ${t.max}${t.marked < t.max ? ` (${t.marked} marked)` : ""}` : "Not marked"),
+          );
+          const open = el("button", "button", "Open");
+          open.type = "button";
+          open.addEventListener("click", () => renderDetail(submission));
+          const cell = el("td");
+          cell.append(open);
+          row.append(cell);
+          rows.append(row);
+        }
+        listView.hidden = submissions.size === 0;
+      }
+
+      // ---------- detail ----------
+
+      function renderDetail(submission) {
+        listView.hidden = true;
+        drop.hidden = true;
+        detailView.hidden = false;
+        detailView.replaceChildren();
+
+        const head = el("div", "panel detail-head");
+        const title = el("div");
+        title.append(el("h2", "", submission.student), el("div", "muted", `${submission.worksheet.title} · submitted ${submission.submittedAt.toLocaleString()}`));
+        const actions = el("div", "score-line");
+        const autoButton = el("button", "button", "Use automatic marks for unmarked drawings");
+        autoButton.type = "button";
+        const backButton = el("button", "button primary", "← All submissions");
+        backButton.type = "button";
+        actions.append(autoButton, backButton);
+        head.append(title, actions);
+        detailView.append(head);
+
+        const scoreSelects = new Map();
+        backButton.addEventListener("click", () => {
+          detailView.hidden = true;
+          drop.hidden = false;
+          renderList();
+          listView.scrollIntoView();
+        });
+
+        for (const question of submission.worksheet.questions) {
+          const card = el("section", "question");
+          card.append(el("h3", "", question.number), el("p", "prompt", question.prompt));
+          const text = submission.answers[question.number];
+          const drawing = submission.drawings[question.number];
+          if (text) card.append(el("p", "student-text", text));
+          if (drawing) {
+            const pad = window.MathsDrawingPad.create({
+              spec: question.drawing,
+              value: drawing,
+              readOnly: true,
+              label: `${submission.student}'s drawing for question ${question.number}`,
+            });
+            card.append(pad.element);
+            const result = submission.checks[question.number];
+            if (result) {
+              pad.setHighlight(result.highlight);
+              const box = el("div", `check-result ${result.status}`);
+              const list = el("ul");
+              [...result.messages, ...result.tips].forEach((message) => list.append(el("li", "", message)));
+              box.append(list);
+              card.append(box);
+            }
+          }
+          if (!text && !drawing) card.append(el("p", "no-answer", "No answer."));
+          if (question.answer) {
+            const suggested = el("div", "suggested");
+            suggested.append(el("strong", "", "Suggested answer: "), document.createTextNode(question.answer));
+            card.append(suggested);
+          }
+
+          const mark = submission.marks[question.number] || {};
+          const marking = el("div", "marking");
+          const scoreId = `score-${question.number}`;
+          const scoreLabel = el("label", "", "Score");
+          scoreLabel.htmlFor = scoreId;
+          const scoreLine = el("div", "score-line");
+          const select = document.createElement("select");
+          select.id = scoreId;
+          for (const option of SCORE_OPTIONS) {
+            const node = el("option", "", option === "" ? "Not marked" : `${option} / 1`);
+            node.value = option;
+            select.append(node);
+          }
+          select.value = SCORE_OPTIONS.includes(mark.score) ? mark.score : "";
+          scoreLine.append(select);
+          const result = submission.checks[question.number];
+          if (result) {
+            scoreLine.append(el("span", `pill ${result.status}`, result.status === "correct" ? "Auto: correct" : "Auto: not yet correct"));
+          } else if (drawing || text) {
+            scoreLine.append(el("span", "pill manual", "Mark by hand"));
+          }
+          const commentId = `comment-${question.number}`;
+          const commentLabel = el("label", "", "Comment");
+          commentLabel.htmlFor = commentId;
+          const comment = document.createElement("textarea");
+          comment.id = commentId;
+          comment.maxLength = 1000;
+          comment.value = typeof mark.comment === "string" ? mark.comment : "";
+
+          const update = () => {
+            submission.marks[question.number] = { score: select.value, comment: comment.value };
+            saveMarks(submission);
+          };
+          select.addEventListener("change", update);
+          comment.addEventListener("input", update);
+          scoreSelects.set(question.number, { select, update });
+
+          marking.append(scoreLabel, scoreLine, commentLabel, comment);
+          card.append(marking);
+          detailView.append(card);
+        }
+
+        autoButton.addEventListener("click", () => {
+          let filled = 0;
+          for (const [number, result] of Object.entries(submission.checks)) {
+            const entry = scoreSelects.get(number);
+            if (!entry || entry.select.value !== "") continue;
+            entry.select.value = result.status === "correct" ? "1" : "0";
+            entry.update();
+            filled += 1;
+          }
+          setStatus(`${filled} drawing${filled === 1 ? "" : "s"} marked automatically. Check them before exporting.`);
+          autoButton.textContent = filled ? `Filled ${filled} automatic mark${filled === 1 ? "" : "s"}` : "No unmarked drawings to fill";
+        });
+
+        window.scrollTo(0, 0);
+      }
+
+      // ---------- export ----------
+
+      // Prefix cells that a spreadsheet would treat as a formula.
+      function csvCell(value) {
+        let text = String(value ?? "");
+        if (/^[=+\-@\t\r]/.test(text)) text = `'${text}`;
+        return /[",\n\r]/.test(text) ? `"${text.replace(/"/g, '""')}"` : text;
+      }
+
+      document.getElementById("export").addEventListener("click", () => {
+        const lines = [["Pupil", "Worksheet", "Submitted", "Question", "Answered", "Automatic check", "Score", "Out of", "Comment"]];
+        for (const submission of submissions.values()) {
+          for (const question of submission.worksheet.questions) {
+            const mark = submission.marks[question.number] || {};
+            const answered = submission.answers[question.number] || submission.drawings[question.number];
+            const result = submission.checks[question.number];
+            lines.push([
+              submission.student,
+              submission.worksheet.title,
+              submission.submittedAt.toISOString(),
+              question.number,
+              answered ? "yes" : "no",
+              result ? result.status : "",
+              mark.score ?? "",
+              1,
+              mark.comment ?? "",
+            ]);
+          }
+          const t = totals(submission);
+          lines.push([submission.student, submission.worksheet.title, submission.submittedAt.toISOString(), "TOTAL", t.answered, `${t.correct}/${t.checked}`, t.score, t.max, ""]);
+        }
+        const csv = "﻿" + lines.map((line) => line.map(csvCell).join(",")).join("\r\n");
+        const url = URL.createObjectURL(new Blob([csv], { type: "text/csv;charset=utf-8" }));
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = `maths-clil-marks-${new Date().toISOString().slice(0, 10)}.csv`;
+        link.click();
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
+      });
+    </script>
+  </body>
+</html>

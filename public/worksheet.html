@@ -8,6 +8,7 @@
       content="Complete and save interactive Maths CLIL worksheets."
     />
     <title>Interactive worksheet · Maths CLIL</title>
+    <link rel="stylesheet" href="/drawing-pad.css" />
     <style>
       :root {
         font-family: "DM Sans", "Segoe UI", sans-serif;
@@ -23,6 +24,7 @@
       }
 
       * { box-sizing: border-box; }
+      [hidden] { display: none !important; }
       body { margin: 0; min-width: 320px; }
       button, textarea { font: inherit; }
       a { color: inherit; }
@@ -58,6 +60,14 @@
       .completion { display: flex; align-items: center; gap: 9px; margin-top: 12px; color: var(--muted); font-size: 14px; }
       .completion input { width: 18px; height: 18px; accent-color: var(--green); }
       .empty { margin-top: 30px; padding: 24px; border-radius: 18px; background: #fffefa; }
+      .answer-modes { display: inline-flex; gap: 4px; margin-bottom: 10px; padding: 4px; border: 1px solid var(--line); border-radius: 12px; background: #f3f7f3; }
+      .answer-modes button { padding: 6px 16px; border: 0; border-radius: 9px; background: transparent; color: var(--muted); font-weight: 700; cursor: pointer; }
+      .answer-modes button[aria-pressed="true"] { background: #fff; color: var(--green); box-shadow: 0 1px 3px rgba(37, 52, 45, 0.15); }
+      .answer-modes button.has-content::after { content: ""; display: inline-block; width: 7px; height: 7px; margin-left: 7px; border-radius: 50%; background: var(--green); vertical-align: middle; }
+      .student-panel { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin: 16px 0 0; }
+      .student-panel label { font-weight: 700; }
+      .student-panel input { min-width: 220px; padding: 8px 10px; border: 1px solid #cbd6cc; border-radius: 10px; font: inherit; }
+      .teacher-link { display: inline-block; margin-top: 28px; color: var(--muted); font-size: 14px; }
       @media (max-width: 600px) {
         .page { width: min(100% - 24px, 1050px); padding-top: 20px; }
         .progress-panel { grid-template-columns: 1fr; gap: 6px; }
@@ -77,6 +87,9 @@
     <script src="/worksheet-content-chapter-3.js"></script>
     <script src="/worksheet-content-chapter-4.js"></script>
     <script src="/worksheet-content-chapter-5.js"></script>
+    <script src="/worksheet-drawings.js"></script>
+    <script src="/drawing-check.js"></script>
+    <script src="/drawing-pad.js"></script>
     <script>
       const sets = window.WORKSHEET_SETS;
       const printablePdfs = {
@@ -144,7 +157,7 @@
         const title = document.createElement("h1");
         title.textContent = worksheet.title;
         const description = document.createElement("p");
-        description.textContent = "Write your answers below. Your work is saved in this browser. Print opens the original worksheet PDF.";
+        description.textContent = "Write or draw your answers below. Your work is saved in this browser. Print opens the original worksheet PDF.";
         heading.append(eyebrow, title, description);
         root.append(heading);
 
@@ -162,6 +175,33 @@
         progressPanel.append(progressLabel, count, progress);
         root.append(progressPanel);
 
+        const NAME_KEY = "maths-clil-student-name";
+        const studentPanel = document.createElement("div");
+        studentPanel.className = "student-panel";
+        const nameLabel = document.createElement("label");
+        nameLabel.htmlFor = "student-name";
+        nameLabel.textContent = "Your name";
+        const nameInput = document.createElement("input");
+        nameInput.id = "student-name";
+        nameInput.type = "text";
+        nameInput.maxLength = 80;
+        nameInput.autocomplete = "name";
+        nameInput.placeholder = "Needed to submit your work";
+        try {
+          nameInput.value = localStorage.getItem(NAME_KEY) || "";
+        } catch (error) {
+          console.error("Unable to load the saved name.", error);
+        }
+        nameInput.addEventListener("input", () => {
+          try {
+            localStorage.setItem(NAME_KEY, nameInput.value);
+          } catch (error) {
+            console.error("Unable to save the name.", error);
+          }
+        });
+        studentPanel.append(nameLabel, nameInput);
+        root.append(studentPanel);
+
         const toolbar = document.createElement("div");
         toolbar.className = "toolbar";
         const printButton = document.createElement("button");
@@ -174,7 +214,12 @@
         const resetButton = document.createElement("button");
         resetButton.type = "button";
         resetButton.textContent = "Clear my answers";
-        toolbar.append(printButton, checkButton, resetButton);
+        const submitButton = document.createElement("button");
+        submitButton.type = "button";
+        submitButton.textContent = "Submit work (file)";
+        submitButton.title = "Download your answers as a file to send to your teacher";
+        submitButton.addEventListener("click", submitWork);
+        toolbar.append(printButton, checkButton, resetButton, submitButton);
         root.append(toolbar);
 
         const status = document.createElement("p");
@@ -210,6 +255,49 @@
           status.classList.remove("error");
         }
 
+        // Level A submission: the pupil downloads a JSON file and sends it to
+        // the teacher, who opens it in /grade.html. Checks are recomputed there.
+        function submitWork() {
+          const name = nameInput.value.trim();
+          if (!name) {
+            status.textContent = "Type your name before submitting your work.";
+            status.classList.add("error");
+            nameInput.focus();
+            return;
+          }
+          const answered = worksheet.questions.filter(hasAnswer).length;
+          if (!answered) {
+            status.textContent = "Answer at least one question before submitting.";
+            status.classList.add("error");
+            return;
+          }
+          const answers = {};
+          const drawings = {};
+          worksheet.questions.forEach((question) => {
+            if (hasText(question)) answers[question.number] = saved.answers[question.number];
+            if (hasDrawing(question)) drawings[question.number] = saved.drawings[question.number];
+          });
+          const submission = {
+            format: "maths-clil-submission",
+            version: 1,
+            worksheetId: id,
+            worksheetTitle: worksheet.title,
+            student: name,
+            submittedAt: new Date().toISOString(),
+            answers,
+            drawings,
+          };
+          const blob = new Blob([JSON.stringify(submission)], { type: "application/json" });
+          const url = URL.createObjectURL(blob);
+          const link = document.createElement("a");
+          link.href = url;
+          link.download = `${safeTitle} - ${name.replace(/[\\/:*?"<>|]+/g, "-")}.json`;
+          link.click();
+          setTimeout(() => URL.revokeObjectURL(url), 1000);
+          status.textContent = `Your work (${answered} of ${worksheet.questions.length} questions) was saved as a file. Send that file to your teacher.`;
+          status.classList.remove("error");
+        }
+
         document.addEventListener("keydown", (event) => {
           if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "p") {
             event.preventDefault();
@@ -219,9 +307,13 @@
 
         const list = document.createElement("div");
         list.className = "question-list";
-        root.append(list);
+        const teacherLink = document.createElement("a");
+        teacherLink.className = "teacher-link";
+        teacherLink.href = "/grade.html";
+        teacherLink.textContent = "Teachers: mark submitted work →";
+        root.append(list, teacherLink);
 
-        let saved = { answers: {}, completed: {} };
+        let saved = { answers: {}, completed: {}, drawings: {} };
         let storageAvailable = true;
         let progressMigrated = false;
         try {
@@ -234,11 +326,14 @@
               !parsed.answers ||
               typeof parsed.answers !== "object" ||
               !parsed.completed ||
-              typeof parsed.completed !== "object"
+              typeof parsed.completed !== "object" ||
+              (parsed.drawings !== undefined &&
+                (!parsed.drawings || typeof parsed.drawings !== "object"))
             ) {
               throw new Error("Saved worksheet progress has an unexpected format.");
             }
             saved = parsed;
+            if (!saved.drawings) saved.drawings = {};
             worksheet.questions.forEach((question) => {
               if (!question.legacyNumber) return;
               for (const section of ["answers", "completed"]) {
@@ -289,12 +384,22 @@
 
         let answersVisible = false;
 
+        function hasText(question) {
+          return Boolean(saved.answers[question.number]?.trim());
+        }
+
+        function hasDrawing(question) {
+          return Boolean(saved.drawings[question.number]?.items?.length);
+        }
+
+        function hasAnswer(question) {
+          return hasText(question) || hasDrawing(question);
+        }
+
         function updateCheckButton() {
           checkButton.disabled =
             !answersVisible &&
-            worksheet.questions.every(
-              (question) => !saved.answers[question.number]?.trim(),
-            );
+            worksheet.questions.every((question) => !hasAnswer(question));
         }
 
         updateCheckButton();
@@ -303,14 +408,14 @@
           feedback.replaceChildren();
           const heading = document.createElement("h3");
           const answer = document.createElement("p");
-          if (saved.answers[question.number]?.trim()) {
+          if (hasAnswer(question)) {
             feedback.className = "answer-feedback";
             heading.textContent = "Suggested answer";
             answer.textContent = question.answer;
           } else {
             feedback.className = "answer-feedback unanswered-feedback";
             heading.textContent = "Try this question first";
-            answer.textContent = "Write your answer above, then select “Check answers” to reveal the suggested answer.";
+            answer.textContent = "Write or draw your answer above, then select “Check answers” to reveal the suggested answer.";
           }
           feedback.append(heading, answer);
           feedback.hidden = !answersVisible;
@@ -330,6 +435,8 @@
         });
 
         const feedbackByQuestion = new Map();
+        const answerViews = new Map();
+        const safeTitle = worksheet.title.replace(/[^\w\s-]+/g, "").trim();
         worksheet.questions.forEach((question) => {
           const card = document.createElement("section");
           card.className = "question";
@@ -345,12 +452,123 @@
           answer.value = saved.answers[question.number] || "";
           answer.addEventListener("input", () => {
             saved.answers[question.number] = answer.value;
+            refreshModes();
             updateCheckButton();
             if (answersVisible) {
               updateAnswerFeedback(question, feedbackByQuestion.get(question.number));
             }
             saveProgress();
           });
+
+          // Write / Draw choice. Questions with a `drawing` field open on Draw.
+          const modes = document.createElement("div");
+          modes.className = "answer-modes";
+          modes.setAttribute("role", "group");
+          modes.setAttribute("aria-label", `Answer type for question ${question.number}`);
+          const writeMode = document.createElement("button");
+          writeMode.type = "button";
+          writeMode.textContent = "Write";
+          const drawMode = document.createElement("button");
+          drawMode.type = "button";
+          drawMode.textContent = "Draw";
+          modes.append(writeMode, drawMode);
+
+          const drawPanel = document.createElement("div");
+          drawPanel.hidden = true;
+          let pad = null;
+
+          function refreshModes() {
+            writeMode.classList.toggle("has-content", hasText(question));
+            drawMode.classList.toggle("has-content", hasDrawing(question));
+          }
+
+          function setMode(mode) {
+            const drawing = mode === "draw";
+            writeMode.setAttribute("aria-pressed", String(!drawing));
+            drawMode.setAttribute("aria-pressed", String(drawing));
+            answer.hidden = drawing;
+            drawPanel.hidden = !drawing;
+            if (drawing && !pad) {
+              if (!window.MathsDrawingPad) {
+                drawPanel.textContent = "The drawing tools could not be loaded. Refresh the page to try again.";
+                return;
+              }
+              pad = window.MathsDrawingPad.create({
+                spec: question.drawing,
+                value: saved.drawings[question.number],
+                label: `Drawing area for question ${question.number}`,
+                filename: `${safeTitle} - question ${question.number}`,
+                onChange(value) {
+                  if (value) saved.drawings[question.number] = value;
+                  else delete saved.drawings[question.number];
+                  checkResult.hidden = true;
+                  refreshModes();
+                  updateCheckButton();
+                  if (answersVisible) {
+                    updateAnswerFeedback(question, feedbackByQuestion.get(question.number));
+                  }
+                  saveProgress();
+                },
+              });
+              drawPanel.append(pad.element);
+              if (checkable) drawPanel.append(checkRow);
+            }
+          }
+
+          // Automatic check for drawing questions that define `drawing.check`.
+          const checkable = Boolean(window.MathsDrawingCheck?.hasCheck(question.drawing));
+          const checkRow = document.createElement("div");
+          checkRow.className = "drawing-check";
+          const checkDrawingButton = document.createElement("button");
+          checkDrawingButton.type = "button";
+          checkDrawingButton.textContent = "Check my drawing";
+          const checkResult = document.createElement("div");
+          checkResult.className = "check-result";
+          checkResult.setAttribute("aria-live", "polite");
+          checkResult.hidden = true;
+          checkRow.append(checkDrawingButton, checkResult);
+          checkDrawingButton.addEventListener("click", () => {
+            let result;
+            try {
+              result = window.MathsDrawingCheck.check(question.drawing, saved.drawings[question.number]);
+            } catch (error) {
+              console.error(`Drawing check for question ${question.number} failed.`, error);
+              result = { status: "incorrect", messages: ["This drawing cannot be checked automatically. Ask your teacher."], tips: [], highlight: [] };
+            }
+            const list = document.createElement("ul");
+            for (const message of result.messages) {
+              const line = document.createElement("li");
+              line.textContent = message;
+              list.append(line);
+            }
+            for (const tip of result.tips) {
+              const line = document.createElement("li");
+              line.className = "tip";
+              line.textContent = tip;
+              list.append(line);
+            }
+            checkResult.className = `check-result ${result.status}`;
+            checkResult.replaceChildren(list);
+            checkResult.hidden = false;
+            pad?.setHighlight(result.highlight);
+          });
+
+          writeMode.addEventListener("click", () => setMode("write"));
+          drawMode.addEventListener("click", () => setMode("draw"));
+          answerViews.set(question.number, {
+            refreshModes,
+            clearDrawing: () => {
+              pad?.setValue(null);
+              checkResult.hidden = true;
+            },
+          });
+          refreshModes();
+          setMode(
+            hasDrawing(question) || (question.drawing && !hasText(question))
+              ? "draw"
+              : "write",
+          );
+
           const feedback = document.createElement("section");
           feedback.setAttribute("aria-live", "polite");
           feedback.hidden = true;
@@ -366,14 +584,18 @@
             saveProgress();
           });
           completion.append(checkbox, document.createTextNode("Mark this question complete"));
-          card.append(number, prompt, answer, feedback, completion);
+          card.append(number, prompt, modes, answer, drawPanel, feedback, completion);
           list.append(card);
         });
 
         resetButton.addEventListener("click", () => {
           if (!window.confirm("Clear all saved answers for this worksheet?")) return;
-          saved = { answers: {}, completed: {} };
+          saved = { answers: {}, completed: {}, drawings: {} };
           list.querySelectorAll("textarea").forEach((answer) => { answer.value = ""; });
+          answerViews.forEach((view) => {
+            view.clearDrawing();
+            view.refreshModes();
+          });
           list.querySelectorAll(".answer-feedback").forEach((feedback) => { feedback.hidden = true; });
           list.querySelectorAll('input[type="checkbox"]').forEach((checkbox) => { checkbox.checked = false; });
           answersVisible = false;

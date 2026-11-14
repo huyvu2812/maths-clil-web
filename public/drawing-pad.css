@@ -1,0 +1,63 @@
+/* Shared styles for drawing-pad.js and drawing-check.js results.
+   Pages must define --green, --ink, --line and --muted. */
+.drawing-pad { display: grid; gap: 8px; }
+
+/* Whiteboard frame with the toolbox in its top-left corner. */
+.drawing-board { display: flex; align-items: flex-start; gap: 8px; width: 100%; padding: 8px; border: 1px solid #cbd6cc; border-radius: 14px; background: #fff; }
+.drawing-toolbox { flex: none; display: grid; grid-template-columns: repeat(2, 36px); gap: 4px; padding: 6px; border: 1px solid var(--line); border-radius: 12px; background: #fbfdfb; box-shadow: 0 2px 8px rgba(37, 52, 45, 0.12); }
+.tool-button { display: grid; place-items: center; width: 36px; height: 36px; padding: 0; border: 1px solid transparent; border-radius: 9px; background: transparent; color: var(--ink); cursor: pointer; }
+.tool-button:hover:not(:disabled) { background: #eaf2ec; }
+.tool-button[aria-pressed="true"] { background: var(--green); color: #fff; }
+.tool-button:disabled { cursor: not-allowed; opacity: 0.35; }
+.tool-button:focus-visible, .drawing-swatch:focus-visible { outline: 3px solid #8cc9a4; outline-offset: 1px; }
+.toolbox-separator { grid-column: 1 / -1; height: 1px; margin: 2px 2px; background: var(--line); }
+.toolbox-colors { grid-column: 1 / -1; display: flex; justify-content: space-between; padding: 2px 3px; }
+.drawing-swatch { width: 16px; height: 16px; padding: 0; border: 2px solid #fff; border-radius: 50%; background: var(--swatch); box-shadow: 0 0 0 1px #cbd6cc; cursor: pointer; }
+.drawing-swatch[aria-pressed="true"] { box-shadow: 0 0 0 2px var(--green); }
+
+/* The stage is a window onto an unbounded drawing: the canvas always fills
+   it, and zoom/pan change what it shows. drawing-pad.js sets the stage height. */
+.drawing-stage { position: relative; flex: 1 1 auto; min-width: 0; width: 100%; overflow: hidden; border: 1px solid #dbe4dd; border-radius: 8px; background: #fff; }
+.drawing-canvas { display: block; background: #fff; cursor: crosshair; touch-action: none; }
+.drawing-canvas[data-tool="hand"] { cursor: grab; }
+.tool-button.zoom-level { font-size: 11px; font-weight: 800; letter-spacing: -0.3px; }
+
+/* Full screen: the board fills the screen. */
+.drawing-pad:fullscreen { display: flex; flex-direction: column; gap: 8px; padding: 16px; background: #edf3ee; overflow: auto; }
+.drawing-pad:fullscreen .drawing-board { flex: 1 1 auto; min-height: 0; align-items: stretch; }
+.drawing-pad:fullscreen .drawing-toolbox { align-self: flex-start; }
+.drawing-pad:fullscreen .drawing-props, .drawing-pad:fullscreen .drawing-hint { flex: none; }
+.drawing-canvas[data-tool="select"] { cursor: default; }
+.drawing-canvas[data-tool="text"] { cursor: text; }
+.drawing-canvas[data-tool="eraser"] { cursor: cell; }
+.drawing-canvas:focus-visible { outline: 3px solid #8cc9a4; outline-offset: 3px; }
+.read-only .drawing-canvas { cursor: default; }
+.drawing-text-input { position: absolute; transform: translate(-50%, -50%); width: 9em; padding: 4px 8px; border: 2px solid var(--green); border-radius: 8px; font: inherit; font-size: 15px; text-align: center; }
+.drawing-hint { margin: 0; min-height: 22px; color: var(--muted); font-size: 13px; }
+
+/* On narrow screens the toolbox becomes a row above the drawing. */
+.drawing-pad > * { min-width: 0; }
+@media (max-width: 560px) {
+  .drawing-board { flex-direction: column; }
+  .drawing-toolbox { display: flex; flex-wrap: wrap; align-items: center; max-width: 100%; }
+  .toolbox-separator { width: 1px; height: 28px; margin: 0 2px; }
+  .toolbox-colors { gap: 8px; padding: 0 4px; }
+  .drawing-toolbox > span[aria-hidden="true"] { display: none; }
+}
+
+/* Panel with exact values for the selected item. */
+.drawing-props { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; padding: 8px 12px; border: 1px solid #cbd6cc; border-radius: 10px; background: #f3f7f3; font-size: 14px; }
+.drawing-prop { display: inline-flex; align-items: center; gap: 4px; }
+.drawing-prop input { width: 5.5em; padding: 4px 6px; border: 1px solid #cbd6cc; border-radius: 7px; font: inherit; }
+.drawing-prop input[type="text"] { width: 10em; }
+.drawing-prop-note { color: var(--muted); font-size: 13px; }
+.drawing-props button { padding: 4px 10px; border: 1px solid #cbd6cc; border-radius: 8px; background: #fff; color: #9a3324; font-weight: 700; cursor: pointer; }
+
+/* Result of "Check my drawing". */
+.drawing-check { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 10px; margin-top: 4px; }
+.drawing-check > button { padding: 7px 14px; border: 1px solid var(--green); border-radius: 9px; background: var(--green); color: #fff; font-weight: 700; cursor: pointer; }
+.check-result { flex: 1 1 260px; margin: 0; padding: 10px 14px; border-left: 4px solid; border-radius: 8px; font-size: 14px; }
+.check-result ul { margin: 0; padding-left: 18px; }
+.check-result.correct { border-color: var(--green); background: #eff7f0; }
+.check-result.incorrect, .check-result.empty { border-color: #c2412d; background: #fbefec; }
+.check-result .tip { color: var(--muted); }

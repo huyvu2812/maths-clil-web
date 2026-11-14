@@ -60,6 +60,14 @@ python3 scripts/import_excel.py "/path/to/your-updated-workbook.xlsx"
 
 This first version imports data at build time into `src/data/content.json`; it does not connect to a live database or require database credentials. Interactive worksheet exercises are included in `public/worksheet-content.js` and served by `public/worksheet.html`. The worksheet print button opens the corresponding original PDF from Google Drive so its printed layout matches the source; printing the PDF requires an internet connection.
 
+## Drawing answers, automatic checks and marking
+
+Every worksheet question has a **Write / Draw** choice. Draw opens a drawing pad (`public/drawing-pad.js`) with a 1 cm grid, a line tool that snaps to the grid and to points and shows length and angle, a compass, labelled points, text, a pen and an eraser. The Select tool changes what was drawn: drag an item to move it, drag its round handles to move a line end or change a circle's radius, type an exact length, angle, radius, name or text in the panel under the drawing, nudge with the arrow keys (0.1 cm), or press Delete. The board is unbounded: it opens on a 20 cm page, zooms from 25% to 400% (toolbox buttons, Ctrl + mouse wheel, or the + / - / 0 keys) and pans with the Hand tool, Space + drag or the middle mouse button, so zooming out shows more grid to draw on. It can also go full screen (F). Zooming only changes the view: lengths stay in grid centimetres, and Download PNG and the teacher's view include everything drawn, inside or outside the page. Drawings are saved as vector data in `localStorage` next to the written answers.
+
+- `public/worksheet-drawings.js` adds drawing tasks to questions: locked given figures (`given`) and automatic checks (`check`). Coordinates are in centimetres on the grid. Some figures there replace the ones in the original PDFs, so for those questions the printed PDF shows a different figure.
+- `public/drawing-check.js` checks a drawing against its task: constructed shapes (side lengths, right angles, a given angle, diagonals, height), completing a figure symmetrically about an axis or a centre, drawing all axes of symmetry of given shapes, and marking numbers on a number line. Pupils get the result from **Check my drawing**, with wrong lines shown in red.
+- **Submit work (file)** downloads the pupil's answers as a `.json` file, which they send to the teacher. The teacher opens the files on `/grade.html`, which re-runs the checks, offers the automatic marks, and lets them score and comment on each question and export the marks as CSV. Marks are kept in that teacher's browser. Pupils can edit their files, so treat the automatic marks as a help, not a proof.
+
 ## Project structure
 
 ```text

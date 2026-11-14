@@ -33,9 +33,9 @@ window.WORKSHEET_SETS = {
   "lesson-3": {
     title: "Lesson 3: Order in the Set of Natural Numbers",
     questions: [
-      { number: "1.22", prompt: "Draw a number ray and mark 6 and 13." },
+      { number: "1.22", drawing: { background: "number-line", start: 0 }, prompt: "Draw a number ray and mark 6 and 13." },
       { number: "1.23", prompt: "On a number ray, O is 0 and the second tick after O is 8. Points E, F, and G are at the 4th, 8th, and 10th ticks after O, respectively. What number does each point represent?" },
-      { number: "1.24", prompt: "A kilometre post on National Highway 6 reads “QL6 - km125 - Sơn La 177 km”. How many more kilometres must you travel to reach Sơn La? Draw a number ray from km 0, marking km125 and Sơn La." },
+      { number: "1.24", drawing: { background: "grid" }, prompt: "A kilometre post on National Highway 6 reads “QL6 - km125 - Sơn La 177 km”. How many more kilometres must you travel to reach Sơn La? Draw a number ray from km 0, marking km125 and Sơn La." },
       { number: "1.25", prompt: "Four points A, B, C, D lie on the same number ray in that order. They represent 43 618, 43 529, 42 937, and 43 607. Which point represents which number?" },
       { number: "1.26", prompt: "A health centre recorded daily new flu cases in a town from 1 to 16 March. The numbers of cases for days 1–16 were: 18, 10, 12, 11, 5, 12, 10, 13, 15, 4, 12, 9, 10, 3, 2, 0. (a) On which days were there 5, 10, and 15 new cases? (b) Which day had the most new cases? Which had the fewest? (c) Why can the health centre say that the number of new cases has been going down in the last few days?" },
       { number: "1.27", prompt: "List the elements of each set: A = {x ∈ ℕ | x is a multiple of 3 and x < 12}; B = {x ∈ ℕ | x is a multiple of 3 and x ≤ 12}; C = {x ∈ ℕ* | x is a multiple of 3 and x < 12}; D = {x ∈ ℕ* | x is a multiple of 3 and x ≤ 12}." },
@@ -113,7 +113,7 @@ window.WORKSHEET_SETS = {
       { number: "7", prompt: "Which statement is true? (A) 3 072 divided by 256 gives a quotient of 0; (B) 7 340 divided by 140 gives a remainder of 152; (C) 851 divided by 24 gives a remainder of 11; (D) 415 divided by 5 gives a quotient of 500." },
       { number: "8", prompt: "Which property of powers is correct, for a ≠ 0 and m ≥ n? (A) a^m : a^n = a^(m : n); (B) a^m : a^n = a^(m − n); (C) a^m × a^n = a^(m × n); (D) a^m : a^n = a^(m + n)." },
       { number: "9", prompt: "What is the value of 10⁷? (A) 1 000 000; (B) 10 000 000; (C) 100 000 000; (D) 70." },
-      { number: "10", legacyNumber: "1.68", prompt: "P is the set of even natural numbers greater than 4 and not greater than 12. (a) Describe P in two ways. (b) Mark its elements on a number ray." },
+      { number: "10", legacyNumber: "1.68", drawing: { background: "number-line", start: 0 }, prompt: "P is the set of even natural numbers greater than 4 and not greater than 12. (a) Describe P in two ways. (b) Mark its elements on a number ray." },
       { number: "11", legacyNumber: "1.69", prompt: "A two-digit number has its tens digit greater than its units digit by 9. What is the number?" },
       { number: "12", legacyNumber: "1.70", prompt: "Find the three-digit odd natural numbers whose digits add up to 4." },
       { number: "13", legacyNumber: "1.71", prompt: "Find the three-digit even natural numbers whose digits add up to 4." },
