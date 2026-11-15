@@ -4,7 +4,10 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
+    "figures": "node scripts/build-figure-manifest.mjs",
+    "predev": "npm run figures",
     "dev": "vite",
+    "prebuild": "npm run figures",
     "build": "vite build",
     "preview": "vite preview"
   },

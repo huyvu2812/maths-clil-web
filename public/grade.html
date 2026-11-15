@@ -116,6 +116,7 @@
     <script src="/worksheet-content-chapter-3.js"></script>
     <script src="/worksheet-content-chapter-4.js"></script>
     <script src="/worksheet-content-chapter-5.js"></script>
+    <script src="/worksheet-figures/manifest.js"></script>
     <script src="/worksheet-drawings.js"></script>
     <script src="/drawing-check.js"></script>
     <script src="/drawing-pad.js"></script>
@@ -315,6 +316,20 @@
         listView.hidden = submissions.size === 0;
       }
 
+      // Picture for the question (from worksheet-drawings.js), shown under the prompt.
+      function questionFigure(question) {
+        const figure = question.figure;
+        if (!figure || typeof figure.src !== "string" || !figure.src.startsWith("/worksheet-figures/")) return [];
+        const wrap = document.createElement("figure");
+        wrap.className = "question-figure";
+        const image = document.createElement("img");
+        image.src = figure.src;
+        image.alt = figure.alt || `Figure for question ${question.number}`;
+        image.loading = "lazy";
+        wrap.append(image);
+        return [wrap];
+      }
+
       // ---------- detail ----------
 
       function renderDetail(submission) {
@@ -345,7 +360,7 @@
 
         for (const question of submission.worksheet.questions) {
           const card = el("section", "question");
-          card.append(el("h3", "", question.number), el("p", "prompt", question.prompt));
+          card.append(el("h3", "", question.number), el("p", "prompt", question.prompt), ...questionFigure(question));
           const text = submission.answers[question.number];
           const drawing = submission.drawings[question.number];
           if (text) card.append(el("p", "student-text", text));

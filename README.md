@@ -68,6 +68,33 @@ Every worksheet question has a **Write / Draw** choice. Draw opens a drawing pad
 - `public/drawing-check.js` checks a drawing against its task: constructed shapes (side lengths, right angles, a given angle, diagonals, height), completing a figure symmetrically about an axis or a centre, drawing all axes of symmetry of given shapes, and marking numbers on a number line. Pupils get the result from **Check my drawing**, with wrong lines shown in red.
 - **Submit work (file)** downloads the pupil's answers as a `.json` file, which they send to the teacher. The teacher opens the files on `/grade.html`, which re-runs the checks, offers the automatic marks, and lets them score and comment on each question and export the marks as CSV. Marks are kept in that teacher's browser. Pupils can edit their files, so treat the automatic marks as a help, not a proof.
 
+## Adding a picture to a worksheet question
+
+No code changes are needed for a picture:
+
+1. Find the worksheet id in the address bar of the worksheet page: `worksheet.html?lesson=lesson-19` means `lesson-19`. Reviews are `review` (Chapter I) and `chapter-2-review` to `chapter-5-review`.
+2. Save the picture as `public/worksheet-figures/<worksheet id>/<question number>.png`, for example `public/worksheet-figures/lesson-19/4.8.png`. `.jpg`, `.jpeg`, `.webp` and `.svg` also work. Review questions are numbered as shown on the page, so question 1 of the Chapter IV review is `chapter-4-review/1.png`.
+3. Run `npm run figures` (this also runs on its own before `npm run dev` and `npm run build`; while the dev server is running, run it after adding pictures and reload the page). It lists the pictures in `public/worksheet-figures/manifest.js`, which is generated: do not edit it.
+
+The picture appears under the question's prompt, on the worksheet page and in the teacher's marking page. Use pictures about 500–800 px wide with a white background.
+
+Optional, in `public/worksheet-drawings.js`, under the worksheet id and question number:
+
+```js
+"lesson-19": {
+  "4.8": {
+    figure: { alt: "Four quadrilaterals labelled 1 to 4." }, // description for screen readers
+    prompt: "Use the figure below to identify the rectangle and the rhombus.",
+    answer: "…",
+  },
+},
+```
+
+- `alt` describes the picture for pupils who use a screen reader. Without it they hear "Figure for question 4.8". Do not give the answer away in it.
+- `prompt` and `answer` replace the question text, for example when it still says "Figure 4.11 in the original worksheet PDF".
+
+If something does not match (a misspelt worksheet id, a question number that does not exist, or a description without a picture file), that entry is skipped and the browser console lists it under "worksheet-drawings.js skipped …"; everything else still loads. Open the browser's developer tools (F12) to see it.
+
 ## Project structure
 
 ```text

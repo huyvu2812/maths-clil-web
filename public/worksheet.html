@@ -87,6 +87,7 @@
     <script src="/worksheet-content-chapter-3.js"></script>
     <script src="/worksheet-content-chapter-4.js"></script>
     <script src="/worksheet-content-chapter-5.js"></script>
+    <script src="/worksheet-figures/manifest.js"></script>
     <script src="/worksheet-drawings.js"></script>
     <script src="/drawing-check.js"></script>
     <script src="/drawing-pad.js"></script>
@@ -434,6 +435,20 @@
           }
         });
 
+        // Picture for the question (from worksheet-drawings.js), shown under the prompt.
+        function questionFigure(question) {
+          const figure = question.figure;
+          if (!figure || typeof figure.src !== "string" || !figure.src.startsWith("/worksheet-figures/")) return [];
+          const wrap = document.createElement("figure");
+          wrap.className = "question-figure";
+          const image = document.createElement("img");
+          image.src = figure.src;
+          image.alt = figure.alt || `Figure for question ${question.number}`;
+          image.loading = "lazy";
+          wrap.append(image);
+          return [wrap];
+        }
+
         const feedbackByQuestion = new Map();
         const answerViews = new Map();
         const safeTitle = worksheet.title.replace(/[^\w\s-]+/g, "").trim();
@@ -584,7 +599,7 @@
             saveProgress();
           });
           completion.append(checkbox, document.createTextNode("Mark this question complete"));
-          card.append(number, prompt, modes, answer, drawPanel, feedback, completion);
+          card.append(number, prompt, ...questionFigure(question), modes, answer, drawPanel, feedback, completion);
           list.append(card);
         });
 

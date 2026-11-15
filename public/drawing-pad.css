@@ -61,3 +61,7 @@
 .check-result.correct { border-color: var(--green); background: #eff7f0; }
 .check-result.incorrect, .check-result.empty { border-color: #c2412d; background: #fbefec; }
 .check-result .tip { color: var(--muted); }
+
+/* Picture shown under a question's prompt. */
+.question-figure { margin: 0 0 14px; }
+.question-figure img { display: block; max-width: min(100%, 520px); height: auto; border: 1px solid #e2e8e1; border-radius: 10px; background: #fff; }

@@ -1,9 +1,18 @@
-// Drawing tasks: given figures and automatic checks for drawing questions.
+// Figures and drawing tasks for worksheet questions.
 //
-// Loaded after the worksheet-content*.js files. Each entry is merged into the
-// matching question's `drawing` spec (see drawing-pad.js and drawing-check.js
-// for the fields). `prompt` and `answer` replace the question's text, used where
-// the figure here replaces one from the original worksheet PDF.
+// Loaded after the worksheet-content*.js files and worksheet-figures/manifest.js.
+//
+// Pictures need no entry here: a file saved as
+// public/worksheet-figures/<worksheet id>/<question number>.png (or .jpg,
+// .webp, .svg) is shown under that question's prompt. See README.md.
+//
+// For each entry below:
+// - `figure: { alt }` describes the picture for screen readers (optional;
+//   `src` may also be given to use a different file).
+// - `prompt` and `answer` replace the question's text, used where a figure
+//   here replaces one from the original worksheet PDF.
+// - every other field is merged into the question's `drawing` spec (given
+//   figures and automatic checks; see drawing-pad.js and drawing-check.js).
 //
 // All coordinates are in centimetres on the drawing grid (20 cm wide, 12 cm
 // tall unless `height` is set), measured from the top-left corner.
@@ -30,6 +39,28 @@
       "3.4": { check: { type: "marks", values: [5, -5, -3, 3, -2, 2] } },
     },
     "lesson-18": {
+      "4.1": {
+        prompt: "Look at the figures below. Identify which figure is an equilateral triangle, which is a square, and which is a regular hexagon.",
+        answer: "Figure e) is the equilateral triangle, figure c) is the square, and figure a) is the regular hexagon.",
+        figure: { alt: "Six shapes labelled a) to f)." },
+      },
+      "4.4": {
+        prompt: "For regular hexagon ABCDEF in the figure below: (a) name its short diagonals; (b) are triangles ACE and BDF equilateral?",
+        figure: { alt: "Regular hexagon ABCDEF with lines joining every second vertex." },
+      },
+      "4.5": {
+        prompt: "Use the figure below to check (a) whether ABC is equilateral; (b) whether MNPQ is a square.",
+        answer: "Measure all three sides of ABC to check whether they are equal. For MNPQ, check that all four sides are equal and that each angle is 90°.",
+        figure: { alt: "Triangle ABC with points M and Q on BC, N on AB and P on AC, forming quadrilateral MNPQ." },
+      },
+      "4.6": {
+        figure: { alt: "An equilateral triangle with side 4 cm, and six such triangles fitted together into a regular hexagon." },
+      },
+      "4.7": {
+        prompt: "Use the figure below to count the regular hexagons and the equilateral triangles, and name the regular hexagons.",
+        answer: "Count the regular six-sided shapes, then count every equilateral triangle once. Use the labels P, Q, R, S, T, U and A to F shown in the figure.",
+        figure: { alt: "Regular hexagon PQRSTU with lines between its vertices; the crossing points are labelled A to F." },
+      },
       "4.2": { check: { type: "polygon", vertices: 3, sides: [6], labels: ["E", "F", "G"] } },
       "4.3": { check: { type: "polygon", vertices: 4, sides: [4], right: true, diagonals: true, labels: ["M", "N", "P", "Q"] } },
     },
@@ -121,17 +152,53 @@
     },
   };
 
-  const sets = window.WORKSHEET_SETS;
-  for (const [setId, questions] of Object.entries(DRAWINGS)) {
+  // A mistake in one entry (a wrong worksheet id or question number) is
+  // reported and skipped; it must not stop the other entries from loading.
+  const sets = window.WORKSHEET_SETS || {};
+  const problems = [];
+  const findQuestion = (setId, number, source) => {
     const worksheet = sets[setId];
-    if (!worksheet) throw new Error(`worksheet-drawings.js: unknown worksheet "${setId}".`);
-    for (const [number, patch] of Object.entries(questions)) {
-      const question = worksheet.questions.find((q) => q.number === String(number));
-      if (!question) throw new Error(`worksheet-drawings.js: no question ${number} in "${setId}".`);
-      const { prompt, answer, ...drawing } = patch;
-      question.drawing = { ...(question.drawing || {}), ...drawing };
-      if (prompt) question.prompt = prompt;
-      if (answer) question.answer = answer;
+    if (!worksheet) {
+      problems.push(`${source}: there is no worksheet "${setId}"`);
+      return null;
     }
+    const question = worksheet.questions.find((q) => q.number === String(number));
+    if (!question) problems.push(`${source}: worksheet "${setId}" has no question ${number}`);
+    return question || null;
+  };
+
+  // 1. Pictures dropped into public/worksheet-figures/<worksheet id>/<number>.png
+  //    (listed in worksheet-figures/manifest.js by scripts/build-figure-manifest.mjs).
+  for (const [setId, files] of Object.entries(window.WORKSHEET_FIGURES || {})) {
+    for (const [number, src] of Object.entries(files)) {
+      const question = findQuestion(setId, number, `picture ${src}`);
+      if (question) question.figure = { src, alt: `Figure for question ${number}` };
+    }
+  }
+
+  // 2. Entries above: drawing tasks, figure descriptions and text changes.
+  for (const [setId, questions] of Object.entries(DRAWINGS)) {
+    for (const [number, patch] of Object.entries(questions)) {
+      const question = findQuestion(setId, number, "worksheet-drawings.js");
+      if (!question) continue;
+      try {
+        const { prompt, answer, figure, ...drawing } = patch;
+        if (Object.keys(drawing).length) question.drawing = { ...(question.drawing || {}), ...drawing };
+        if (figure) {
+          question.figure = { ...(question.figure || {}), ...figure };
+          if (!question.figure.src) {
+            problems.push(`question ${number} in "${setId}" has a figure description but no picture file in public/worksheet-figures/${setId}/`);
+          }
+        }
+        if (prompt) question.prompt = prompt;
+        if (answer) question.answer = answer;
+      } catch (error) {
+        problems.push(`question ${number} in "${setId}": ${error.message}`);
+      }
+    }
+  }
+
+  if (problems.length) {
+    console.warn(`worksheet-drawings.js skipped ${problems.length} problem(s):\n- ${problems.join("\n- ")}`);
   }
 })();
